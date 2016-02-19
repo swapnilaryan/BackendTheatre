@@ -1,0 +1,17 @@
+#search_results {
+    width: 75%;
+    margin: 0 auto;
+}
+#found_searched_movie_poster {
+    margin-right: auto;
+    margin-left: auto;
+    height: 250px;
+}
+#found_searched_movie_image {
+    margin-right: auto;
+    margin-left: auto;
+    height: 240px;
+}
+#search_results_movie_title {
+
+}

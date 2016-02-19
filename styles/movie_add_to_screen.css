@@ -1,0 +1,30 @@
+#movie_add_to_screen {
+    width: 75%;
+    margin: 0 auto;
+}
+#rotten_tomatoes_info{
+    background-color: #FEF7CD;
+}
+#rating_image{
+    width: 45px;
+}
+#tomato_meter_percentage {
+    font-size: xx-large;
+    font-weight: 500;
+}
+#audience_rating_image {
+    width: 45px;
+}
+#tomato_user_meter_percentage {
+    font-size: xx-large;
+    font-weight: 500;
+}
+#poster_image {
+    width: 300px;
+    height: 445px;
+}
+#screen_no {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
