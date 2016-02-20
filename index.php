@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'views/headers.php';
 ?>
 <!DOCTYPE html>

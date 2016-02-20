@@ -1,6 +1,6 @@
 <?php
-include 'localhost.php';
 session_start();
+include 'localhost.php';
 $received_data = $_SESSION['received_data'];
 echo $received_data['Title'];
 $received_data['Trailer'] = "TRailer Text";
@@ -31,6 +31,7 @@ try {
         $movie_details_insert = $conn->prepare("INSERT INTO movie_details (
                                               movie_imdbId,
                                               movie_Title,
+                                              movie_Year,
                                               movie_Rated,
                                               movie_Released,
                                               movie_Runtime,
@@ -53,6 +54,7 @@ try {
                       VALUES (
                               :imdbId,
                               :Title,
+                              :Year,
                               :Rated,
                               :Released,
                               :Runtime,
@@ -75,6 +77,7 @@ try {
                               )");
         $movie_details_insert->bindParam(':imdbId',$received_data['imdbID']);
         $movie_details_insert->bindParam(':Title',$received_data['Title']);
+        $movie_details_insert->bindParam(':Title',$received_data['Year']);
         $movie_details_insert->bindParam(':Rated',$received_data['Rated']);
         $movie_details_insert->bindParam(':Released',$received_data['Released']);
         $movie_details_insert->bindParam(':Runtime',$received_data['Runtime']);

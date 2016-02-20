@@ -1,3 +1,10 @@
+<?php
+session_start();
+include 'headers.php';
+?>
+<?php
+include "footers.php";
+?>
 <!DOCTYPE html>
 <html lang="en" xmlns:http="http://www.w3.org/1999/xhtml">
 <head>
@@ -12,15 +19,6 @@
 	<link rel="stylesheet" href="/js/jquery.rateyo.css"/>
 	<link rel="stylesheet" href="/styles/movie_add_to_screen.css">
 </head>
-
-<?php
-session_start();
-include 'headers.php';
-?>
-<?php
-include "footers.php";
-?>
-
 <?php
 if ($_GET['arg'] != null) {
 	$received_data = $_GET['arg'];
