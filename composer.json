@@ -1,0 +1,12 @@
+{
+    "name": "cinestar/backend-theatre",
+    "require": {
+        "electrolinux/phpquery": "^0.9.6"
+    },
+    "authors": [
+        {
+            "name": "Swapnil Kumar",
+            "email": "swapnilaryan.nitdgp@gmail.com"
+        }
+    ]
+}

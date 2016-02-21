@@ -1,10 +1,10 @@
 <?php
 session_start();
 include 'headers.php';
+include './../getImage.php';
+include './../RottenTomatoesInfo.php';
 ?>
-<?php
-include "footers.php";
-?>
+
 <!DOCTYPE html>
 <html lang="en" xmlns:http="http://www.w3.org/1999/xhtml">
 <head>
@@ -20,14 +20,14 @@ include "footers.php";
 	<link rel="stylesheet" href="/styles/movie_add_to_screen.css">
 </head>
 <?php
+$received_data = $_GET['arg'];
 if ($_GET['arg'] != null) {
 	$received_data = $_GET['arg'];
 	$received_data = urldecode($received_data);
 	$received_data = json_decode($received_data,true);
-    // Fetch the trailer of the movie here from Traileraddict api
+    // Fetch the trailer of the movie here from youtube list
     $get_trailer = rawurlencode($received_data['Title']);
     $url_get_trailer = 'https://www.youtube.com/embed?listType=search&list='.$get_trailer.'+Trailer';
-//        'http://api.traileraddict.com/?count=1&width=680&credit=no&film='.$get_trailer;
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_URL,$url_get_trailer);
@@ -46,7 +46,13 @@ if ($_GET['arg'] != null) {
     <hr>
 	<div class="row">
 		<div class="col-xs-6 col-md-4">
-			<img class="" id="poster_image" src = <?php echo $received_data['Poster']; ?> >
+			<!--<img class="" id="poster_image" src = <?php /*echo $received_data['Poster']; */?> >-->
+			<img class="img-responsive" id="poster_image" src="<?php
+																	if($received_data['Poster']=='N/A') {
+																		echo "/images/image_not_found.jpg";
+																	}
+																	else
+																		echo  data_uri($received_data['Poster'],'image/png'); ?>">
 			<br><br>
             <!-- paste here -->
             <form method="get" action="/views/add_movie_database.php" >
@@ -144,7 +150,7 @@ if ($_GET['arg'] != null) {
 				<script src="/js/jquery.rateyo.js"></script>
 				<script type="text/javascript">
 					$(function () {
-						$("#rateYo").rateYo({
+						$('#rateYo').rateYo({
 							readOnly: true,
 							rating : <?php
 							if( $received_data['tomatoUserRating'] != 'N/A') {
@@ -162,12 +168,68 @@ if ($_GET['arg'] != null) {
 	</div>
         <div class="col-xs-6 col-md-4">
         </div>
-        <div>
+        <div class="container-fluid">
             <div id="rotten_tomatoes_info" class="col-xs-12 col-md-8">
-                <!--<div class="col-xs-6 col-md-4">
-                    <h4>Aryan</h4>
-                </div>-->
                 <div class="col-xs-6 col-md-4">
+                    <?php
+                        $get_date = $received_data['Released'];
+                        $released_date = date('Y/m/d', strtotime($get_date));
+                        $todays_date = date("Y/m/d");
+                        if($received_data['tomatoURL']!='N/A' && $todays_date > $released_date) {
+                            $rottenTomatoes_obj = new RottenTomatoesInfo($received_data['tomatoURL']);
+                            /*For all critics*/
+                            $rt_allCritics = $rottenTomatoes_obj->all_critics();
+                            $received_data['tomatoMeter'] = $rt_allCritics['Percentage'];
+                            $received_data['tomatoRating'] = $rt_allCritics['Average_Rating'];
+                            $received_data['tomatoReviews'] = $rt_allCritics['Reviews_Counted'];
+                            $received_data['tomatoFresh'] = $rt_allCritics['Fresh'];
+                            $received_data['tomatoRotten'] = $rt_allCritics['Rotten'];
+                            /*End for all critics*/
+
+                            /*For top critics*/
+                            $rt_topCritics = $rottenTomatoes_obj->top_critics();
+                            $topCritics['Reviews_Counted'] = $rt_topCritics['Reviews_Counted'];
+                            /*End for top critics*/
+
+                            /*For Audience*/
+                            $rt_audience = $rottenTomatoes_obj->audience();
+                            //tomatoUserMeter;tomatoUserRating;tomatoUserRating
+                            $received_data['tomatoUserMeter'] = $rt_audience['User_Percentage'];
+                            $received_data['tomatoUserRating'] = ($rt_audience['Average_Rating'])?($rt_audience['Average_Rating']):('N/A');
+                            $received_data['tomatoUserReviews'] = $rt_audience['User_Ratings'];
+                            /*End for Audience*/
+
+                            /*End Tomato Consensus*/
+                            $rt_consensus = $rottenTomatoes_obj->consensus();
+                            $received_data['tomatoConsensus'] = $rt_consensus['Consensus'];
+                            /*End Tomato Consensus*/
+
+                            /*Check for image if certified or fresh or rotten*///str_replace
+                            if($received_data['tomatoImage']=='N/A'){
+                                if((int)$rt_allCritics['Percentage']>=75){
+                                    if($topCritics['Reviews_Counted']>5 && ($topCritics['Reviews_Counted'] + $rt_allCritics['Reviews_Counted'])>= 40 ) {
+                                        $received_data['tomatoImage'] = 'certified';
+                                    }
+                                    else {
+                                        $received_data['tomatoImage'] = 'fresh';
+                                    }
+                                }
+                                elseif ((int)$rt_allCritics['Percentage']<75 && (int)$rt_allCritics['Percentage']>= 60) {
+                                    if($topCritics['Reviews_Counted']>5 && ($topCritics['Reviews_Counted'] + $rt_allCritics['Reviews_Counted'])>= 40 ) {
+                                        $received_data['tomatoImage'] = 'certified';
+                                    }
+                                    else {
+                                        $received_data['tomatoImage'] = 'rotten';
+                                    }
+                                }else {
+                                    $received_data['tomatoImage'] = 'rotten';
+                                }
+
+                            }
+                            /*end Check for image if certified or fresh or rotten*/
+                        }
+                    ?>
+
                     <h5>TOMATOMETER</h5>
 					<div>
 						<img id="rating_image" src=<?php if($received_data['tomatoImage']=='N/A') {
@@ -185,7 +247,7 @@ if ($_GET['arg'] != null) {
 					</div>
 					<br>
 					<p>Average Rating:
-						<?php echo ($received_data['tomatoRating'] == 'N/A' )?$received_data['tomatoRating'] : $received_data['tomatoRating']."%";?></p>
+						<?php echo ($received_data['tomatoRating'] == 'N/A' )?$received_data['tomatoRating'] : $received_data['tomatoRating'];?></p>
 					<p>Reviews Counted: <?php echo $received_data['tomatoReviews'];?></p>
 					<p>Fresh: <?php echo $received_data['tomatoFresh'];?></p>
 					<p>Rotten: <?php echo $received_data['tomatoRotten'];?></p>
@@ -244,9 +306,9 @@ if ($_GET['arg'] != null) {
 						<br>
 					</div>
 					<p>Average Rating:
-						<?php echo ($received_data['tomatoUserRating'] == 'N/A')?$received_data['tomatoUserRating']: $received_data['tomatoUserRating']."/5";?></p>
+						<?php echo ($received_data['tomatoUserRating'] == 'N/A')?$received_data['tomatoUserRating']: $received_data['tomatoUserRating'];?></p>
 					<p>User Ratings:
-						<?php echo ($received_data['tomatoUserReviews']=='N/A')?$received_data['tomatoUserReviews'] : number_format($received_data['tomatoUserReviews']); ?> </p>
+						<?php echo ($received_data['tomatoUserRating']=='N/A')?$received_data['tomatoUserReviews'] : $received_data['tomatoUserReviews']; ?> </p>
 				</div>
             </div>
         </div>
@@ -254,3 +316,6 @@ if ($_GET['arg'] != null) {
 </div>
 </body>
 </html>
+<?php
+include "footers.php";
+?>

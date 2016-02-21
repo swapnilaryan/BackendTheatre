@@ -1,6 +1,8 @@
 <?php
 session_start();
 include 'headers.php';
+include './../getImage.php';
+//include './../imdb.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" xmlns:http="http://www.w3.org/1999/xhtml" xmlns="http://www.w3.org/1999/html">
@@ -17,7 +19,8 @@ include 'headers.php';
 //call OMDB api :-
 $movieTitle = trim($_GET["srch-term"]);
 if(!$movieTitle) {
-	header("refresh:1;url=/views/not_found.php" );
+	header("refresh:0;url=/views/not_found.php" );
+    die();
 }
 $url_movieTitle = rawurlencode($movieTitle);
 $url_for_search_movie_by_title = 'http://www.omdbapi.com/?type=movie&tomatoes=true&y='.date('Y').'&t='.$url_movieTitle;
@@ -27,11 +30,10 @@ curl_setopt($ch, CURLOPT_URL,$url_for_search_movie_by_title);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 $content = curl_exec($ch);
 $movie_results = json_decode($content,true);
-$image = $movie_results['Poster'];
-$title = $movie_results['Title'];
-?>
-<?php
-include "footers.php";
+if($movie_results['Response']=='False'){
+    header("refresh:0;url=/views/not_found.php" );
+    die();
+}
 ?>
 <body id="search_results_body">
 <div id="search_results" class="container-viewport">
@@ -43,7 +45,13 @@ include "footers.php";
 				<div class="container">
 					<div class="col-xs-6 col-md-6 col-sm-6">
 						<a href="<?php echo "/views/movie_add_to_screen.php?arg=".rawurlencode(json_encode($movie_results)); ?>">
-							<img class="img-responsive" id="found_searched_movie_image" src = <?php echo $movie_results['Poster']; ?>>
+							<img class="img-responsive" id="found_searched_movie_image" src="
+							            <?php
+                                        if($movie_results['Poster']=='N/A'){
+                                            echo "/images/image_not_found.jpg";
+                                        }
+                                        else
+                                            echo  data_uri($movie_results['Poster'],'image/png'); ?>">
 						</a>
 					</div>
 					<div class="col-xs-6 col-md-6 col-sm-6">
@@ -53,12 +61,11 @@ include "footers.php";
 					</div>
 				</div>
 			</div>
-            <!--<a id="found_searched_movie_poster" href = <?php /*echo "/views/movie_add_to_screen.php?arg=".rawurlencode(json_encode($movie_results)); */?>>
-            <img class="img-responsive" id="found_searched_movie_image" src = <?php /*echo $movie_results['Poster']; */?>>
-            </a>-->
         </div>
 	</div>
 </div>
 </body>
 </html>
-
+<?php
+include "footers.php";
+?>
