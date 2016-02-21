@@ -40,7 +40,7 @@ if ($_GET['arg'] != null) {
 }
 ?>
 
-<body>
+<body">
 <div id="movie_add_to_screen" class="container-fluid">
     <h3>Movie : <?php echo $received_data['Title']; ?></h3>
     <hr>
