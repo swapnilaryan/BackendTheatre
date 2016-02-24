@@ -3,8 +3,6 @@ session_start();
 include 'localhost.php';
 $received_data = $_SESSION['received_data'];
 echo $received_data['Title'];
-//$received_data['Trailer'] = "TRailer Text";
-// var_dump($received_data);
 $option = isset($_GET['addToDB']) ? $_GET['addToDB'] : false;
 if ($option) {
     echo htmlentities($_GET['addToDB'], ENT_QUOTES, "UTF-8");

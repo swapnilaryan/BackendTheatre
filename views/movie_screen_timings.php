@@ -16,21 +16,13 @@ include 'headers.php';
 </head>
 <html>
 <body ng-app="movie_theatre" ng-controller="movie_screen_timing" ng-cloak>
-<!--<div>
-    <p>Input something in the input box:</p>
-    <p>Name : <input type="text" ng-model="name" placeholder="Enter name here"></p>
-    <h1>Hello {{name}}</h1>
-    <input type="button" ng-click="print()" value="Print your name">
-    <p>Saved name is : {{newName}}</p>
-
-</div>-->
 <h3 align="center"> Movie Screen Timings </h3>
 <hr>
 <div class="container-fluid">
-    <div class="row clearfix">
-        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-        <div class="col-md-8 col-xs-8 col-lg-8 col-sm-8">
-            <form method="POST" action='' name="frmAddProd">
+    <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+        <div class="col-md-10 col-xs-10 col-lg-10 col-sm-10">
+            <form name="add_movie_screen_timing">
                 <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                     <tr>
@@ -40,39 +32,47 @@ include 'headers.php';
                     <tbody>
                     <tr>
                         <td>
-                            <input type="text" name='movie'  placeholder='Movie' class="form-control"/>
+                            <select ng-model="movie_name" ng-change="selected_movie(movie_name)" ng-options="movie_name as movie_name.movie_Title for movie_name in movie_details_data" class="form-control" id="MovieName">
+                               <!-- <option disabled selected>Select</option>
+                                <option class="scrollable-menu" ng-repeat="movie_name in movie_details_data">{{movie_name.movie_Title}}</option>-->
+                            </select>
+                        </td>
+                        <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                            <input type="text" ng-model="movie_name_selected_duration" class="form-control">
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='ScreenNo' placeholder='Screen No.' class="form-control"/>-->
-                            <select class="form-control" id="ScreenNo">
+                            <select class="form-control" id="ScreenNo"  ng-model="movie_name_selected_screen_no">
                                 <option disabled selected>Select</option>
-                                <option class="scrollable-menu" ng-repeat="n in range(1,30)">Screen# {{n}}</option>
+                                <option class="scrollable-menu" ng-repeat="screen_no in range(1,30)">{{screen_no}}</option>
                             </select>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <div class="input-group bootstrap-timepicker timepicker">
+                            <div class="input-group bootstrap-timepicker timepicker"  ng-model="movie_name_selected_start_time">
                                 <input id="timepicker1" class="form-control input-small" type="text">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                             </div>
 
-                            <!--<input type="text" name='StartTime' placeholder='Start Time' class="form-control"/>-->
+                            <input type="text" name='StartTime' ng-model="movie_name_selected_start_time" placeholder='Start Time' class="form-control"/>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='EndTime' placeholder='End Time' class="form-control"/>-->
                             <div class="input-group bootstrap-timepicker timepicker">
-                                <input id="timepicker2" class="form-control input-small" type="text">
+                                <input id="timepicker2" ng-model="movie_name_selected_end_time" ng-change="end_time()" class="form-control input-small" type="text">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                             </div>
 
                         </td>
-                        <script type="text/javascript">
+                        <!--<script type="text/javascript">
+                            $scope.movie_name_selected_start_time=null;
                             // When the document is ready
                             $(document).ready(function () {
-                                $('#timepicker1').timepicker();
+                                $scope.movie_name_selected_start_time = $('#timepicker1').timepicker();
                                 $('#timepicker2').timepicker();
+                                console.log($scope.movie_name_selected_start_time);
                             });
-                        </script>
-                        <td>
+                        </script>-->
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='Date' placeholder='Date' class="form-control"/>-->
                             <input type="text" placeholder="Pick Date" class="form-control" id="example1">
                             <script type="text/javascript">
@@ -89,14 +89,63 @@ include 'headers.php';
                     </tr>
                     </tbody>
                 </table>
+                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                    <md-button class="md-raised md-primary" ng-disabled="add_to_screen_button_enable">Add to Screen</md-button>
+                </section>
                 </form>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
+        <div class="col-md-8 col-xs-8 col-lg-8 col-sm-8">
+            <h3 align="center"> Now Showing </h3>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Screen No</th>
+                        <th>Movie Name</th>
+                        <th>Start Time</th>
+                        <th>End Time</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Anna</td>
+                        <td>Pitt</td>
+                        <td>35</td>
+                        <td>New York</td>
+                        <td>
+                            <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                                <i class="glyphicon glyphicon-remove-circle">
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>QWE</td>
+                        <td>PitFDSt</td>
+                        <td>135</td>
+                        <td>INDIA York</td>
+                        <td>
+                            <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
+                                <i class="glyphicon glyphicon-remove-circle">
+                                </i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
     </div>
 </div>
-<section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-    <md-button class="md-raised md-primary">Add to Screen</md-button>
-</section>
 
 <!-- Modules -->
 <script src="../js/app.js"></script>
