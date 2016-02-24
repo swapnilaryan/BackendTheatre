@@ -2,11 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08f031df-f5f0-4b1b-bdf7-f1760ebbe538" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/fetch_data_for_display page.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/movie_screen_timings_database.php" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/bootstrap-datepicker.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/styles/datepicker.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/BackendTheatre.iml" afterPath="$PROJECT_DIR$/.idea/BackendTheatre.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/controllers/movie_screen_timing.js" afterPath="$PROJECT_DIR$/js/controllers/movie_screen_timing.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/add_movie_database.php" afterPath="$PROJECT_DIR$/views/add_movie_database.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/movie_screen_timings.php" afterPath="$PROJECT_DIR$/views/movie_screen_timings.php" />
     </list>
     <ignored path="BackendTheatre.iws" />
@@ -42,21 +44,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="movie_screen_timings.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="movie_screen_timings.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/movie_screen_timings.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.384615">
-              <caret line="69" column="46" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
+            <state vertical-scroll-proportion="0.7258065">
+              <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="movie_screen_timing.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="movie_screen_timing.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/controllers/movie_screen_timing.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26198632">
-              <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -65,8 +67,8 @@
       <file leaf-file-name="add_movie_database.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/add_movie_database.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.384615">
-              <caret line="164" column="16" selection-start-line="164" selection-start-column="16" selection-end-line="164" selection-end-column="16" />
+            <state vertical-scroll-proportion="-13.730769">
+              <caret line="21" column="34" selection-start-line="1" selection-start-column="0" selection-end-line="21" selection-end-column="34" />
               <folding>
                 <marker date="1456253430191" expanded="true" signature="933:989" placeholder="select count... movie_details" />
                 <marker date="1456253430191" expanded="true" signature="1404:3821" placeholder="INSERT INTO movie_details... " />
@@ -78,10 +80,30 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="movie_add_to_screen.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/movie_add_to_screen.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-4.576923">
+              <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="movie_screen_timings_database.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/movie_screen_timings_database.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.461538">
+              <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="fetch_data_for_display page.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/fetch_data_for_display page.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.730769">
+            <state vertical-scroll-proportion="0.0">
               <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
               <folding>
                 <marker date="1456253854772" expanded="true" signature="556:583" placeholder="select * fro... movie_details" />
@@ -124,7 +146,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/imdbphp-master/composer.json" />
         <option value="$PROJECT_DIR$/imdbphp-master/demo/index.html" />
         <option value="$PROJECT_DIR$/imdbphp-master/demo/index1.html" />
         <option value="$PROJECT_DIR$/imdbphp-master/index.html" />
@@ -173,8 +194,9 @@
         <option value="$PROJECT_DIR$/styles/movie_screen_timings.css" />
         <option value="$PROJECT_DIR$/views/add_movie_database.php" />
         <option value="$PROJECT_DIR$/views/fetch_data_for_display page.php" />
-        <option value="$PROJECT_DIR$/views/movie_screen_timings.php" />
+        <option value="$PROJECT_DIR$/views/movie_screen_timings_database.php" />
         <option value="$PROJECT_DIR$/js/controllers/movie_screen_timing.js" />
+        <option value="$PROJECT_DIR$/views/movie_screen_timings.php" />
       </list>
     </option>
   </component>
@@ -194,7 +216,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
+    <option name="width" value="1378" />
     <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -222,6 +244,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -264,6 +287,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="styles" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendTheatre" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendTheatre" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="js" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -271,7 +308,6 @@
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -296,10 +332,7 @@
       <recent name="C:\Users\!!.Swapnil..Aryan.!!\Desktop\Desktop\BackendTheatre" />
     </key>
   </component>
-  <component name="RunManager" selected="PHP Script.fetch_data_for_display page.php">
-    <configuration default="false" name="movie_add_to_screen.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:60005/BackendTheatre/views/movie_add_to_screen.php">
-      <method />
-    </configuration>
+  <component name="RunManager" selected="PHP Script.movie_screen_timings_database.php">
     <configuration default="false" name="index.php" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="http://localhost:61170/BackendTheatre/index.php">
       <method />
     </configuration>
@@ -310,6 +343,9 @@
       <method />
     </configuration>
     <configuration default="false" name="fetch_data_for_display page.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/views/fetch_data_for_display page.php">
+      <method />
+    </configuration>
+    <configuration default="false" name="movie_screen_timings_database.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" temporary="true" path="$PROJECT_DIR$/views/movie_screen_timings_database.php">
       <method />
     </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -373,19 +409,19 @@
       <item index="5" class="java.lang.String" itemvalue="JavaScript Debug.search.php" />
       <item index="6" class="java.lang.String" itemvalue="PHP Script.newSearch.php" />
       <item index="7" class="java.lang.String" itemvalue="PHP Script.movie_add_to_screen.php" />
-      <item index="8" class="java.lang.String" itemvalue="JavaScript Debug.movie_add_to_screen.php" />
-      <item index="9" class="java.lang.String" itemvalue="JavaScript Debug.index.php" />
-      <item index="10" class="java.lang.String" itemvalue="JavaScript Debug.getImage.php" />
-      <item index="11" class="java.lang.String" itemvalue="JavaScript Debug.movie_screen_timings.php" />
-      <item index="12" class="java.lang.String" itemvalue="PHP Script.fetch_data_for_display page.php" />
+      <item index="8" class="java.lang.String" itemvalue="JavaScript Debug.index.php" />
+      <item index="9" class="java.lang.String" itemvalue="JavaScript Debug.getImage.php" />
+      <item index="10" class="java.lang.String" itemvalue="JavaScript Debug.movie_screen_timings.php" />
+      <item index="11" class="java.lang.String" itemvalue="PHP Script.fetch_data_for_display page.php" />
+      <item index="12" class="java.lang.String" itemvalue="PHP Script.movie_screen_timings_database.php" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="PHP Script.fetch_data_for_display page.php" />
-        <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.movie_screen_timings.php" />
-        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.getImage.php" />
-        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.index.php" />
-        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.movie_add_to_screen.php" />
+        <item index="0" class="java.lang.String" itemvalue="PHP Script.movie_screen_timings_database.php" />
+        <item index="1" class="java.lang.String" itemvalue="PHP Script.fetch_data_for_display page.php" />
+        <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.movie_screen_timings.php" />
+        <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.getImage.php" />
+        <item index="4" class="java.lang.String" itemvalue="JavaScript Debug.index.php" />
       </list>
     </recent_temporary>
   </component>
@@ -434,25 +470,25 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
-    <editor active="true" />
+    <frame x="-8" y="-8" width="1378" height="744" extended-state="0" />
+    <editor active="false" />
     <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2602428" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="DB Browser" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.6852123" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="DB Execution Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30441642" sideWeight="0.39531478" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30228758" sideWeight="0.6046852" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27986908" sideWeight="0.4973262" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25642964" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27986908" sideWeight="0.4973262" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39905363" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.6852123" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39869282" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Command Line Tools Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32843137" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -753,14 +789,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/datepicker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4874552">
-          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/bootstrap-timepicker.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -776,19 +804,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/bootstrap-datepicker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33333334">
-          <caret line="226" column="41" selection-start-line="226" selection-start-column="31" selection-end-line="226" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/styles/movie_add_to_screen.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42114696">
           <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -800,43 +819,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/movie_add_to_screen.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6702509">
-          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8fc999ba-9a38-48f0-a002-569d0b6fb2dc/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/views/fetch_data_for_display page.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.730769">
+        <state vertical-scroll-proportion="0.0">
           <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
           <folding>
             <marker date="1456253854772" expanded="true" signature="556:583" placeholder="select * fro... movie_details" />
             <marker date="1456253854772" expanded="true" signature="646:647" placeholder="select * fro... movie_details" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/add_movie_database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.384615">
-          <caret line="164" column="16" selection-start-line="164" selection-start-column="16" selection-end-line="164" selection-end-column="16" />
-          <folding>
-            <marker date="1456253430191" expanded="true" signature="933:989" placeholder="select count... movie_details" />
-            <marker date="1456253430191" expanded="true" signature="1404:3821" placeholder="INSERT INTO movie_details... " />
-            <marker date="1456253430191" expanded="true" signature="5950:5974" placeholder="UPDATE movie... " />
-            <marker date="1456253430191" expanded="true" signature="5950:7551" placeholder="UPDATE movie... " />
-            <marker date="1456253430191" expanded="true" signature="5950:7624" placeholder="UPDATE movie... " />
           </folding>
         </state>
       </provider>
@@ -854,18 +850,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/movie_screen_timings.php">
+    <entry file="file://$PROJECT_DIR$/views/add_movie_database.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.384615">
-          <caret line="69" column="46" selection-start-line="69" selection-start-column="46" selection-end-line="69" selection-end-column="46" />
+        <state vertical-scroll-proportion="-13.730769">
+          <caret line="21" column="34" selection-start-line="1" selection-start-column="0" selection-end-line="21" selection-end-column="34" />
+          <folding>
+            <marker date="1456253430191" expanded="true" signature="933:989" placeholder="select count... movie_details" />
+            <marker date="1456253430191" expanded="true" signature="1404:3821" placeholder="INSERT INTO movie_details... " />
+            <marker date="1456253430191" expanded="true" signature="5950:5974" placeholder="UPDATE movie... " />
+            <marker date="1456253430191" expanded="true" signature="5950:7551" placeholder="UPDATE movie... " />
+            <marker date="1456253430191" expanded="true" signature="5950:7624" placeholder="UPDATE movie... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/movie_add_to_screen.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.576923">
+          <caret line="22" column="30" selection-start-line="22" selection-start-column="30" selection-end-line="22" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/movie_screen_timings_database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.461538">
+          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/movie_screen_timing.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26198632">
-          <caret line="9" column="44" selection-start-line="9" selection-start-column="44" selection-end-line="9" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/movie_screen_timings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7258065">
+          <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
           <folding />
         </state>
       </provider>

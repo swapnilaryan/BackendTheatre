@@ -9,8 +9,8 @@ include 'headers.php';
     <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
     <!-- Custom styles for this template -->
     <link href="https://getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
-    <link href="/styles/datepicker.css" rel="stylesheet">
     <link href="/styles/bootstrap-timepicker.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="/styles/movie_screen_timings.css" rel="stylesheet">
 
 </head>
@@ -48,41 +48,41 @@ include 'headers.php';
                             </select>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <div class="input-group bootstrap-timepicker timepicker"  ng-model="movie_name_selected_start_time">
-                                <input id="timepicker1" class="form-control input-small" type="text">
+                            <div class="input-group bootstrap-timepicker timepicker" >
+                                <input id="timepicker1" ng-model="movie_name_selected_start_time" ng-change="start_time(movie_name_selected_start_time)" class="form-control input-small" type="text">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                             </div>
-
-                            <input type="text" name='StartTime' ng-model="movie_name_selected_start_time" placeholder='Start Time' class="form-control"/>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='EndTime' placeholder='End Time' class="form-control"/>-->
                             <div class="input-group bootstrap-timepicker timepicker">
-                                <input id="timepicker2" ng-model="movie_name_selected_end_time" ng-change="end_time()" class="form-control input-small" type="text">
+                                <input id="timepicker2" ng-model="movie_name_selected_end_time" ng-change="end_time(movie_name_selected_end_time)" class="form-control input-small" type="text">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                             </div>
 
                         </td>
-                        <!--<script type="text/javascript">
-                            $scope.movie_name_selected_start_time=null;
+                        <script type="text/javascript">
                             // When the document is ready
                             $(document).ready(function () {
-                                $scope.movie_name_selected_start_time = $('#timepicker1').timepicker();
+                                $('#timepicker1').timepicker();
                                 $('#timepicker2').timepicker();
-                                console.log($scope.movie_name_selected_start_time);
                             });
-                        </script>-->
+                        </script>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='Date' placeholder='Date' class="form-control"/>-->
-                            <input type="text" placeholder="Pick Date" class="form-control" id="example1">
-                            <script type="text/javascript">
+                            <input class="datepicker" data-date-format="mm/dd/yyyy" type="text" placeholder="Pick Date" ng-model="selected_date" ng-change="change_date(selected_date)" id="date">
+                             <script type="text/javascript">
                                 // When the document is ready
-                                $(document).ready(function () {
-
-                                    $('#example1').datepicker({
+                                /*$(document).ready(function () {
+                                    $('#date').datepicker({
                                         format: "dd/mm/yyyy"
                                     });
-
+                                });*/
+                                $(document).ready(function () {
+                                    $('.datepicker').datepicker({
+                                        format: 'mm/dd/yyyy',
+                                        startDate: '-3d'
+                                    });
                                 });
                             </script>
                         </td>
@@ -90,7 +90,7 @@ include 'headers.php';
                     </tbody>
                 </table>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-disabled="add_to_screen_button_enable">Add to Screen</md-button>
+                    <md-button class="md-raised md-primary" ng-disabled="add_to_screen_button()">Add to Screen</md-button>
                 </section>
                 </form>
         </div>
@@ -112,32 +112,22 @@ include 'headers.php';
                         <th>Movie Name</th>
                         <th>Start Time</th>
                         <th>End Time</th>
+                        <th>Date</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td>Anna</td>
-                        <td>Pitt</td>
-                        <td>35</td>
-                        <td>New York</td>
-                        <td>
+                        <td>Kung Fu Panda 3</td>
+                        <td>Screen# 11</td>
+                        <td>9:30 PM</td>
+                        <td>11:00 PM</td>
+                        <td>02/28/2016</td>
+                        <!--<td>
                             <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
                                 <i class="glyphicon glyphicon-remove-circle">
                                 </i>
                             </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>QWE</td>
-                        <td>PitFDSt</td>
-                        <td>135</td>
-                        <td>INDIA York</td>
-                        <td>
-                            <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
-                                <i class="glyphicon glyphicon-remove-circle">
-                                </i>
-                            </button>
-                        </td>
+                        </td>-->
                     </tr>
                     </tbody>
                 </table>
@@ -159,7 +149,7 @@ include 'headers.php';
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 <!--Date Picker JS-->
-<script src="/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 
 <!--Time Picker JS-->
 <script src="/js/bootstrap-timepicker.js"></script>
