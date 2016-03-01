@@ -31,19 +31,16 @@ include 'headers.php';
                     </thead>
                     <tbody>
                     <tr>
-                        <td>
+                        <td class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                             <select ng-model="movie_name" ng-change="selected_movie(movie_name)" ng-options="movie_name as movie_name.movie_Title for movie_name in movie_details_data" class="form-control" id="MovieName">
                                <!-- <option disabled selected>Select</option>
                                 <option class="scrollable-menu" ng-repeat="movie_name in movie_details_data">{{movie_name.movie_Title}}</option>-->
                             </select>
                         </td>
-                        <td class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                            <input type="text" ng-model="movie_name_selected_duration" class="form-control">
-                        </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='ScreenNo' placeholder='Screen No.' class="form-control"/>-->
                             <select class="form-control" id="ScreenNo"  ng-model="movie_name_selected_screen_no">
-                                <option disabled selected>Select</option>
+                                <!--<option disabled selected>Select</option>-->
                                 <option class="scrollable-menu" ng-repeat="screen_no in range(1,30)">{{screen_no}}</option>
                             </select>
                         </td>
@@ -53,21 +50,29 @@ include 'headers.php';
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
                             </div>
                         </td>
-                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <!--<input type="text" name='EndTime' placeholder='End Time' class="form-control"/>-->
-                            <div class="input-group bootstrap-timepicker timepicker">
-                                <input id="timepicker2" ng-model="movie_name_selected_end_time" ng-change="end_time(movie_name_selected_end_time)" class="form-control input-small" type="text">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
-                            </div>
-
-                        </td>
-                        <script type="text/javascript">
+                        <!--<script type="text/javascript">
                             // When the document is ready
                             $(document).ready(function () {
                                 $('#timepicker1').timepicker();
-                                $('#timepicker2').timepicker();
                             });
+                        </script>-->
+                        <script>
+                            /*$(document).ready(function () {
+                                $('#timepicker1').timepicker().on('changeTime.timepicker', function(e) {
+                                    console.log('The time is ' + e.time.value);
+                                    console.log('The hour is ' + e.time.hours);
+                                    console.log('The minute is ' + e.time.minutes);
+                                    console.log('The meridian is ' + e.time.meridian);
+                                });
+                            });*/
+
                         </script>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <input type="number" min="0" max="60" name='commercial_time' placeholder='In mins' ng-change="change_commercial_time(commercial_time)" ng-model="commercial_time" class="form-control"/>
+                        </td>
+                        <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <input type="number" min="0" max="60" name='cleaning_time' placeholder="In mins" ng-change="change_cleaning_time(cleaning_time)" ng-model="cleaning_time" class="form-control"/>
+                        </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='Date' placeholder='Date' class="form-control"/>-->
                             <input class="datepicker" data-date-format="mm/dd/yyyy" type="text" placeholder="Pick Date" ng-model="selected_date" ng-change="change_date(selected_date)" id="date">
@@ -90,7 +95,7 @@ include 'headers.php';
                     </tbody>
                 </table>
                 <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
-                    <md-button class="md-raised md-primary" ng-disabled="add_to_screen_button()">Add to Screen</md-button>
+                    <md-button class="md-raised md-primary" ng-click="send_to_db()" ng-disabled="add_to_screen_button()">Add to Screen</md-button>
                 </section>
                 </form>
         </div>
