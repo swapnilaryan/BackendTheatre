@@ -5,63 +5,59 @@ app.controller("movie_screen_timing",['$scope','$http','$compile', function($sco
     });
     //start time
     $scope.movie_name_selected_start_time=null;
-    $scope.movie_name_selected_end_time=null;
+    $scope.movie_name_selected_end_time=0;
     $scope.start_time = function start_time(start_time){
- //       $(document).ready(function () {
             $('#timepicker1').timepicker().on('changeTime.timepicker', function(e) {
                 $scope.movie_name_selected_start_time = e.time.value;
-                $scope.start_time_hours = e.time.hours;
                 $scope.start_time_minute = e.time.minutes;
                 /*console.log('The time is ' + e.time.value);
                 console.log('The hour is ' + e.time.hours);
                 console.log('The minute is ' + e.time.minutes);
                 console.log('The meridian is ' + e.time.meridian);*/
             });
-        //});
-        //$scope.movie_name_selected_start_time = start_time;
-        $scope.movie_name_selected_end_time =  $scope.movie_name_selected_end_time +$scope.movie_name_selected_start_time;
-        console.log('--------------------------------------',$scope.movie_name_selected_start_time);
-        console.log('/////////////////////////////////',$scope.movie_name_selected_end_time);
+        $scope.end_time_cal = parseInt($scope.commercial_time)+ parseInt($scope.cleaning_time) + parseInt($scope.movie_name_selected_duration);
+        $scope.movie_name_selected_end_time = moment($scope.movie_name_selected_start_time, 'h:mm A').add($scope.end_time_cal, 'minutes').format('h:mm A');
+        //$scope.change_commercial_time();
+        console.log("********end time **********",$scope.movie_name_selected_end_time);
     };
     //end start time
 
-    $scope.commercial_time = null;
-    $scope.cleaning_time = null;
+    $scope.commercial_time = 0;
+    $scope.cleaning_time = 0;
+
+    // for displaying the commercial time and cleaning time
+    $scope.range_time = function(min, max, step) {
+        step = step || 5;
+        var input = [];
+        for (var i = min; i <= max; i += step) {
+            input.push(i);
+        }
+        return input;
+    };
+    // end displaying the no. of screens
+
     //commercial time change
-    $scope.change_commercial_time = function change_commercial_time(commercial_time) {
-        $scope.commercial_time = commercial_time;
-        $scope.movie_name_selected_end_time = $scope.movie_name_selected_end_time + $scope.start_time_minute+$scope.commercial_time;
-        console.log('**************************************************',$scope.movie_name_selected_end_time);
+    $scope.change_commercial_time = function change_commercial_time() {
+        $scope.start_time_minute = parseInt($scope.start_time_minute) + parseInt($scope.commercial_time) + parseInt($scope.movie_name_selected_duration);
+        $scope.movie_name_selected_end_time = moment($scope.movie_name_selected_start_time, 'h:mm A').add($scope.start_time_minute, 'minutes').format('h:mm A');
+        console.log("********end time **********",$scope.movie_name_selected_end_time);
     };
     //end commercial time change
+
     // start cleaning time change
-    $scope.change_cleaning_time = function change_cleaning_time(cleaning_time) {
-        $scope.cleaning_time = cleaning_time;
-        $scope.movie_name_selected_end_time = $scope.movie_name_selected_end_time + $scope.start_time_minute+$scope.cleaning_time;
-        console.log('-----------------++++++++++++++++++++++++',$scope.movie_name_selected_end_time,'--');
+    $scope.change_cleaning_time = function change_cleaning_time() {
+        $scope.start_time_minute = parseInt($scope.start_time_minute) + parseInt($scope.cleaning_time);
+        $scope.movie_name_selected_end_time = moment($scope.movie_name_selected_start_time, 'h:mm A').add($scope.start_time_minute, 'minutes').format('h:mm A');
+        console.log("********end time **********",$scope.movie_name_selected_end_time);
     };
     //end cleaning time change
-
-    //end time need to do
-    //$scope.movie_name_selected_end_time=null;
-    $scope.end_time = function end_time(end_time){
-        /*
-         * $scope.movie_name_selected_start_time
-         * $scope.change_commercial_time
-         * $scope.change_cleaning_time
-         * $scope.movie_name_selected_duration*/
-        console.log();
-        $scope.movie_name_selected_end_time = end_time;
-        console.log('**********************************',$scope.movie_name_selected_end_time);
-    };
-    //end end time
 
     // for displaying the number of screens
     $scope.range = function(min, max, step) {
         step = step || 1;
         var input = [];
         for (var i = min; i <= max; i += step) {
-            input.push("Screen# "+i);
+            input.push(i);
         }
         return input;
     };
@@ -78,9 +74,19 @@ app.controller("movie_screen_timing",['$scope','$http','$compile', function($sco
     $scope.selected_movie = function selected_movie(movie_name) {
         $scope.movie_name_selected = movie_name;
         $scope.movie_name_selected_movie_Title = $scope.movie_name_selected.movie_Title;
+        console.log($scope.movie_name_selected_movie_Title);
         $scope.movie_name_selected_imdbId = $scope.movie_name_selected.movie_imdbId;
+        console.log($scope.movie_name_selected_imdbId);
         $scope.movie_name_selected_duration = $scope.movie_name_selected.movie_Runtime;
-        console.log('**************',$scope.movie_name,$scope.movie_name_selected_imdbId);
+        if($scope.movie_name_selected_duration=='N/A'){
+            $scope.movie_name_selected_duration = 0;
+        }else {
+            var split_time = $scope.movie_name_selected_duration.split(" ");
+            $scope.movie_name_selected_duration = split_time[0];
+        }
+        console.log($scope.movie_name_selected_duration);
+        console.log('------------------------',$scope.movie_name_selected.movie_Title);
+        console.log('**************',$scope.movie_name,$scope.movie_name_selected_imdbId,$scope.movie_name_selected_duration);
     };
     //end fetching movie details from database
 
@@ -130,16 +136,52 @@ app.controller("movie_screen_timing",['$scope','$http','$compile', function($sco
         $scope.data_bind_add_to_screen['start_time']=$scope.movie_name_selected_start_time;
         $scope.data_bind_add_to_screen['end_time']=$scope.movie_name_selected_end_time;
         $scope.data_bind_add_to_screen['date']=$scope.movie_selected_date;
-        $http.get('movie_screen_timings_database.php')
-            .success(function (data) {
-                $scope.movie_details_data = data;
-                console.log($scope.movie_details_data);
+        console.log($scope.data_bind_add_to_screen);
+        //may be a check is required---------TO DO
+        $http({
+            method  : 'POST',
+            url     : 'movie_screen_timings_database.php',
+            data    : $scope.data_bind_add_to_screen // pass in data as strings
+        }).success(function (data) {
+                /*$scope.received_data_for_now_showing = data;
+                $scope.now_showing($scope.received_data_for_now_showing);*/
+                $scope.now_showing();
+                console.log(data);
             });
     };
-
     //End Binding
 
     /**************************************NOW SHOWING PART*******************************/
-    
+    $scope.now_showing_data = [];
+
+    $scope.now_showing_data['screen_no'] = null;
+    $scope.now_showing_data['movie_name'] = null;
+    $scope.now_showing_data['start_time'] = null;
+    $scope.now_showing_data['end_time'] = null;
+    $scope.now_showing_data['movie_imdbId'] = null;
+    $scope.now_showing_data['date'] = null;
+    $scope.now_showing = function now_showing(){
+        $http({
+            method  : 'GET',
+            url     : 'movie_screen_timings_database.php'
+        }).success(function (data) {
+            $scope.received_data_for_now_showing = data;
+            $scope.now_showing_data = data;
+            console.log("||||||||||||||||||||||||||||||||||||||||||||||",$scope.received_data_for_now_showing);
+            /*for(var i =0;i<$scope.received_data_for_now_showing.length;i++){
+                var x = {};
+                x['screen_no'] = $scope.received_data_for_now_showing[i]['screen_no'];
+                x['movie_name'] = $scope.received_data_for_now_showing[i]['movie_name'];
+                x['start_time'] = $scope.received_data_for_now_showing[i]['start_time'];
+                x['end_time'] = $scope.received_data_for_now_showing[i]['end_time'];
+                x['movie_imdbId'] = $scope.received_data_for_now_showing[i]['movie_imdbId'];
+                x['date'] = $scope.received_data_for_now_showing[i]['date'];
+                $scope.now_showing_data.push(x);
+            }*/
+            console.log("===========================",$scope.now_showing_data);
+        });
+
+    };
+    $scope.now_showing();
     /************************************End NOW SHOWING PART*****************************/
 }]);

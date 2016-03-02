@@ -22,7 +22,7 @@ include 'headers.php';
     <div class="row">
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
         <div class="col-md-10 col-xs-10 col-lg-10 col-sm-10">
-            <form name="add_movie_screen_timing">
+            <form name="add_movie_screen_timing" method="post" action="movie_screen_timings_database.php">
                 <table class="table table-bordered table-hover" id="tab_logic">
                     <thead>
                     <tr>
@@ -39,7 +39,7 @@ include 'headers.php';
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='ScreenNo' placeholder='Screen No.' class="form-control"/>-->
-                            <select class="form-control" id="ScreenNo"  ng-model="movie_name_selected_screen_no">
+                            <select class="form-control" id="ScreenNo"  ng-model="movie_name_selected_screen_no" ng-change="selected_screen_no(movie_name_selected_screen_no)">
                                 <!--<option disabled selected>Select</option>-->
                                 <option class="scrollable-menu" ng-repeat="screen_no in range(1,30)">{{screen_no}}</option>
                             </select>
@@ -68,10 +68,20 @@ include 'headers.php';
 
                         </script>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <input type="number" min="0" max="60" name='commercial_time' placeholder='In mins' ng-change="change_commercial_time(commercial_time)" ng-model="commercial_time" class="form-control"/>
+                            <!--<input type="number" min="0" max="60" name='commercial_time' placeholder='In mins' ng-change="change_commercial_time(commercial_time)" ng-model="commercial_time" class="form-control"/>
+                        -->
+                            <select class="form-control" id="CommercialTime"  ng-change="change_commercial_time()" ng-model="commercial_time">
+                                <!--<option disabled selected>Select</option>-->
+                                <option class="scrollable-menu" ng-repeat="commercialTime in range_time(5,60)">{{commercialTime}}</option>
+                            </select>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                            <input type="number" min="0" max="60" name='cleaning_time' placeholder="In mins" ng-change="change_cleaning_time(cleaning_time)" ng-model="cleaning_time" class="form-control"/>
+                            <!--<input type="number" min="0" max="60" name='cleaning_time' placeholder="In mins" ng-change="change_cleaning_time(cleaning_time)" ng-model="cleaning_time" class="form-control"/>
+                        -->
+                            <select class="form-control" id="cleaningTime" ng-change="change_cleaning_time()" ng-model="cleaning_time">
+                                <!--<option disabled selected>Select</option>-->
+                                <option class="scrollable-menu" ng-repeat="cleaningTime in range_time(5,60)">{{cleaningTime}}</option>
+                            </select>
                         </td>
                         <td class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                             <!--<input type="text" name='Date' placeholder='Date' class="form-control"/>-->
@@ -85,7 +95,7 @@ include 'headers.php';
                                 });*/
                                 $(document).ready(function () {
                                     $('.datepicker').datepicker({
-                                        format: 'mm/dd/yyyy',
+                                        format: 'yyyy-mm-dd',
                                         startDate: '-3d'
                                     });
                                 });
@@ -121,12 +131,12 @@ include 'headers.php';
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>Kung Fu Panda 3</td>
-                        <td>Screen# 11</td>
-                        <td>9:30 PM</td>
-                        <td>11:00 PM</td>
-                        <td>02/28/2016</td>
+                    <tr ng-repeat="now_showing in now_showing_data | filter: screen_no">
+                        <td>{{now_showing.screen_no}}</td>
+                        <td>{{now_showing.movie_name}}</td>
+                        <td>{{now_showing.start_time}}</td>
+                        <td>{{now_showing.end_time}}</td>
+                        <td>{{now_showing.date}}</td>
                         <!--<td>
                             <button type="button" ng-click="removeItem(row)" class="btn btn-sm btn-danger">
                                 <i class="glyphicon glyphicon-remove-circle">
@@ -155,7 +165,7 @@ include 'headers.php';
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js"></script>
 <!--Date Picker JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
-
+<script src="http://momentjs.com/downloads/moment.js"></script>
 <!--Time Picker JS-->
 <script src="/js/bootstrap-timepicker.js"></script>
 

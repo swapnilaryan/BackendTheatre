@@ -38,5 +38,6 @@
     <orderEntry type="library" name="angular-aria" level="application" />
     <orderEntry type="library" name="bootstrap-datepicker" level="application" />
     <orderEntry type="library" name="ui-bootstrap-tpls-1.2.1" level="application" />
+    <orderEntry type="library" name="moment" level="application" />
   </component>
 </module>
