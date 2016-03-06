@@ -27,14 +27,14 @@ session_start();
         </div>
         <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
     </div>
-    <h3 align="center"> Movie Screen Timings </h3>
+    <h3 align="center" style="font-size: 25px"> Movie Screen Timings </h3>
     <hr>
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="row">
             <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
             <div class="col-md-10 col-xs-10 col-lg-10 col-sm-10">
                 <form name="add_movie_screen_timing" method="post" action="movie_screen_timings_database.php">
-                    <table class="table table-bordered table-hover" id="tab_logic">
+                    <table class="table table-bordered table-hover" id="tab_logic" style="background-color: rgb(40,53,147)">
                         <thead>
                         <tr>
                             <th class="text-center" ng-repeat="header in tableHeaders">{{header}}</th>
@@ -128,7 +128,7 @@ session_start();
         <div class="row">
             <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
             <div class="col-md-8 col-xs-8 col-lg-8 col-sm-8">
-                <h3 align="center"> Now Showing </h3>
+                <h3 align="center" style=" font-size: 30px"> Now Showing </h3>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-striped">

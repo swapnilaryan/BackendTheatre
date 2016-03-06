@@ -61,8 +61,8 @@ h1#logo a { float:left; width:239px; height:49px; background:url('images/logo.gi
 #sub-navigation { display:block; clear:right; border-top:1px dashed #666; border-bottom:1px dashed #666; padding:12px 0;     padding-bottom: inherit;  }
 #sub-navigation ul { list-style:none; }
 #sub-navigation ul li { float:left; display:inline; padding-right:23px;  }
-#sub-navigation ul li a { font-size:14px; font-weight:bold; color:#fff; line-height:24px; text-decoration:none; }
-#sub-navigation ul li a:hover { color:indianred; }
+#sub-navigation ul li a { font-size:14px; font-weight:bold; color:indianred; line-height:24px; text-decoration:none; }
+#sub-navigation ul li a:hover { color:#FFFFFF; }
 
 #search { width:200px; margin:0 0 0 auto; }
 #search label { float:left; display:inline; font-size:14px; font-weight:bold; color:#fff; line-height:24px; padding-right:6px; }

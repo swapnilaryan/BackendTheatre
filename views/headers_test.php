@@ -1,6 +1,6 @@
 <!-- Header -->
 <div id="header">
-    <h1>Movie Theatre</h1>
+    <h1 style="font-family:Algerian;font-weight: bold; color:#CC0000">Movie Theatre </h1>
     <!-- Sub-menu -->
     <div id="sub-navigation">
         <ul>

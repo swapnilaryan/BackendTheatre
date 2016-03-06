@@ -1,3 +1,8 @@
-#ScreenNo{
-
+.table-striped>tbody>tr:nth-child(odd)>td,
+tr.found{
+    background-color:rgb(40,53,147);
+}
+.table-striped>tbody>tr:nth-child(even)>td,
+tr.found{
+    background-color:indianred;
 }
