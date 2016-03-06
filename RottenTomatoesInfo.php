@@ -58,7 +58,7 @@ class RottenTomatoesInfo {
         $all_critics_score_data = $all_critics_all_data['span.subtle']->remove();
 
         $str = explode(" ", $all_critics_all_data->text());
-        $all_critics_get_left_data['Percentage'] = (!empty($all_critics_score->html()))?$all_critics_score->html():'N/A';
+        $all_critics_get_left_data['Percentage'] = $all_critics_score->html();
         $all_critics_get_left_data['Average_Rating'] = (!empty($str[3]))?$str[3]:'N/A';
         $all_critics_get_left_data['Reviews_Counted'] = (!empty($str[7]))?$str[7]:'N/A';
         $all_critics_get_left_data['Fresh'] = (!empty($str[11]))?$str[11]:'N/A';
@@ -93,7 +93,7 @@ class RottenTomatoesInfo {
         $str = explode(":",$save->text());
         $str_1 = explode("Critics Consensus",$str[1]);
         $consensus_data = array();
-        $consensus_data['Consensus'] =(!empty($str_1[0]))?$str_1[0]:'N/A';
+        $consensus_data['Consensus'] =(($str_1[0]))?$str_1[0]:'N/A';
         return $consensus_data;
     }
 }
