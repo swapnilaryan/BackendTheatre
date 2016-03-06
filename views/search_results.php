@@ -61,7 +61,7 @@ if($movie_results['Response']=='False'){
 <!--                    <div class="col-xs-3 col-md-3 col-lg-3 col-sm-3"></div>-->
 <!--					<div class="col-xs-3 col-md-3 col-lg-3 col-sm-3">-->
 						<a href="<?php echo "/views/movie_add_to_screen.php?arg=".rawurlencode(json_encode($movie_results)); ?>">
-							<img id="found_searched_movie_image" style="height: 135px; width: 100px; border: 0px;" src="
+							<img id="found_searched_movie_image" style="height: 183px; width: 156px; border: 0px;" src="
 							            <?php
                                         if($movie_results['Poster']=='N/A'){
                                             echo "/images/image_not_found.jpg";
