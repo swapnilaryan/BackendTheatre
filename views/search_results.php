@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'headers.php';
+//include 'headers.php';
 include './../getImage.php';
 //include './../imdb.php';
 ?>
@@ -9,6 +9,7 @@ include './../getImage.php';
 <head>
 	<title>Search Results</title>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="/styles/style.css" type="text/css" media="all" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -35,37 +36,54 @@ if($movie_results['Response']=='False'){
     die();
 }
 ?>
-<body id="search_results_body">
+<body style='background-image: url("/images/body-bg.gif")'>
+<div class="row">
+    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+    <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+        <?php include 'headers_test.php'; ?>
+    </div>
+    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+</div>
 <div id="search_results" class="container-viewport">
-	<h3 align="center">Search Results for : <?php echo $movieTitle ?></h3>
-	<hr>
-	<div class="row">
-        <div class="col-xs-6">
-			<div class="panel panel-default">
-				<div class="container">
-					<div class="col-xs-6 col-md-6 col-sm-6">
-						<a href="<?php echo "/views/movie_add_to_screen.php?arg=".rawurlencode(json_encode($movie_results)); ?>">
-							<img class="img-responsive" id="found_searched_movie_image" src="
-							            <?php
-                                        if($movie_results['Poster']=='N/A'){
-                                            echo "/images/image_not_found.jpg";
-                                        }
-                                        else
-                                            echo  data_uri($movie_results['Poster'],'image/png'); ?>">
-						</a>
-					</div>
-					<div class="col-xs-6 col-md-6 col-sm-6">
-						<h5> <?php echo $movie_results['Title']." (".$movie_results['Year'].")"; ?> </h5>
-						<h5> <?php echo $movie_results['Genre']; ?> </h5>
-						<h5> <?php echo $movie_results['Runtime']; ?> </h5>
-					</div>
-				</div>
-			</div>
+	<h3 align="center" style="color: #f3b12b">Search Results for : <?php echo $movieTitle ?></h3>
+    <div class="row">
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+            <div style="border-bottom: 1px dashed #666"></div>
         </div>
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+    </div>
+	<div class="row">
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+            <div class="col-xs-3 col-md-3 col-lg-3 col-sm-3"></div>
+				<div class="search_frame" style="margin-top: 10px; ">
+                    <div class="row">
+                        <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4">
+                            <a href="<?php echo "/views/movie_add_to_screen.php?arg=".rawurlencode(json_encode($movie_results)); ?>">
+                                <img id="found_searched_movie_image" style="height: 183px; width: auto; border: 0px;" src="
+							            <?php
+                                if($movie_results['Poster']=='N/A'){
+                                    echo "/images/image_not_found.jpg";
+                                }
+                                else
+                                    echo  data_uri($movie_results['Poster'],'image/png'); ?>">
+                            </a>
+                        </div>
+                        <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8" id="movie_short_details">
+                            <h5> <?php echo $movie_results['Title']." (".$movie_results['Year'].")"; ?> </h5>
+                            <h5> <?php echo $movie_results['Genre']; ?> </h5>
+                            <h5> <?php echo $movie_results['Released']; ?> </h5>
+                            <h5> <?php echo $movie_results['Actors']; ?> </h5>
+                        </div>
+                    </div>
+				</div>
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
 	</div>
 </div>
+<?php include 'footers_test.php'?>
 </body>
 </html>
 <?php
-include "footers.php";
+//include "footers.php";
 ?>
