@@ -24,11 +24,21 @@ class RottenTomatoesInfo {
         $top_critics_score_data = $top_critics_all_data['span.subtle']->remove();
 
         $str = explode(" ", $top_critics_all_data->text());
-        $top_critics_get_left_data['Percentage'] = $top_critics_score->html();
-        $top_critics_get_left_data['Average_Rating'] = $str[3];
-        $top_critics_get_left_data['Reviews_Counted'] = $str[7];
-        $top_critics_get_left_data['Fresh'] = $str[11];
-        $top_critics_get_left_data['Rotten'] = $str[14];
+        if (count($str) <= 1){
+            $top_critics_get_left_data['Percentage'] = "N/A";
+            $top_critics_get_left_data['Average_Rating'] = "N/A";
+            $top_critics_get_left_data['Reviews_Counted'] = "N/A";
+            $top_critics_get_left_data['Fresh'] = "N/A";
+            $top_critics_get_left_data['Rotten'] = "N/A";
+        }
+        else{
+            $top_critics_get_left_data['Percentage'] = $top_critics_score->html();
+            $top_critics_get_left_data['Average_Rating'] = $str[3];
+            $top_critics_get_left_data['Reviews_Counted'] = $str[7];
+            $top_critics_get_left_data['Fresh'] = $str[11];
+            $top_critics_get_left_data['Rotten'] = $str[14];
+        }
+
         //print_r($top_critics_get_left_data);
         return $top_critics_get_left_data;
         // end getting values of top-critics for percentage, average rating, reviews counted , fresh and rotten
@@ -48,11 +58,11 @@ class RottenTomatoesInfo {
         $all_critics_score_data = $all_critics_all_data['span.subtle']->remove();
 
         $str = explode(" ", $all_critics_all_data->text());
-        $all_critics_get_left_data['Percentage'] = $all_critics_score->html();
-        $all_critics_get_left_data['Average_Rating'] = $str[3];
-        $all_critics_get_left_data['Reviews_Counted'] = $str[7];
-        $all_critics_get_left_data['Fresh'] = $str[11];
-        $all_critics_get_left_data['Rotten'] = $str[14];
+        $all_critics_get_left_data['Percentage'] = (!empty($all_critics_score->html()))?$all_critics_score->html():'N/A';
+        $all_critics_get_left_data['Average_Rating'] = (!empty($str[3]))?$str[3]:'N/A';
+        $all_critics_get_left_data['Reviews_Counted'] = (!empty($str[7]))?$str[7]:'N/A';
+        $all_critics_get_left_data['Fresh'] = (!empty($str[11]))?$str[11]:'N/A';
+        $all_critics_get_left_data['Rotten'] = (!empty($str[14]))?$str[14]:'N/A';
         //print_r($all_critics_get_left_data);
         return $all_critics_get_left_data;
         // end getting values of all-critics for percentage, average rating, reviews counted , fresh and rotten
@@ -67,9 +77,9 @@ class RottenTomatoesInfo {
         $audience_data = array();
         $str = explode(':',$save['div']->text());
         $str_1 = explode(" ",$str[1]);
-        $audience_data['Average_Rating'] = $str_1[1];
-        $audience_data['User_Ratings'] = $str[2];
-        $audience_data['User_Percentage'] = $p[0];
+        $audience_data['Average_Rating'] = (!empty($str_1[1]))?$str_1[1]:'N/A';
+        $audience_data['User_Ratings'] = (!empty($str[2]))?$str[2]:'N/A';
+        $audience_data['User_Percentage'] = (!empty($p[0]))?$p[0]:'N/A';
         //print_r($audience_data);
         return $audience_data;
         /*end audience data*/
@@ -83,7 +93,7 @@ class RottenTomatoesInfo {
         $str = explode(":",$save->text());
         $str_1 = explode("Critics Consensus",$str[1]);
         $consensus_data = array();
-        $consensus_data['Consensus'] = $str_1[0];
+        $consensus_data['Consensus'] =(!empty($str_1[0]))?$str_1[0]:'N/A';
         return $consensus_data;
     }
 }

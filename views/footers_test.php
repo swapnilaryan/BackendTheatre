@@ -9,8 +9,8 @@
     <!-- Footer -->
     <div id="footer">
         <p>
-            <a href="#">HOME</a> <span>|</span>
-            <a href="#">NOW SHOWING</a> <span>|</span>
+            <a href="/index.php">HOME</a> <span>|</span>
+            <a href="/views/movie_screen_timings.php">NOW SHOWING</a> <span>|</span>
             <a href="#">CONTACT </a>
         </p>
         <p> &copy; <?php echo date("Y"); ?> Movie Theatre</p>

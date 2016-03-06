@@ -6,18 +6,19 @@ session_start();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-        <!--<script src="/js/movie_screen_timings.js"></script>-->
+        <script src="/js/movie_screen_timings.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
         <!-- Angular Material style sheet -->
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
         <!-- Custom styles for this template -->
-        <link href="https://getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">
+<!--        <link href="https://getbootstrap.com/examples/sticky-footer/sticky-footer.css" rel="stylesheet">-->
         <link href="/styles/bootstrap-timepicker.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
         <link href="/styles/movie_screen_timings.css" rel="stylesheet">
         <link rel="stylesheet" href="/styles/style.css" type="text/css" media="all" />
 
     </head>
+
     <html style="background-image: url('/images/body-bg.gif');">
     <body ng-app="movie_theatre" ng-controller="movie_screen_timing" ng-style="{ 'background-image':'url(/images/body-bg.gif)', 'margin': '0px', 'padding': '0px', 'height': '100%' }" ng-cloak>
     <div class="row">
