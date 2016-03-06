@@ -1,6 +1,7 @@
 <?php
 session_start();
-include 'headers.php';
+//include 'headers.php';
+
 ?>
 <head xmlns="http://www.w3.org/1999/html">
     <!--<script src="/js/movie_screen_timings.js"></script>-->
@@ -12,12 +13,21 @@ include 'headers.php';
     <link href="/styles/bootstrap-timepicker.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css" rel="stylesheet">
     <link href="/styles/movie_screen_timings.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/style.css" type="text/css" media="all" />
 
 </head>
 <html>
 <body ng-app="movie_theatre" ng-controller="movie_screen_timing" ng-cloak>
-<h3 align="center"> Movie Screen Timings </h3>
-<hr>
+<div class="row">
+    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+    <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+        <?php include 'headers_test.php'; ?>
+    </div>
+    <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+</div>
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
@@ -171,9 +181,11 @@ include 'headers.php';
 
 <!-- Angular Material Library -->
 <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.js"></script>
-
+<?php include "footers_test.php"; ?>
 </body>
 </html>
 <?php
+
 /*include "footers.php";
+
 */?>

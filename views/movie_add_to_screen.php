@@ -1,6 +1,7 @@
 <?php
 session_start();
-include 'headers.php';
+//include 'headers.php';
+//include 'headers_test.php';
 include './../getImage.php';
 include './../RottenTomatoesInfo.php';
 ?>
@@ -14,11 +15,11 @@ include './../RottenTomatoesInfo.php';
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/styles/style.css" type="text/css" media="all" />
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="/js/jquery.rateyo.js"></script>
-	<link rel="stylesheet" href="/js/jquery.rateyo.css"/>
-	<link rel="stylesheet" href="/styles/movie_add_to_screen.css">
+	<link rel="stylesheet" href="/styles/jquery.rateyo.css"/>
+	<link rel="stylesheet" href="/styles/movie_add_to_screen.css" type="text/css">
 </head>
 <?php
 $received_data = $_GET['arg'];
@@ -106,172 +107,189 @@ else {
 
 <body>
 <div id="movie_add_to_screen" class="container-fluid">
-    <h3>Movie : <?php echo $received_data['Title']; ?></h3>
-    <hr>
+    <div class="row">
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+            <?php include 'headers_test.php'; ?>
+        </div>
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+        <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+            <h3 id="Movie_name">Movie : <?php echo $received_data['Title']; ?></h3>
+            <div style="border-bottom: 1px dashed #666; margin-bottom: 10px;"></div>
+        </div>
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+    </div>
 	<div class="row">
-        <div class="col-xs-1 col-md-1 col-lg-1 col-sm-1"></div>
-		<div class="col-xs-3 col-md-3 col-lg-3 col-sm-3">
-			<img class="img-responsive" id="poster_image" src="<?php
-																	if($received_data['Poster']=='N/A') {
-																		echo "/images/image_not_found.jpg";
-																	}
-																	else
-																		echo  data_uri($received_data['Poster'],'image/png'); ?>">
-			<br><br>
-            <!-- paste here -->
-            <form method="get" action="/views/add_movie_database.php" >
-                <div class="input-group" style="width: 300px">
-					<input type="submit" class="btn btn-default" name="addToDB" value="Click to Add to Screen">
-				</div>
-            </form>
-        </div>
-	<!--</div>-->
-		<div  class="col-xs-7 col-md-7">
-			<link rel="stylesheet" type="text/css" href="//cdn.traileraddict.com/css/rembed.css">
-            <div class="embed-responsive embed-responsive-16by9">
-				<iframe class = "embed-responsive-item"  src="<?php echo $url_get_trailer; ?>" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
+		<div class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+            <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4">
+                <img class="img-responsive" id="poster_image" src="<?php
+                if($received_data['Poster']=='N/A') {
+                    echo "/images/image_not_found.jpg";
+                }
+                else
+                    echo  data_uri($received_data['Poster'],'image/png'); ?>">
+                <br><br>
+                <!-- paste here -->
+                <form method="get" action="/views/add_movie_database.php" >
+                    <div class="input-group">
+                        <input type="submit" class="btn btn-success" name="addToDB" value="Click to Add to Screen">
+                    </div>
+                </form>
             </div>
-            <br>
-            <h2>Movie Details</h2>
-            <hr>
-		<div>
-			<div class="col-xs-6 col-md-4">
-				<h4> Title (Year) </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['Title']."(".$received_data['Year'].")"; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> Plot </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['Plot']; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> Release Date </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['Released']; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> IMDB Rating </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['imdbRating']; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> Genre </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['Genre']; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> MPAA Rating </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['Rated']; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> Runtime </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<h4> <?php echo $received_data['Runtime']; ?></h4>
-			</div>
-			<div class="col-xs-6 col-md-4">
-				<h4> User Rating </h4>
-			</div>
-			<div class="col-xs-12 col-md-8">
-				<div id="rateYo"></div>
-			</div>
-        </div>
-	</div>
-        <div class="container-fluid">
-            <div class="col-xs-4 col-md-4 col-lg-4 col-sm-4"></div>
-            <div id="rotten_tomatoes_info" class="col-xs-7 col-md-7">
-                <div class="col-xs-6 col-md-4">
-                    <h5>TOMATOMETER</h5>
+
+            <div  class="col-xs-8 col-md-8 col-lg-8 col-sm-8">
+                <link rel="stylesheet" type="text/css" href="//cdn.traileraddict.com/css/rembed.css">
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe class = "embed-responsive-item"  src="<?php echo $url_get_trailer; ?>" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" scrolling="no"></iframe>
+                </div>
+                <br>
+                <h2 id="Movie_details_title">Movie Details</h2>
+                <hr>
+                <div id="Movie_details">
+                    <div class="col-xs-6 col-md-4">
+                        <h4> Title (Year) </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['Title']."(".$received_data['Year'].")"; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> Plot </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['Plot']; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> Release Date </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['Released']; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> IMDB Rating </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['imdbRating']; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> Genre </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['Genre']; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> MPAA Rating </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['Rated']; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> Runtime </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <h4> <?php echo $received_data['Runtime']; ?></h4>
+                    </div>
+                    <div class="col-xs-6 col-md-4">
+                        <h4> User Rating </h4>
+                    </div>
+                    <div class="col-xs-12 col-md-8">
+                        <div id="rateYo"></div>
+                    </div>
+                </div>
+                <div class="row">
                     <div>
-                        <img id="rating_image" src=<?php if($received_data['tomatoImage']=='N/A') {
-                            echo "/images/rt_".$received_data['tomatoImage'];
-                        }
-                        else {
-                            echo "/images/rt_".$received_data['tomatoImage'].".jpg";
-                        }?> >
+                        <div id="rotten_tomatoes_info" class="col-xs-12 col-md-12 col-lg-12 col-sm-12">
+                            <div class="col-xs-6 col-md-4">
+                                <h5>TOMATOMETER</h5>
+                                <div>
+                                    <img id="rating_image" src=<?php if($received_data['tomatoImage']=='N/A') {
+                                        echo "/images/rt_".$received_data['tomatoImage'];
+                                    }
+                                    else {
+                                        echo "/images/rt_".$received_data['tomatoImage'].".jpg";
+                                    }?> >
             <span id="tomato_meter_percentage"><?php if($received_data['tomatoMeter'] == 'N/A') {
                     echo $received_data['tomatoMeter'];
                 }
                 else {
                     echo $received_data['tomatoMeter']."%";
                 }?></span>
-                    </div>
-                    <br>
-                    <p>Average Rating:
-                        <?php echo ($received_data['tomatoRating'] == 'N/A' )?$received_data['tomatoRating'] : $received_data['tomatoRating'];?></p>
-                    <p>Reviews Counted: <?php echo $received_data['tomatoReviews'];?></p>
-                    <p>Fresh: <?php echo $received_data['tomatoFresh'];?></p>
-                    <p>Rotten: <?php echo $received_data['tomatoRotten'];?></p>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <h5>Critics</h5>
-                    <?php
-                    $aria_valuenow = "";
-                    $width = "";
-                    if($received_data['tomatoMeter'] == 'N/A') {
-                        $aria_valuenow = 0;
-                    }
-                    else {
-                        $aria_valuenow = $received_data['tomatoMeter'];
-                    }
-                    if($received_data['tomatoMeter']=='N/A') {
-                        $width = "0%";
-                    }
-                    else {
-                        $width = $received_data['tomatoMeter']."%";
-                    }
-                    ?>
-                    <br>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width:0%;"></div>
-                        <div class="progress-bar" role="progressbar"
-                             aria-valuenow= <?php echo $aria_valuenow; ?>
-                             aria-valuemin="0" aria-valuemax="100"
-                             style="width:<?php echo $width; ?> ">
-                        </div>
-                    </div>
-                    <p>Critics Consensus: <?php echo $received_data['tomatoConsensus']; ?></p>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <h5>AUDIENCE SCORE</h5>
-                    <div>
-                        <img id="audience_rating_image" src=<?php
-                        if($received_data['tomatoUserMeter']!= 'N/A'){
-                            /*$int_val = (int)$received_data['tomatoUserRating'];
-                            echo $int_val;*/
-                            if($received_data['tomatoUserMeter'] > 60){
-                                echo "/images/rt_user_likes.jpg";
-                            }
-                            else {
-                                echo "/images/rt_user_dislike.jpg";
-                            }
-                        }
-                        ?> >
+                                </div>
+                                <br>
+                                <p>Average Rating:
+                                    <?php echo ($received_data['tomatoRating'] == 'N/A' )?$received_data['tomatoRating'] : $received_data['tomatoRating'];?></p>
+                                <p>Reviews Counted: <?php echo $received_data['tomatoReviews'];?></p>
+                                <p>Fresh: <?php echo $received_data['tomatoFresh'];?></p>
+                                <p>Rotten: <?php echo $received_data['tomatoRotten'];?></p>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <h5>Critics</h5>
+                                <?php
+                                $aria_valuenow = "";
+                                $width = "";
+                                if($received_data['tomatoMeter'] == 'N/A') {
+                                    $aria_valuenow = 0;
+                                }
+                                else {
+                                    $aria_valuenow = $received_data['tomatoMeter'];
+                                }
+                                if($received_data['tomatoMeter']=='N/A') {
+                                    $width = "0%";
+                                }
+                                else {
+                                    $width = $received_data['tomatoMeter']."%";
+                                }
+                                ?>
+                                <br>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width:0%;"></div>
+                                    <div class="progress-bar" role="progressbar"
+                                         aria-valuenow= <?php echo $aria_valuenow; ?>
+                                         aria-valuemin="0" aria-valuemax="100"
+                                         style="width:<?php echo $width; ?> ">
+                                    </div>
+                                </div>
+                                <p>Critics Consensus: <?php echo $received_data['tomatoConsensus']; ?></p>
+                            </div>
+                            <div class="col-xs-6 col-md-4">
+                                <h5>AUDIENCE SCORE</h5>
+                                <div>
+                                    <img id="audience_rating_image" src=<?php
+                                    if($received_data['tomatoUserMeter']!= 'N/A'){
+                                        /*$int_val = (int)$received_data['tomatoUserRating'];
+                                        echo $int_val;*/
+                                        if($received_data['tomatoUserMeter'] > 60){
+                                            echo "/images/rt_user_likes.jpg";
+                                        }
+                                        else {
+                                            echo "/images/rt_user_dislike.jpg";
+                                        }
+                                    }
+                                    ?> >
             <span id="tomato_user_meter_percentage"><?php if($received_data['tomatoUserMeter'] == 'N/A') {
                     echo $received_data['tomatoUserMeter'];
                 }
                 else {
                     echo $received_data['tomatoUserMeter']."%";
                 }?></span>
-                        <br>
-                        <br>
+                                    <br>
+                                    <br>
+                                </div>
+                                <p>Average Rating:
+                                    <?php echo ($received_data['tomatoUserRating'] == 'N/A')?$received_data['tomatoUserRating']: $received_data['tomatoUserRating'];?></p>
+                                <p>User Ratings:
+                                    <?php echo ($received_data['tomatoUserRating']=='N/A')?$received_data['tomatoUserReviews'] : $received_data['tomatoUserReviews']; ?> </p>
+                            </div>
+                        </div>
                     </div>
-                    <p>Average Rating:
-                        <?php echo ($received_data['tomatoUserRating'] == 'N/A')?$received_data['tomatoUserRating']: $received_data['tomatoUserRating'];?></p>
-                    <p>User Ratings:
-                        <?php echo ($received_data['tomatoUserRating']=='N/A')?$received_data['tomatoUserReviews'] : $received_data['tomatoUserReviews']; ?> </p>
                 </div>
             </div>
         </div>
-        <div class="col-xs-1 col-md-1 col-lg-1 col-sm-1"></div>
+
+        <div class="col-xs-2 col-md-2 col-lg-2 col-sm-2"></div>
     </div>
 </div>
 <script type="text/javascript">
@@ -295,5 +313,6 @@ else {
 </body>
 </html>
 <?php
-include "footers.php";
+//include "footers.php";
+include "footers_test.php";
 ?>

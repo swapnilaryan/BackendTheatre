@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08f031df-f5f0-4b1b-bdf7-f1760ebbe538" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/body-bg.gif" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/controllers/index.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/styles/style.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/footers_test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/headers_test.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/views/now_showing.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/js/jquery.rateyo.css" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/movie_add_to_screen.css" afterPath="$PROJECT_DIR$/styles/movie_add_to_screen.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/movie_screen_timings.css" afterPath="$PROJECT_DIR$/styles/movie_screen_timings.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/search_results.css" afterPath="$PROJECT_DIR$/styles/search_results.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/styles/style.css" afterPath="$PROJECT_DIR$/styles/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/footers_test.php" afterPath="$PROJECT_DIR$/views/footers_test.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/movie_add_to_screen.php" afterPath="$PROJECT_DIR$/views/movie_add_to_screen.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/movie_screen_timings.php" afterPath="$PROJECT_DIR$/views/movie_screen_timings.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/search_results.php" afterPath="$PROJECT_DIR$/views/search_results.php" />
     </list>
     <ignored path="BackendTheatre.iws" />
@@ -47,30 +47,98 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/styles/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="3.1379929">
-              <caret line="103" column="44" selection-start-line="103" selection-start-column="44" selection-end-line="103" selection-end-column="44" />
+            <state vertical-scroll-proportion="-4.4363637">
+              <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="now_showing.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/views/now_showing.php">
+      <file leaf-file-name="movie_add_to_screen.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/movie_add_to_screen.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.1538463">
-              <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
+            <state vertical-scroll-proportion="-31.26923">
+              <caret line="135" column="35" selection-start-line="135" selection-start-column="35" selection-end-line="135" selection-end-column="35" />
               <folding>
-                <marker date="1457159877423" expanded="true" signature="728:759" placeholder="SELECT * FRO... movie_screen_time" />
-                <marker date="1457159877423" expanded="true" signature="728:779" placeholder="SELECT * FRO... movie_screen_time" />
-                <marker date="1457159877423" expanded="true" signature="734:759" placeholder="SELECT * FRO... movie_screen_time" />
-                <marker date="1457159877423" expanded="true" signature="1282:1339" placeholder="SELECT * FRO... movie_details" />
-                <marker date="1457159877423" expanded="true" signature="2213:2262" placeholder="SELECT * FRO... movie_screen_time" />
-                <marker date="1457159877423" expanded="true" signature="2213:2263" placeholder="SELECT * FRO... movie_screen_time" />
-                <marker date="1457159877423" expanded="true" signature="2673:2730" placeholder="SELECT * FRO... movie_details" />
+                <element signature="e#5101#5161#0#HTML" expanded="true" />
+                <element signature="e#12017#12053#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="movie_screen_timings.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/movie_screen_timings.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-14.269231">
+              <caret line="183" column="34" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search_results.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/search_results.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.538462">
+              <caret line="72" column="96" selection-start-line="72" selection-start-column="77" selection-end-line="72" selection-end-column="96" />
+              <folding>
+                <element signature="e#2483#2509#0#HTML" expanded="true" />
+                <element signature="e#2826#2874#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="search_results.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/styles/search_results.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.609319">
+              <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="jquery.rateyo.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/jquery.rateyo.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="movie_screen_timings.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/movie_screen_timings.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.65384614">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="headers_test.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/views/headers_test.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.038462">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="movie_add_to_screen.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/styles/movie_add_to_screen.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.8727274">
+              <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -78,9 +146,12 @@
       <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-48.96154">
-              <caret line="81" column="10" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
-              <folding />
+            <state vertical-scroll-proportion="-18.346153">
+              <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+              <folding>
+                <element signature="e#1649#1707#0#HTML" expanded="true" />
+                <element signature="e#2296#2354#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -139,7 +210,6 @@
         <option value="$PROJECT_DIR$/views/localhost.php" />
         <option value="$PROJECT_DIR$/js/bootstrap-datepicker.js" />
         <option value="$PROJECT_DIR$/styles/datepicker.css" />
-        <option value="$PROJECT_DIR$/styles/movie_screen_timings.css" />
         <option value="$PROJECT_DIR$/views/add_movie_database.php" />
         <option value="$PROJECT_DIR$/views/fetch_data_for_display page.php" />
         <option value="$PROJECT_DIR$/js/app.js" />
@@ -147,18 +217,19 @@
         <option value="$PROJECT_DIR$/js/controllers/movie_screen_timing.js" />
         <option value="$PROJECT_DIR$/js/jquery.rateyo.js" />
         <option value="$PROJECT_DIR$/js/jquery.rateyo.css" />
-        <option value="$PROJECT_DIR$/styles/movie_add_to_screen.css" />
-        <option value="$PROJECT_DIR$/views/movie_add_to_screen.php" />
         <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/views/movie_screen_timings.php" />
         <option value="$PROJECT_DIR$/views/headers_test.php" />
         <option value="$PROJECT_DIR$/views/now_showing.php" />
         <option value="$PROJECT_DIR$/js/controllers/index.js" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/views/footers_test.php" />
+        <option value="$PROJECT_DIR$/styles/movie_add_to_screen.css" />
+        <option value="$PROJECT_DIR$/views/movie_add_to_screen.php" />
+        <option value="$PROJECT_DIR$/styles/movie_screen_timings.css" />
+        <option value="$PROJECT_DIR$/views/movie_screen_timings.php" />
         <option value="$PROJECT_DIR$/styles/style.css" />
-        <option value="$PROJECT_DIR$/styles/search_results.css" />
+        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/views/search_results.php" />
+        <option value="$PROJECT_DIR$/styles/search_results.css" />
       </list>
     </option>
   </component>
@@ -258,6 +329,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendTheatre" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendTheatre" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -272,16 +357,17 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\!!.Swapnil..Aryan.!!\Documents\BackendTheatre\styles" />
+      <recent name="$PROJECT_DIR$/js" />
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\!!.Swapnil..Aryan.!!\Documents\BackendTheatre\js" />
       <recent name="C:\Users\!!.Swapnil..Aryan.!!\Documents\BackendTheatre" />
       <recent name="C:\Users\!!.Swapnil..Aryan.!!\Documents\BackendTheatre\images" />
       <recent name="C:\Users\!!.Swapnil..Aryan.!!\Documents\BackendTheatre\styles" />
       <recent name="C:\Users\!!.Swapnil..Aryan.!!\Documents\BackendTheatre\scripts" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/js" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Script.movie_screen_timings_database.php">
@@ -532,13 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/js/jquery-2.1.1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/sectional.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7821782">
@@ -665,13 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/styles/movie_screen_timings.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/8fc999ba-9a38-48f0-a002-569d0b6fb2dc/console.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -698,27 +770,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="8" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/jquery.rateyo.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.09189189">
-          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/jquery.rateyo.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="615" selection-start-line="0" selection-start-column="615" selection-end-line="0" selection-end-column="615" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/movie_add_to_screen.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="44" column="1" selection-start-line="44" selection-start-column="1" selection-end-line="44" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -760,14 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/movie_screen_timings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-26.807692">
-          <caret line="41" column="28" selection-start-line="41" selection-start-column="28" selection-end-line="44" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/movie_screen_timings_database.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-7.8461537">
@@ -777,22 +820,6 @@
             <marker date="1456883186749" expanded="true" signature="1394:2089" placeholder="INSERT INTO movie_screen_time... " />
             <marker date="1456883186749" expanded="true" signature="2810:2869" placeholder="select * fro... movie_screen_time" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/headers.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-18.76923">
-          <caret line="42" column="7" selection-start-line="42" selection-start-column="7" selection-end-line="42" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/movie_add_to_screen.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.615385">
-          <caret line="192" column="25" selection-start-line="192" selection-start-column="25" selection-end-line="192" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -812,42 +839,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/headers_test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.769231">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/footers_test.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.1923075">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/styles/search_results.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.423077">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/search_results.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.346154">
-          <caret line="73" column="83" selection-start-line="73" selection-start-column="83" selection-end-line="73" selection-end-column="83" />
-          <folding>
-            <element signature="e#1490#1542#0#HTML" expanded="true" />
-            <element signature="e#1872#1894#0#HTML" expanded="true" />
-            <element signature="e#2807#2856#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/controllers/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -858,32 +849,139 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/views/now_showing.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.1538463">
+        <state vertical-scroll-proportion="0.1469534">
           <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
           <folding>
-            <marker date="1457159877423" expanded="true" signature="728:759" placeholder="SELECT * FRO... movie_screen_time" />
-            <marker date="1457159877423" expanded="true" signature="728:779" placeholder="SELECT * FRO... movie_screen_time" />
-            <marker date="1457159877423" expanded="true" signature="734:759" placeholder="SELECT * FRO... movie_screen_time" />
-            <marker date="1457159877423" expanded="true" signature="1282:1339" placeholder="SELECT * FRO... movie_details" />
-            <marker date="1457159877423" expanded="true" signature="2213:2262" placeholder="SELECT * FRO... movie_screen_time" />
-            <marker date="1457159877423" expanded="true" signature="2213:2263" placeholder="SELECT * FRO... movie_screen_time" />
-            <marker date="1457159877423" expanded="true" signature="2673:2730" placeholder="SELECT * FRO... movie_details" />
+            <marker date="1457234555433" expanded="true" signature="728:759" placeholder="SELECT * FRO... movie_screen_time" />
+            <marker date="1457234555433" expanded="true" signature="728:779" placeholder="SELECT * FRO... movie_screen_time" />
+            <marker date="1457234555433" expanded="true" signature="734:759" placeholder="SELECT * FRO... movie_screen_time" />
+            <marker date="1457234555433" expanded="true" signature="1282:1339" placeholder="SELECT * FRO... movie_details" />
+            <marker date="1457234555433" expanded="true" signature="2213:2262" placeholder="SELECT * FRO... movie_screen_time" />
+            <marker date="1457234555433" expanded="true" signature="2213:2263" placeholder="SELECT * FRO... movie_screen_time" />
+            <marker date="1457234555433" expanded="true" signature="2673:2730" placeholder="SELECT * FRO... movie_details" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
+    <entry file="file://$PROJECT_DIR$/views/footers_test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-48.96154">
-          <caret line="81" column="10" selection-start-line="81" selection-start-column="10" selection-end-line="81" selection-end-column="10" />
+        <state vertical-scroll-proportion="-0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery-2.1.1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/jquery.rateyo.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08732877">
+          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/headers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769">
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="8" selection-end-column="104" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/headers_test.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.038462">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/movie_add_to_screen.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.8727274">
+          <caret line="28" column="17" selection-start-line="28" selection-start-column="17" selection-end-line="28" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/movie_add_to_screen.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-31.26923">
+          <caret line="135" column="35" selection-start-line="135" selection-start-column="35" selection-end-line="135" selection-end-column="35" />
+          <folding>
+            <element signature="e#5101#5161#0#HTML" expanded="true" />
+            <element signature="e#12017#12053#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/movie_screen_timings.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.65384614">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/movie_screen_timings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.269231">
+          <caret line="183" column="34" selection-start-line="183" selection-start-column="34" selection-end-line="183" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/styles/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="3.1379929">
-          <caret line="103" column="44" selection-start-line="103" selection-start-column="44" selection-end-line="103" selection-end-column="44" />
+        <state vertical-scroll-proportion="-4.4363637">
+          <caret line="17" column="21" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-18.346153">
+          <caret line="79" column="14" selection-start-line="79" selection-start-column="14" selection-end-line="79" selection-end-column="14" />
+          <folding>
+            <element signature="e#1649#1707#0#HTML" expanded="true" />
+            <element signature="e#2296#2354#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/jquery.rateyo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/search_results.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.538462">
+          <caret line="72" column="96" selection-start-line="72" selection-start-column="77" selection-end-line="72" selection-end-column="96" />
+          <folding>
+            <element signature="e#2483#2509#0#HTML" expanded="true" />
+            <element signature="e#2826#2874#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/styles/search_results.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.609319">
+          <caret line="20" column="16" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
           <folding />
         </state>
       </provider>

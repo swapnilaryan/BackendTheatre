@@ -4,6 +4,13 @@
 }
 #rotten_tomatoes_info{
     background-color: #FEF7CD;
+    margin-bottom: 20px;
+}
+#rotten_tomatoes_info p{
+    color: black;
+}
+#rotten_tomatoes_info h5 {
+    color: black;
 }
 #rating_image{
     width: 45px;
@@ -11,6 +18,7 @@
 #tomato_meter_percentage {
     font-size: xx-large;
     font-weight: 500;
+    color: black;
 }
 #audience_rating_image {
     width: 45px;
@@ -18,10 +26,11 @@
 #tomato_user_meter_percentage {
     font-size: xx-large;
     font-weight: 500;
+    color: black;
 }
 #poster_image {
-    width: 300px;
-    height: 445px;
+    width: auto;
+    height: 377px;
 }
 #screen_no {
     height: auto;
@@ -42,4 +51,19 @@
     left:0;
     width:100%;
     height:100%;
+}
+#Movie_name {
+    font-size: 20px;
+    color: #f3b12b;
+}
+#Movie_details_title {
+    color: #f3b12b;
+    font-size: 14px;
+    margin-top: 16px;
+}
+#Movie_details h4{
+    color: floralwhite;
+}
+#Movie_details {
+    margin-left:-14px;
 }
