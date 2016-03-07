@@ -2,12 +2,12 @@
 session_start();
 include 'localhost.php';
 $received_data = $_SESSION['received_data'];
-echo $received_data['Title'];
+//echo $received_data['Title'];
 $option = isset($_GET['addToDB']) ? $_GET['addToDB'] : false;
 if ($option) {
-    echo htmlentities($_GET['addToDB'], ENT_QUOTES, "UTF-8");
+    //echo htmlentities($_GET['addToDB'], ENT_QUOTES, "UTF-8");
 } else {
-    echo "You did not select any screen. Go Back and select one ";
+    //echo "You did not select any screen. Go Back and select one ";
     exit;
 }
 $hostname = $database_connection['hostname'];
@@ -19,14 +19,14 @@ try {
     $conn = new PDO("mysql:host=$hostname;port=$port;dbname=$databasename;", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Connected successfully";
+    //echo "Connected successfully";
     // Check if that movie already exists in Database
     $check_if_movie_already_exists = $conn->prepare("select * from movie_details where movie_imdbId = :imdbId");
     $check_if_movie_already_exists->bindParam(':imdbId',$received_data['imdbID']);
     $check_if_movie_already_exists->execute();
     $check_response = $check_if_movie_already_exists->fetchAll();//(PDO::FETCH_COLUMN, 0);
     $update_where_condition = $check_response[0]['movie_imdbId'];
-    print_r($update_where_condition);
+    //print_r($update_where_condition);
     if(count($check_response) < 1 ) {
         $movie_details_insert = $conn->prepare("INSERT INTO movie_details (
                                               movie_imdbId,
@@ -153,7 +153,7 @@ try {
 
         $movie_details_insert->execute();
         // movie screen and time details required
-        echo "Updating this existing movie in database.".PHP_EOL."Redirecting you to Home Page";
+        //echo "Updating this existing movie in database.".PHP_EOL."Redirecting you to Home Page";
     }
     header("Location: /views/movie_screen_timings.php");
     //header("refresh:5;url=/index.php" );
