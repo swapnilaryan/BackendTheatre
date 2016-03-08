@@ -3,10 +3,10 @@ session_start();
 include 'localhost.php';
 $received_data = $_SESSION['received_data'];
 $image = file_get_contents($received_data['Poster']);
-file_put_contents('/images/'.$received_data['movie_Title'], $image);
+file_put_contents('../images/'.$received_data['Title'].'.jpg', $image);
 //$base64   = base64_encode($contents);
-$received_data['Poster'] = $base64;
-echo "-------------------------------------".strlen ($received_data['Poster']);
+$received_data['Poster'] = file_get_contents('../images/'.$received_data['Title'].'.jpg');
+//echo "-------------------------------------".strlen ($received_data['Poster']);
 //echo $received_data['Title'];
 $option = isset($_GET['addToDB']) ? $_GET['addToDB'] : false;
 if ($option) {
@@ -30,8 +30,8 @@ try {
     $check_if_movie_already_exists->bindParam(':imdbId',$received_data['imdbID']);
     $check_if_movie_already_exists->execute();
     $check_response = $check_if_movie_already_exists->fetchAll();//(PDO::FETCH_COLUMN, 0);
-    $update_where_condition = $check_response[0]['movie_imdbId'];
-    //print_r($update_where_condition);
+    $update_where_condition = $check_response[0][1];
+//    print_r($check_response[0][1]);
     if(count($check_response) < 1 ) {
         $movie_details_insert = $conn->prepare("INSERT INTO movie_details (
                                               movie_imdbId,
