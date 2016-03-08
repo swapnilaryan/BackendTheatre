@@ -35,6 +35,9 @@ session_start();
                 <div class="row-fluid">
                     <div style="width: auto; margin-right: 60px; margin-top: 70px;" class="col-xs-1 col-md-1 col-lg-1 col-sm-1" ><span><a ng-click="slide_left()"><h1><i class="fa fa-chevron-left"></i></h1></a></span></div>
                     <div class="movie-image col-md-10 col-sm-10 col-lg-10 col-xs-10" ng-repeat="img in slide_movies">
+                        <form id="submit_form_from_a_link" action="/views/movie_add_to_screen.php" method="get">
+
+                        </form>
                         <a href="#"><img  ng-src="{{img.movie_Poster}}" alt="movie" /></a>
                         <br/>
                         <h5>{{img.movie_Title}}  ({{img.movie_Year}})</h5>
