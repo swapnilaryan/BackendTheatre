@@ -7,3 +7,12 @@ $database_connection['port'] = '3307';
 $database_connection['dbname'] = 'movie_theatre';
 $database_connection['socket'] =''; //if required
 return $database_connection;
+//
+//$database_connection = [];
+//$database_connection['hostname'] = 'localhost';
+//$database_connection['username'] = 'cinestar';
+//$database_connection['password'] = 'hillwood28';
+//$database_connection['port'] = '3306';
+//$database_connection['dbname'] = 'cinestar_movie_theatre';
+//$database_connection['socket'] =''; //if required
+//return $database_connection;

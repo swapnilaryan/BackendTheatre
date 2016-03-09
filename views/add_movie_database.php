@@ -8,8 +8,8 @@ file_put_contents('../images/'.$received_data['Title'].'.jpg', $image);
 $received_data['Poster'] = '../images/'.$received_data['Title'].'.jpg';
 //$file = 'your_images.jpg';
 
-header('Content-Type: image/jpeg');
-header('Content-Length: ' . filesize($received_data['Poster']));
+//header('Content-Type: image/jpeg');
+//header('Content-Length: ' . filesize($received_data['Poster']));
 //$received_data['Poster'] =  file_get_contents($received_data['Poster']);
 //echo "-------------------------------------".strlen ($received_data['Poster']);
 //echo $received_data['Title'];
