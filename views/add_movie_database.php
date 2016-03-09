@@ -5,7 +5,12 @@ $received_data = $_SESSION['received_data'];
 $image = file_get_contents($received_data['Poster']);
 file_put_contents('../images/'.$received_data['Title'].'.jpg', $image);
 //$base64   = base64_encode($contents);
-$received_data['Poster'] = file_get_contents('../images/'.$received_data['Title'].'.jpg');
+$received_data['Poster'] = '../images/'.$received_data['Title'].'.jpg';
+//$file = 'your_images.jpg';
+
+header('Content-Type: image/jpeg');
+header('Content-Length: ' . filesize($received_data['Poster']));
+//$received_data['Poster'] =  file_get_contents($received_data['Poster']);
 //echo "-------------------------------------".strlen ($received_data['Poster']);
 //echo $received_data['Title'];
 $option = isset($_GET['addToDB']) ? $_GET['addToDB'] : false;
@@ -160,7 +165,7 @@ try {
         // movie screen and time details required
         //echo "Updating this existing movie in database.".PHP_EOL."Redirecting you to Home Page";
     }
-   // header("Location: /views/movie_screen_timings.php");
+    header("Location: /views/movie_screen_timings.php");
     //header("refresh:5;url=/index.php" );
 }
 catch(PDOException $e)

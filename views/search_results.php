@@ -31,6 +31,11 @@ curl_setopt($ch, CURLOPT_URL,$url_for_search_movie_by_title);
 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 $content = curl_exec($ch);
 $movie_results = json_decode($content,true);
+$image = file_get_contents($movie_results['Poster']);
+file_put_contents('../images/'.$movie_results['Title'].'.jpg', $image);
+$movie_results['Poster'] = '../images/'.$movie_results['Title'].'.jpg';
+//echo $movie_results['Poster'];
+//print_r($movie_results['Poster']);
 if($movie_results['Response']=='False'){
     header("refresh:0;url=/views/not_found.php" );
     die();
@@ -66,8 +71,10 @@ if($movie_results['Response']=='False'){
                                 if($movie_results['Poster']=='N/A'){
                                     echo "/images/image_not_found.jpg";
                                 }
-                                else
-                                    echo  data_uri($movie_results['Poster'],'image/png'); ?>">
+                                else{
+                                    echo $movie_results['Poster'];
+                                }
+                                ?>">
                             </a>
                         </div>
                         <div class="col-xs-8 col-md-8 col-lg-8 col-sm-8" id="movie_short_details">
