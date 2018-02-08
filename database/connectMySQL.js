@@ -9,7 +9,7 @@ const config = require('../config');
  * Create connection for mysql
  */
 
-const mysqlCon = mysql.createPool({
+const pool = mysql.createPool({
     connectionLimit: 1000,
     queueLimit: 0,
     waitForConnections: true,
@@ -17,14 +17,17 @@ const mysqlCon = mysql.createPool({
     user: config['db'].user,
     password: config['db'].password,
     port: config['db'].port,
-    database: config['db'].database,
+    database: config['db'].dbName,
     debug: config['db'].debug,
     socketPath: config['db'].socketPath
 });
 
-mysqlCon.getConnection((err, connection) => {
+pool.getConnection((err) => {
     if (err) throw err;
     console.log('MySQL is Connected!');
 });
 
-module.exports = mysqlCon;
+module.exports = {
+    pool: pool,
+    mysqlFormat: mysql.format
+};
