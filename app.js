@@ -4,12 +4,14 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const fs = require('fs');
+const config = require('./config');
+const mysqlCon = require('./database/connectMySQL.js');
+console.log(config);
 
 let index = require('./routes/index');
-let users = require('./routes/users');
 
 let app = express();
-
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
