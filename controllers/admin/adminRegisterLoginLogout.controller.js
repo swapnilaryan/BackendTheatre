@@ -13,44 +13,59 @@ const shortid = require('shortid');
 // 1. Registration
 
 let insertNewAdminUser = (req, res, next) => {
-    let query = 'INSERT INTO ??(??,??,??,??) VALUES (?,?,?,?)';
-    let table = ['admin_user', 'adminUserID', 'adminUserName', 'adminUserEmail', 'adminUserPassword',
-        req.body.adminUserID, req.body.adminUserName, (req.body.adminUserEmail).toLowerCase(), req.body.adminPassword
-    ];
-    query = mysqlDetails.mysqlFormat(query, table);
-    mysqlDetails.pool.getConnection(function (err, connection) {
-        if (err) {
-            return next({
-                'message': 'Error occurred! ' + err,
-            })
-        } else {
-            connection.query(query, function (err, rows) {
-                if (err) {
-                    return next({
-                        'message': 'Error occurred! ' + err,
-                    })
-                } else {
-                    res.json({
-                        'Message': 'User created Successfully',
-                        'Details': rows[0],
-                        'Status': 'Success'
-                    });
-                    console.log('Success');
-                }
+    let tableName = 'admin_user';
+    let columns = ['adminUserID', 'adminUserName', 'adminUserEmail',
+        'adminUserPassword'];
+    let values = [req.body.adminUserID, req.body.adminUserName,
+        (req.body.adminUserEmail).toLowerCase(), req.body.adminPassword];
+    let result = utils.insertToDB(tableName, columns, values);
+    if(result.hasOwnProperty('error')){
+        return next({
+                message: result.error
             });
-        }
-        connection.release();
-    });
+    } else if(result.hasOwnProperty('data')) {
+        res.json({
+            message: 'User created successfully',
+            data: result.data
+        });
+    }
+
+    // let query = 'INSERT INTO ??(??,??,??,??) VALUES (?,?,?,?)';
+    // let table = ['admin_user', 'adminUserID', 'adminUserName', 'adminUserEmail', 'adminUserPassword',
+    //     req.body.adminUserID, req.body.adminUserName, (req.body.adminUserEmail).toLowerCase(), req.body.adminPassword
+    // ];
+    // query = mysqlDetails.mysqlFormat(query, table);
+    // mysqlDetails.pool.getConnection(function (err, connection) {
+    //     if (err) {
+    //         return next({
+    //             'message': 'Error occurred! ' + err,
+    //         })
+    //     } else {
+    //         connection.query(query, function (err, rows) {
+    //             if (err) {
+    //                 return next({
+    //                     'message': 'Error occurred! ' + err,
+    //                 })
+    //             } else {
+    //                 res.json({
+    //                     'Message': 'User created Successfully',
+    //                     'Details': rows[0],
+    //                     'Status': 'Success'
+    //                 });
+    //             }
+    //         });
+    //     }
+    //     connection.release();
+    // });
 };
 /**
  *
- * @param req
+ * @param req mandatory fields 'adminUserEmail', 'adminUserName', 'adminPassword', 'adminConfirmPassword'
  * @param res
- * @param next
+ * @param next for error handling
  */
 let register = (req, res, next) => {
     // Step 1: Check if user already exists
-    console.log(req.body);
     // Check for mandatory fields
     let mandatoryFields = ['adminUserEmail', 'adminUserName', 'adminPassword', 'adminConfirmPassword'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
@@ -81,7 +96,7 @@ let register = (req, res, next) => {
                         if (!passwordsMatch) {
                             next({
                                 'message': 'Passwords don\'t match',
-                            })
+                            });
                         } else {
                             insertNewAdminUser(req, res, next);
                         }
