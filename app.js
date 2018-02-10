@@ -5,7 +5,8 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const fs = require('fs');
-
+const session = require('express-session');
+const config = require('./config');
 let index = require('./routes/index');
 
 let app = express();
@@ -14,6 +15,17 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(session({
+    key: 'userSID',
+    cookie: {
+        secure: false,
+        maxAge: 10000
+    },
+    secret: 'qwerty',
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use('/api', index);
 
@@ -27,7 +39,6 @@ app.use(function (req, res, next) {
 // error handler
 app.use(function (err, req, res, next) {
     // set locals, only providing error in development
-    console.log(err)
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
 

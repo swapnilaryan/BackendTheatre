@@ -6,15 +6,17 @@ const env = process.env.NODE_ENV; // 'dev' or 'test'
 
 const development = {
     app: {
-        port: parseInt(process.env.DEV_APP_PORT) || 8000
+        port: parseInt(process.env.DEV_APP_PORT) || 8000,
+        cookieMaxAge: 10000,
+        cookieSecret: 'qwerty'
     },
     db: {
         host: process.env.DEV_DB_HOST || 'localhost',
         port: parseInt(process.env.DEV_DB_PORT) || 3306,
         dbName: process.env.DEV_DB_NAME || 'movie_theatre',
         user: process.env.DEV_DB_USER || 'root',
-        password: process.env.DEV_DB_PASSWORD || 'root',
-        debug: process.env.DEV_DB_DEBUG || true,
+        password: process.env.DEV_DB_PASSWORD || '',
+        debug: process.env.DEV_DB_DEBUG || false,
         socketPath: process.env.DEV_DB_SOCKETPATH || ''
     }
 };

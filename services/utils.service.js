@@ -3,7 +3,7 @@
  */
 'use strict';
 import * as mysqlDetails from '../database/connectMySQL';
-
+const deferred = require('deferred');
 
 let checkMandatoryRequestBody = (requestBody, mandatoryFields) => {
     let reqBodyKeys = Object.keys(requestBody);
@@ -24,6 +24,7 @@ let checkMandatoryRequestBody = (requestBody, mandatoryFields) => {
 };
 
 let insertToDB = (tableName, columns, values) => {
+    let defer = deferred();
     // create string like -> INSERT INTO ??(??,??,??,??)
     let insertQuery = 'INSERT INTO ?? (';
     for (let i = 0; i < columns.length; i++) {
@@ -47,25 +48,25 @@ let insertToDB = (tableName, columns, values) => {
     }
 
     let table = [tableName];
-    table.concat(columns).concat(values);
+    table = table.concat(columns).concat(values);
     let query = mysqlDetails.mysqlFormat(insertQuery, table);
-    return mysqlDetails.pool.getConnection((err, connection) => {
+    mysqlDetails.pool.getConnection((err, connection) => {
         if (err) {
-            return {error: err};
+            defer.reject({error: err});
         } else {
             connection.query(query, (err, rows) => {
                 if (err) {
-                    return {error: err};
+                    defer.reject({error: err});
                 } else {
-                    return {
-                        data: rows[0]
-                    };
+                    defer.resolve({
+                        data: 'success'
+                    });
                 }
             });
         }
         connection.release();
     });
-
+    return defer.promise;
 };
 
 const utils = {
