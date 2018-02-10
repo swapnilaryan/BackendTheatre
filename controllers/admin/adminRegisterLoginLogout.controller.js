@@ -160,7 +160,6 @@ let login = (req, res, next) => {
     });
 };
 
-
 let logout = (req, res, next) => {
     if (req.session.user && req.cookies.userSID) {
         req.session.destroy((err) => {
