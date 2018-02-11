@@ -7,8 +7,9 @@ const env = process.env.NODE_ENV; // 'dev' or 'test'
 const development = {
     app: {
         port: parseInt(process.env.DEV_APP_PORT) || 8000,
-        cookieMaxAge: 10000,
-        cookieSecret: 'qwerty'
+        cookieMaxAge: 1,
+        cookieSecret: 'qwerty',
+        bcryptSalt: 10
     },
     db: {
         host: process.env.DEV_DB_HOST || 'localhost',

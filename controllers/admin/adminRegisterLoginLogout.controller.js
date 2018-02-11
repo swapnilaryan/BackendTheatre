@@ -5,10 +5,12 @@
 
 import * as mysqlDetails from '../../database/connectMySQL';
 import * as utils from '../../services/utils.service';
+const moment = require('moment');
 const bcrypt = require('bcrypt');
 const shortid = require('shortid');
+const config = require('../../config');
 
-let salt = bcrypt.genSaltSync(10);
+let salt = bcrypt.genSaltSync(config.app.bcryptSalt);
 // GET and POST Admin User Login and Registration
 // 1. Registration
 /**
@@ -42,7 +44,7 @@ let register = (req, res, next) => {
         if (err) {
             return next({message: err});
         } else {
-            connection.query(query, function (err, rows) {
+            connection.query(query, (err, rows) => {
                 if (err) {
                     return next({message: err});
                 } else {
@@ -57,7 +59,7 @@ let register = (req, res, next) => {
                         passwordsMatch = bcrypt.compareSync(
                             req.body.adminConfirmPassword, hashPassword);
                         if (!passwordsMatch) {
-                            next({
+                            return next({
                                 'message': 'Passwords don\'t match',
                             });
                         } else {
@@ -191,7 +193,7 @@ let loginStatus = (req, res, next) => {
         // Logged in
         next();
     } else {
-        return next({
+        next({
             message: 'Logged out. Please log in to continue.',
             status: 401
         });

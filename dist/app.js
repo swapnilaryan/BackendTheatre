@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var fs = require('fs');
 var session = require('express-session');
 var config = require('./config');
+var moment = require('moment');
 var index = require('./routes/index');
 
 var app = express();
@@ -16,12 +17,25 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+    res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+    res.header('Pragma', 'no-cache');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:9003');
+    res.header('Access-Control-Allow-Credentials', true);
+    res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    next();
+});
+
+// expires: moment().add(5, 'hours').add(30 + config.app.cookieMaxAge, 'minutes')
+//     .local().toDate()
 
 app.use(session({
     key: 'userSID',
     cookie: {
         secure: false,
-        maxAge: 10000
+        maxAge: moment().local().toDate(),
+        expires: moment().add(config.app.cookieMaxAge, 'day').local().toDate()
     },
     secret: 'qwerty',
     resave: false,
