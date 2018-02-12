@@ -3,7 +3,7 @@
  */
 'use strict';
 import * as mysqlDetails from '../../database/connectMySQL';
-import * as utils from "../../services/utils.service";
+import * as utils from '../../services/utils.service';
 const config = require('../../config');
 const bcrypt = require('bcrypt');
 
