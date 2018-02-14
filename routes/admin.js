@@ -66,6 +66,9 @@ router.put('/screen', adminRegisterLoginLogout.loginStatus,
     adminScreenDetails.updateAdminScreenDetails);
 
 
+// Movies
+router.get('/upcomingMovies', adminRegisterLoginLogout.loginStatus,
+    adminScreenDetails.postAdminScreenDetails);
 
 
 
