@@ -11,6 +11,8 @@ const adminLocationDetails = require('../controllers/admin/location.controller')
 const adminSocialDetails = require('../controllers/admin/social.controller');
 const adminTicketDetails = require('../controllers/admin/ticket.controller');
 const adminScreenDetails = require('../controllers/admin/screen.controller');
+const adminUpcomingMovies = require('../controllers/admin/upComingMovies.controller');
+const adminCurrentMovies = require('../controllers/admin/currentMovies.controller');
 
 // Login Logout and Registration
 router.post('/register', adminRegisterLoginLogout.register);
@@ -66,9 +68,38 @@ router.put('/screen', adminRegisterLoginLogout.loginStatus,
     adminScreenDetails.updateAdminScreenDetails);
 
 
-// Movies
-router.get('/upcomingMovies', adminRegisterLoginLogout.loginStatus,
-    adminScreenDetails.postAdminScreenDetails);
+// Upcoming Movies
+router.get('/recommendedUpComingMovies', adminRegisterLoginLogout.loginStatus,
+    adminUpcomingMovies.recommendedUpComingMovies);
+
+router.get('/addedUpComingMovies', adminRegisterLoginLogout.loginStatus,
+    adminUpcomingMovies.getAddedUpComingMovies);
+
+router.put('/addUpComingMovie/:movieID', adminRegisterLoginLogout.loginStatus,
+    adminUpcomingMovies.addUpComingMovie);
+
+router.get('/searchUpComingMovies/:movieName', adminRegisterLoginLogout.loginStatus,
+    adminUpcomingMovies.searchUpComingMovies);
+
+// Current Movies
+router.get('/currentMovies', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.getCurrentMovies);
+
+router.get('/screens/:screenType', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.getScreens);
+
+router.get('/movieSchedule/:movieImdbID?', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.getMovieSchedule);
+
+router.delete('/movieSchedule', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.deleteMovieSchedule);
+
+router.put('/movieSchedule', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.updateMovieSchedule);
+
+router.post('/movieSchedule', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.addMovieSchedule);
+
 
 
 

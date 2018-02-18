@@ -71,9 +71,7 @@ let updateUser = (req, res, next) => {
     req.body.password = hashPassword;
     passwordsMatch = bcrypt.compareSync(req.body.confirmPassword, hashPassword);
     if (!passwordsMatch) {
-        next({
-            message: 'Passwords don\'t match.',
-        });
+        next({message: 'Passwords don\'t match.'});
     } else {
         let query = 'UPDATE ?? SET ??=?, ??=?, ??=?, ??=? WHERE ??=?';
         let table = ['admin_user', 'adminUserID', req.body.adminUserID, 'adminUserName',

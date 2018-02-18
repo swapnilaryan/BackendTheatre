@@ -82,16 +82,16 @@ let register = (req, res, next) => {
                                     return next({message: errResponse.error});
                                 });
 
-                            if (result.hasOwnProperty('error')) {
-                                return next({
-                                    message: result.error
-                                });
-                            } else if (result.hasOwnProperty('data')) {
-                                res.json({
-                                    message: 'User created successfully',
-                                    data: result.data
-                                });
-                            }
+                            // if (result.hasOwnProperty('error')) {
+                            //     return next({
+                            //         message: result.error
+                            //     });
+                            // } else if (result.hasOwnProperty('data')) {
+                            //     res.json({
+                            //         message: 'User created successfully',
+                            //         data: result.data
+                            //     });
+                            // }
                         }
                     } else {
                         return next({
