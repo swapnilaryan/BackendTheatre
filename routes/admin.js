@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
+
 const adminRegisterLoginLogout =
     require('../controllers/admin/adminRegisterLoginLogout.controller');
 const adminUserDetails = require('../controllers/admin/userDetails.controller');
@@ -14,12 +15,14 @@ const adminScreenDetails = require('../controllers/admin/screen.controller');
 const adminUpcomingMovies = require('../controllers/admin/upComingMovies.controller');
 const adminCurrentMovies = require('../controllers/admin/currentMovies.controller');
 
+
 // Login Logout and Registration
 router.post('/register', adminRegisterLoginLogout.register);
 router.get('/logout', adminRegisterLoginLogout.logout);
 router.post('/login', adminRegisterLoginLogout.login);
 router.get('/loginTest', adminRegisterLoginLogout.loginStatus,
     adminRegisterLoginLogout.loginTest);
+
 
 // User Accounts Page
 router.get('/userDetails', adminRegisterLoginLogout.loginStatus,
@@ -28,10 +31,12 @@ router.get('/userDetails', adminRegisterLoginLogout.loginStatus,
 router.put('/updateUser', adminRegisterLoginLogout.loginStatus,
     adminUserDetails.updateUser);
 
+
 // Site Config Page
 router.get('/siteConfig', adminRegisterLoginLogout.loginStatus,
     adminSiteConfig.getSiteConfig);
 router.put('/siteConfig', adminSiteConfig.updateSiteConfig);
+
 
 // Contact Setting Page
 router.get('/contact', adminRegisterLoginLogout.loginStatus,
@@ -39,11 +44,13 @@ router.get('/contact', adminRegisterLoginLogout.loginStatus,
 router.put('/contact', adminRegisterLoginLogout.loginStatus,
     adminContactDetails.updateAdminContactDetails);
 
+
 // Location Setting Page
 router.get('/location', adminRegisterLoginLogout.loginStatus,
     adminLocationDetails.getAdminLocationDetails);
 router.put('/location', adminRegisterLoginLogout.loginStatus,
     adminLocationDetails.updateAdminLocationDetails);
+
 
 // Social Setting Page
 router.get('/social', adminRegisterLoginLogout.loginStatus,
@@ -51,11 +58,13 @@ router.get('/social', adminRegisterLoginLogout.loginStatus,
 router.put('/social', adminRegisterLoginLogout.loginStatus,
     adminSocialDetails.updateAdminSocialDetails);
 
+
 // Ticket Setting Page
 router.get('/ticket', adminRegisterLoginLogout.loginStatus,
     adminTicketDetails.getAdminTicketDetails);
 router.put('/ticket', adminRegisterLoginLogout.loginStatus,
     adminTicketDetails.updateAdminTicketDetails);
+
 
 // Screen Setting Page
 router.get('/screen', adminRegisterLoginLogout.loginStatus,
@@ -81,9 +90,19 @@ router.put('/addUpComingMovie/:movieID', adminRegisterLoginLogout.loginStatus,
 router.get('/searchUpComingMovies/:movieName', adminRegisterLoginLogout.loginStatus,
     adminUpcomingMovies.searchUpComingMovies);
 
+router.get('/moveToCurrent/:movieID',
+    adminUpcomingMovies.moveToCurrent);
+
+router.delete('/removeUpComingMovies/:movieID', adminRegisterLoginLogout.loginStatus,
+    adminUpcomingMovies.removeUpComingMovies);
+
+
 // Current Movies
 router.get('/currentMovies', adminRegisterLoginLogout.loginStatus,
     adminCurrentMovies.getCurrentMovies);
+
+router.post('/currentMovies', adminRegisterLoginLogout.loginStatus,
+    adminCurrentMovies.addCurrentMovies);
 
 router.get('/screens/:screenType', adminRegisterLoginLogout.loginStatus,
     adminCurrentMovies.getScreens);

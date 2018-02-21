@@ -50,6 +50,7 @@ let insertToDB = (tableName, columns, values) => {
     let table = [tableName];
     table = table.concat(columns).concat(values);
     let query = mysqlDetails.mysqlFormat(insertQuery, table);
+    console.log(query);
     mysqlDetails.pool.getConnection((err, connection) => {
         if (err) {
             defer.reject({error: err});

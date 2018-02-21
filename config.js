@@ -1,7 +1,7 @@
 /**
  * Created by swapnil on 09/02/18.
  */
-// config.js
+// config.js omdb api key 38b3b14a
 const env = process.env.NODE_ENV; // 'dev' or 'test'
 
 const development = {
@@ -9,7 +9,9 @@ const development = {
         port: parseInt(process.env.DEV_APP_PORT) || 8000,
         cookieMaxAge: 1,
         cookieSecret: 'qwerty',
-        bcryptSalt: 10
+        bcryptSalt: 10,
+        theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',
+        omdbAPIKey: 'c3ec1184'
     },
     db: {
         host: process.env.DEV_DB_HOST || 'localhost',

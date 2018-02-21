@@ -2,8 +2,11 @@
 
 var express = require('express');
 var router = express.Router();
-var admin = require('./admin');
 var session = require('express-session');
+var admin = require('./admin');
+var kidsInMind = require('./kidsInMind');
+var omdb = require('./omdb');
+var theMovieDB = require('./theMovieDB');
 
 /* GET home page. */
 router.get('/healthCheck', function (req, res, next) {
@@ -14,6 +17,8 @@ router.get('/healthCheck', function (req, res, next) {
  * All the api and their links to files will be here
  */
 router.use('/admin', admin);
-
+router.use('/kidsInMind', kidsInMind);
+router.use('/omdb', omdb);
+router.use('/theMovieDB', theMovieDB);
 module.exports = router;
 //# sourceMappingURL=index.js.map

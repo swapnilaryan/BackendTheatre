@@ -1,7 +1,7 @@
 /**
  * Created by swapnil on 18/02/18.
  */
-
+'use strict';
 import * as mysqlDetails from '../../database/connectMySQL';
 import * as utils from '../../services/utils.service';
 
@@ -31,7 +31,6 @@ let getCurrentMovies = (req, res, next) => {
     });
     /*End searching*/
 };
-
 
 let getMovieSchedule = (req, res, next) => {
     let query = 'SELECT m_s.*,a_m.* FROM ?? as m_s ' +
@@ -204,25 +203,61 @@ let addMovieSchedule = (req, res, next) => {
                     data: result.data
                 });
             }
-
-            // reqPro('http://' + configJson.localhost + ':' + configJson.sitePort + '/api/db/viewer/add-movies/' + req.body.movieImdbID)
-            //     .then(function (response) {
-            //         // res.json(response);
-            //     });
-            // reqPro('http://' + configJson.localhost + ':' + configJson.sitePort + '/api/db/viewer/add-movie-tomatoes/' + req.body.movieImdbID)
-            //     .then(function (response) {
-            //         // res.json(response);
-            //     });
         }
         connection.release();
     });
 };
 
+
+let addCurrentMovies = (req, res, next) => {
+    // Check for mandatory fields
+    let mandatoryFields = ['id', 'imdb_id', 'title', 'released',
+        'runtime', 'rated', 'director', 'writer', 'genre', 'imdbRating', 'production',
+        'website', 'plot', 'poster_path', 'cast', 'boxOffice'];
+    let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
+    if (checkReqBody.message !== 'success') {
+        return next({message: checkReqBody.message});
+    }
+
+    mysqlDetails.pool.getConnection( (err, connection) => {
+        if (err) {
+            next({error: err});
+        } else {
+            let tableName = 'admin_movieinfo';
+
+            let columns = ['infoMovieID', 'infoImdbID', 'infoMovieName',
+                'infoMovieInTheatres', 'infoMovieRuntime', 'infoMovieRated',
+                'infoMovieDirectedBy', 'infoMovieWrittenBy', 'infoMovieGenre',
+                'infoMovieImdbRating', 'infoMovieProduction', 'infoMovieWebsite',
+                'infoMovieDescription', 'infoMoviePosterPath', 'infoMovieCasts',
+                'infoMovieBoxOffice'];
+
+            let values = [req.body.id, req.body.imdbID, req.body.title,
+                req.body.released, req.body.runtime, req.body.rated,
+                req.body.director, req.body.writer, req.body.genre,
+                req.body.imdbRating, req.body.production, req.body.website,
+                req.body.plot, '/images/nowShowing' + req.body.poster_path, req.body.cast,
+                req.body.boxOffice];
+
+            utils.insertToDB(tableName, columns, values)
+                .then((success) => {
+                    res.json({
+                        message: 'Successfully added movie to current',
+                        data: success.data
+                    });
+                }, (errResponse) => {
+                    next({error: errResponse.error});
+                });
+        }
+        connection.release();
+    });
+};
 module.exports = {
     getCurrentMovies: getCurrentMovies,
     getMovieSchedule: getMovieSchedule,
     getScreens: getScreens,
     deleteMovieSchedule: deleteMovieSchedule,
     updateMovieSchedule: updateMovieSchedule,
-    addMovieSchedule: addMovieSchedule
+    addMovieSchedule: addMovieSchedule,
+    addCurrentMovies: addCurrentMovies
 };

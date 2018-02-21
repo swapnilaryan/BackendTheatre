@@ -43,7 +43,7 @@ CREATE TABLE `admin_movieinfo` (
   `infoMovieWebsite` varchar(100) DEFAULT NULL,
   `infoMovieDescription` varchar(2000) DEFAULT NULL,
   `infoMoviePosterPath` varchar(100) DEFAULT NULL,
-  `infoMovieCasts` varchar(10000) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `infoMovieCasts` LONGTEXT CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `infoMovieBoxOffice` varchar(15) DEFAULT 'N/A',
   `infoMovieBuyTicketsButton` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`infoMovieID`)
