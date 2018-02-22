@@ -19,7 +19,7 @@ const development = {
         port: parseInt(process.env.DEV_DB_PORT) || 3306,
         dbName: process.env.DEV_DB_NAME || 'movie_theatre',
         user: process.env.DEV_DB_USER || 'root',
-        password: process.env.DEV_DB_PASSWORD || 'root',
+        password: process.env.DEV_DB_PASSWORD || '',
         debug: process.env.DEV_DB_DEBUG || false,
         socketPath: process.env.DEV_DB_SOCKETPATH || ''
     }

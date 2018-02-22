@@ -10,9 +10,9 @@ const router = express.Router();
 const adminRegisterLoginLogout =
     require('../controllers/admin/adminRegisterLoginLogout.controller');
 
-const searchKIM = require('../controllers/kidsInMind/search.controller');
+const kimController = require('../controllers/kidsInMind/kidsInMind.controller');
 
-router.get('/search/:movieName', searchKIM.searchMovies);
-
+router.get('/search/:movieName', kimController.searchMovies);
+router.post('/addTODB', kimController.addKIMRating);
 
 module.exports = router;
