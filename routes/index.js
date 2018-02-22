@@ -2,7 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-const session = require('express-session');
 const admin = require('./admin');
 const kidsInMind = require('./kidsInMind');
 const omdb = require('./omdb');

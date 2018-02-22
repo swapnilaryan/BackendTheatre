@@ -13,7 +13,7 @@ const getMovieByID = (req, res, next, isAPI = true) => {
     if (!isAPI) {
         defer = deferred();
     }
-    let url = 'http://api.themoviedb.org/3/movie/' + req.params.movieID +
+    let url = config.app.theMovieDBURL + '/movie/' + req.params.movieID +
         '?api_key=' + config.app.theMovieDBKey;
     reqPro(url)
         .then((response) => {
@@ -41,7 +41,7 @@ let getMovieCreditsByImdbID = (req, res, next, isAPI = true) => {
     if (!isAPI) {
         defer = deferred();
     }
-    let url = 'http://api.themoviedb.org/3/movie/' + req.params.imdbID +
+    let url = config.app.theMovieDBURL + '/movie/' + req.params.imdbID +
         '/credits?api_key=' + config.app.theMovieDBKey;
     reqPro(url)
         .then(function (response) {

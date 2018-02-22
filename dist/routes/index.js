@@ -2,7 +2,6 @@
 
 var express = require('express');
 var router = express.Router();
-var session = require('express-session');
 var admin = require('./admin');
 var kidsInMind = require('./kidsInMind');
 var omdb = require('./omdb');
