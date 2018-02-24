@@ -249,7 +249,7 @@ let moveToCurrent = (req, res, next) => {
                 // call rotten tomatoes
                 req.body.movieURL = result.tomatoURL;
                 req.body.imdbID = result.imdbID;
-                rottenTomatoes.crawlData(req, res, next);
+                rottenTomatoes.crawlData(req, res, next, false);
                 currentMovies.addCurrentMovies(req, res, next);
             }
         });

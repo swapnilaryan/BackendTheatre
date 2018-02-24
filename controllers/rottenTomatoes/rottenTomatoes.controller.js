@@ -63,16 +63,25 @@ const allCritics = ($, obj) => {
     temp = temp.text().trim().match(ratingRegex);
     obj.averageRating = (temp) ? (temp[0].trim()) : 'N/A';
 
-    temp = parseInt(/\d+$/.exec($(allCriticsID).find('#scoreStats >' +
-        ' div:nth-of-type(2)').text().trim())[0]);
+    temp = /\d+$/.exec($(allCriticsID).find('#scoreStats >' +
+        ' div:nth-of-type(2)').text().trim());
+    if (temp) {
+        temp = parseInt(temp[0]);
+    }
     obj.reviewCount = (isNaN(temp)) ? 'N/A' : temp;
 
-    temp = (parseInt(/\d+$/.exec($(allCriticsID).find('#scoreStats >' +
-        ' div:nth-of-type(3)').text().trim())[0]));
+    temp = /\d+$/.exec($(allCriticsID).find('#scoreStats >' +
+        ' div:nth-of-type(3)').text().trim());
+    if (temp) {
+        temp = parseInt(temp[0]);
+    }
     obj.freshCount = (isNaN(temp)) ? 'N/A' : temp;
 
-    temp = (parseInt(/\d+$/.exec($(allCriticsID).find('#scoreStats >' +
-        ' div:nth-of-type(4)').text().trim())[0]));
+    temp = /\d+$/.exec($(allCriticsID).find('#scoreStats >' +
+        ' div:nth-of-type(4)').text().trim());
+    if (temp) {
+        temp = parseInt(temp[0]);
+    }
     obj.rottenCount = (isNaN(temp)) ? 'N/A' : temp;
     obj.criticsConsensus = $(allCriticsID).find('.critic_consensus').clone()
         .find('span').remove().end().text().trim();
@@ -90,19 +99,26 @@ const topCritics = ($, obj) => {
     temp2 = parseInt(($(topCriticsID).find('.meter-value').text()).replace('%', ''));
     obj.tomatoMeter = (temp) ? temp : temp2;
 
-    obj.averageRating = $(topCriticsID).find('#scoreStats > div:first-of-type').text()
-        .trim().match(ratingRegex)[0].trim();
+    temp = $(topCriticsID).find('#scoreStats > div:first-of-type').text()
+        .trim().match(ratingRegex);
+
+    obj.averageRating = (temp) ? temp[0].trim() : 'N/A';
 
     temp = parseInt($(topCriticsID).find('#scoreStats span[itemprop*=reviewCount]')
         .text().trim());
-    temp2 = parseInt(((($(topCriticsID).find('#scoreStats span')).contents())[2]).data);
+    temp2 = ((($(topCriticsID).find('#scoreStats span')).contents())[2]);
+    if (temp2) {
+        temp2 = parseInt(temp2.data);
+    }
     obj.reviewCount = (temp) ? temp : temp2;
 
-    obj.freshCount = parseInt(/\d+$/.exec($(topCriticsID)
-        .find('#scoreStats >div:nth-of-type(3)').text().trim())[0]);
+    temp = /\d+$/.exec($(topCriticsID)
+        .find('#scoreStats >div:nth-of-type(3)').text().trim());
+    obj.freshCount = (temp) ? parseInt(temp[0]) : 'N/A';
 
-    obj.rottenCount = parseInt(/\d+$/.exec($(topCriticsID)
-        .find('#scoreStats >div:nth-of-type(4)').text().trim())[0]);
+    temp = /\d+$/.exec($(topCriticsID)
+        .find('#scoreStats >div:nth-of-type(4)').text().trim());
+    obj.rottenCount = (temp)? parseInt(temp[0]) : 'N/A';
 
     obj.criticsConsensus = $(topCriticsID).find('.critic_consensus').clone()
         .find('span').remove().end().text().trim();
@@ -112,7 +128,7 @@ const topCritics = ($, obj) => {
 
 };
 
-const insertData = (req, res, next) => {
+const insertData = (req, res, next, isAPI) => {
     let tableName = 'admin_movietomatoes';
 
     let columns = ['mtImdbID', 'mtMovieTitle',
@@ -127,17 +143,26 @@ const insertData = (req, res, next) => {
 
     utils.insertToDB(tableName, columns, values)
         .then((success) => {
-            console.log('Rotten Tomatoes data saved in DB successfully');
-            res.json({
-                message: 'Rotten Tomatoes data saved Successfully',
-                data: success.data
-            });
+            if (isAPI){
+                res.json({
+                    message: 'Rotten Tomatoes data saved Successfully',
+                    data: success.data
+                });
+            } else {
+                console.log('Rotten Tomatoes data saved in DB successfully');
+                if (!req.body.isAPI) {
+                    res.json({
+                        message: 'Rotten Tomatoes data saved Successfully',
+                        data: success.data
+                    });
+                }
+            }
         }, (errResponse) => {
             next({message: errResponse.error});
         });
 };
 
-const crawlData = (req, res, next) => {
+const crawlData = (req, res, next, isAPI = false) => {
     // Check for mandatory fields
     let mandatoryFields = ['movieURL', 'imdbID'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
@@ -194,7 +219,7 @@ const crawlData = (req, res, next) => {
                             data: rc
                         });
                     } else {
-                        insertData(req, res, next);
+                        insertData(req, res, next, isAPI);
                     }
                 });
         })
