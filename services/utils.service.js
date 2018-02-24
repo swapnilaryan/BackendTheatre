@@ -47,8 +47,20 @@ let insertToDB = (tableName, columns, values) => {
         }
     }
 
+    // ON Duplicate
+    insertQuery = insertQuery + 'ON DUPLICATE KEY UPDATE ';
+    let x = 0;
+    let updateLength = columns.length;
+    let updateRows = [];
+    while (x < updateLength) {
+        insertQuery = insertQuery + '??' + '=' + '?' + ',';
+        updateRows.push(columns[x], values[x]);
+        x++;
+    }
+    insertQuery = insertQuery.slice(0, -1);
+
     let table = [tableName];
-    table = table.concat(columns).concat(values);
+    table = table.concat(columns).concat(values).concat(updateRows);
     let query = mysqlDetails.mysqlFormat(insertQuery, table);
     console.log(query);
     mysqlDetails.pool.getConnection((err, connection) => {

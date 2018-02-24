@@ -11,8 +11,8 @@ const getMovieByImdbID = (req, res, next, isAPI=true) => {
     if (!isAPI) {
         defer = deferred();
     }
-    let url = `http://www.omdbapi.com/?i=${req.params.imdbID}&plot=full&r=json&
-    tomatoes=true&r=json&apikey=${config.app.omdbAPIKey}`;
+    let url = `http://www.omdbapi.com/?tomatoes=true&i=${req.params.imdbID}`;
+    url = `${url}&plot=full&r=json&r=json&apikey=${config.app.omdbAPIKey}`;
     reqPro(url)
         .then((response) => {
             if (isAPI) {

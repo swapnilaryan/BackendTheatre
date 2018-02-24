@@ -1,6 +1,6 @@
 'use strict';
 
-import * as utils from "../../services/utils.service";
+import * as utils from '../../services/utils.service';
 
 const reqPro = require('request-promise');
 const config = require('../../config');
