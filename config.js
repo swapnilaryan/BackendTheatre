@@ -4,10 +4,49 @@
 // config.js omdb api key 38b3b14a
 const env = process.env.NODE_ENV; // 'dev' or 'test'
 
+const imageSizes = {
+    'backdrop_sizes': [
+        'w300',
+        'w780',
+        'w1280',
+        'original'
+    ],
+    'logo_sizes': [
+        'w45',
+        'w92',
+        'w154',
+        'w185',
+        'w300',
+        'w500',
+        'original'
+    ],
+    'poster_sizes': [
+        'w92',
+        'w154',
+        'w185',
+        'w342',
+        'w500',
+        'w780',
+        'original'
+    ],
+    'profile_sizes': [
+        'w45',
+        'w185',
+        'h632',
+        'original'
+    ],
+    'still_sizes': [
+        'w92',
+        'w185',
+        'w300',
+        'original'
+    ]
+};
+
 const development = {
     app: {
         port: parseInt(process.env.DEV_APP_PORT) || 8000,
-        cookieMaxAge: 1,
+        cookieMaxAge: 10,
         cookieSecret: 'qwerty',
         bcryptSalt: 10,
         theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',

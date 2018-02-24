@@ -18,7 +18,7 @@ const getMovieByImdbID = (req, res, next, isAPI=true) => {
             if (isAPI) {
                 res.send(JSON.parse(response));
             } else {
-                defer.resolve(JSON.parse(response));
+                return defer.resolve(JSON.parse(response));
             }
         })
         .catch((err) => {
@@ -26,7 +26,7 @@ const getMovieByImdbID = (req, res, next, isAPI=true) => {
             if (isAPI) {
                 next({error: '' + err});
             } else {
-                defer.reject(err);
+                return defer.reject(err);
             }
         });
     if (!isAPI) {

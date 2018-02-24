@@ -43,8 +43,9 @@ let rc = {
 
 const audienceScore = ($, obj) => {
     obj.tomatoMeter = /\d+/.exec($('.audience-score .meter-value span').text())[0];
-    obj.averageRating = $('.audience-info > div:first-of-type').text().trim()
-        .match(ratingRegex)[0].trim();
+
+    let temp = $('.audience-info > div:first-of-type').text().trim().match(ratingRegex);
+    obj.averageRating = (temp) ? temp[0].trim() : 'N/A';
     obj.ratingCount = parseInt(/((\d+)?(\,)?)*\d+$/.exec($('.audience-info >' +
         ' div:last-of-type').text().trim())[0].replace(',', ''));
     return obj;
@@ -126,6 +127,7 @@ const insertData = (req, res, next) => {
 
     utils.insertToDB(tableName, columns, values)
         .then((success) => {
+            console.log('Rotten Tomatoes data saved in DB successfully');
             res.json({
                 message: 'Rotten Tomatoes data saved Successfully',
                 data: success.data
@@ -143,6 +145,9 @@ const crawlData = (req, res, next) => {
         next({message: checkReqBody.message});
     }
 
+    if (!req.body.hasOwnProperty('isAPI')) {
+        req.body.isAPI = false;
+    }
     req.body.movieURL = req.body.movieURL.replace('https://www.rottentomatoes.com/m/', '');
     req.body.movieURL = req.body.movieURL.replace('http://www.rottentomatoes.com/m/', '');
     /** @namespace req.body.movieURL */
@@ -183,10 +188,15 @@ const crawlData = (req, res, next) => {
                     rc.topCritics = results[2];
                     rc.audienceScore = results[0];
                     Object.assign(req.body, req.body, rc);
-                    // res.json(req.body);
-                    insertData(req, res, next);
+                    if (req.body.isAPI) {
+                        res.json({
+                            message: 'Crawled data success',
+                            data: rc
+                        });
+                    } else {
+                        insertData(req, res, next);
+                    }
                 });
-
         })
         .catch((err) => {
             console.log(err);

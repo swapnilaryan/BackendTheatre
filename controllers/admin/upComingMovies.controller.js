@@ -6,6 +6,7 @@ const config = require('../../config');
 const theMovieDB = require('../theMovieDB/theMovieDB.controller');
 const omdb = require('../omdb/omdb.controller');
 const currentMovies = require('./currentMovies.controller');
+const rottenTomatoes = require('../rottenTomatoes/rottenTomatoes.controller');
 
 let recommendedUpComingMovies = (req, res, next) => {
     /*Searching from Database*/
@@ -196,7 +197,7 @@ let moveToCurrent = (req, res, next) => {
     async.waterfall(
         [
             (callback) => {
-                theMovieDB.getMovieByID(req, res, next, false).then((response) => {
+                theMovieDB.getExternalID(req, res, next, false).then((response) => {
                     currentMovie = response;
                     callback(null, currentMovie);
                 });
@@ -210,11 +211,20 @@ let moveToCurrent = (req, res, next) => {
                     });
             },
             (result, callback) => {
-                omdb.getMovieByImdbID(req, res, next, false).then((response) => {
+                theMovieDB.getMovieByID(req, res, next, false).then((response) => {
+                    // currentMovie = response;
                     Object.assign(currentMovie, currentMovie, response);
                     callback(null, currentMovie);
                 });
-            }
+            },
+            (result, callback) => {
+            omdb.getMovieByImdbID(req, res, next, false).then((response) => {
+                // Special case. We won't store runtime from OMDB
+                response.Runtime = currentMovie.runtime;
+                Object.assign(currentMovie, currentMovie, response);
+                callback(null, currentMovie);
+            });
+        },
         ],
         (err, result) => {
             //final result or err
@@ -229,11 +239,19 @@ let moveToCurrent = (req, res, next) => {
             }
             req.body = result;
             req.body.cast = JSON.stringify(result.cast);
-            currentMovies.addCurrentMovies(req, res, next);
-            // res.json({
-            //     message: 'success',
-            //     data: result
-            // });
+            /** @namespace req.params.isAPI */
+            if (req.params.isAPI == 'true') { // coercion required.
+                res.json({
+                    message: 'success',
+                    data: result
+                });
+            } else {
+                // call rotten tomatoes
+                req.body.movieURL = result.tomatoURL;
+                req.body.imdbID = result.imdbID;
+                rottenTomatoes.crawlData(req, res, next);
+                currentMovies.addCurrentMovies(req, res, next);
+            }
         });
 };
 

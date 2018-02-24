@@ -17,6 +17,7 @@ let checkMandatoryRequestBody = (requestBody, mandatoryFields) => {
             break;
         }
     }
+
     if (msg) {
         return {message: msg};
     }

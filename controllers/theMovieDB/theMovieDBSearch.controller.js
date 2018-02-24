@@ -1,7 +1,8 @@
 'use strict';
+// use -> /api/theMovieDB/....
 
 import * as utils from '../../services/utils.service';
-
+import * as moment from 'moment';
 const reqPro = require('request-promise');
 const config = require('../../config');
 
@@ -10,6 +11,7 @@ let searchMovie = (req, res, next) => {
     // Check for mandatory fields
     let mandatoryFields = ['query'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
+    console.log(checkReqBody);
     if (checkReqBody.message !== 'success') {
         return next({message: checkReqBody.message});
     }
@@ -21,7 +23,8 @@ let searchMovie = (req, res, next) => {
             page: req.body.page || 1,
             query: req.body.query,
             language: 'en-US',
-            api_key: config.app.theMovieDBKey
+            api_key: config.app.theMovieDBKey,
+            year: req.body.year || (moment().format('YYYY'))
         },
         body: '{}'
     };
@@ -32,10 +35,13 @@ let searchMovie = (req, res, next) => {
 
     reqPro(options)
         .then((response) => {
-            res.json(JSON.parse(response));
+            res.json({
+                message: 'Movie found',
+                data: JSON.parse(response)
+            });
         })
-        .catch( (err) => {
-            next({error: '' + err});
+        .catch((err) => {
+            next({message: '' + err});
         });
 };
 module.exports = {

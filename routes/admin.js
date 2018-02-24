@@ -90,7 +90,7 @@ router.put('/addUpComingMovie/:movieID', adminRegisterLoginLogout.loginStatus,
 router.get('/searchUpComingMovies/:movieName', adminRegisterLoginLogout.loginStatus,
     adminUpcomingMovies.searchUpComingMovies);
 
-router.get('/moveToCurrent/:movieID',
+router.get('/moveToCurrent/:movieID/:isAPI?',
     adminUpcomingMovies.moveToCurrent);
 
 router.delete('/removeUpComingMovies/:movieID', adminRegisterLoginLogout.loginStatus,
