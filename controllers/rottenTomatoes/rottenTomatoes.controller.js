@@ -123,9 +123,7 @@ const topCritics = ($, obj) => {
     obj.criticsConsensus = $(topCriticsID).find('.critic_consensus').clone()
         .find('span').remove().end().text().trim();
 
-
     return obj;
-
 };
 
 const insertData = (req, res, next, isAPI) => {
