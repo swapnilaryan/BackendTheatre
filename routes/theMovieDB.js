@@ -3,6 +3,8 @@
  */
 'use strict';
 
+// use -> /api/theMovieDB/....
+
 const express = require('express');
 const router = express.Router();
 

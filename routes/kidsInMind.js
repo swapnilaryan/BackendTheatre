@@ -6,6 +6,7 @@
 const express = require('express');
 const router = express.Router();
 
+// use-> /api/kidsInMind/...
 
 const adminRegisterLoginLogout =
     require('../controllers/admin/adminRegisterLoginLogout.controller');
