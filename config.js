@@ -45,7 +45,7 @@ const imageSizes = {
 
 const development = {
     app: {
-        port: parseInt(process.env.DEV_APP_PORT) || 8000,
+        port: parseInt(process.env.DEV_APP_PORT) || 9000,
         cookieMaxAge: 10,
         cookieSecret: 'qwerty',
         bcryptSalt: 10,
