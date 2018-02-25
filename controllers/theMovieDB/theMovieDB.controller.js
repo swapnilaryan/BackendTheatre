@@ -13,6 +13,12 @@ const getMovieByID = (req, res, next, isAPI = true) => {
     if (!isAPI) {
         defer = deferred();
     }
+    if ( !(req.params.hasOwnProperty('movieID') && req.params.movieID)) {
+        next({
+            message: 'movieID missing',
+            details: 'Request params passed is' + JSON.stringify(req.params)
+        });
+    }
     let url = config.app.theMovieDBURL + '/movie/' + req.params.movieID +
         '?api_key=' + config.app.theMovieDBKey;
     reqPro(url)
@@ -40,6 +46,12 @@ let getMovieCreditsByImdbID = (req, res, next, isAPI = true) => {
     let defer;
     if (!isAPI) {
         defer = deferred();
+    }
+    if ( !(req.params.hasOwnProperty('imdbID') && req.params.imdbID)) {
+        next({
+            message: 'imdbID missing',
+            details: 'Request params passed is' + JSON.stringify(req.params)
+        });
     }
     let url = config.app.theMovieDBURL + '/movie/' + req.params.imdbID +
         '/credits?api_key=' + config.app.theMovieDBKey;
@@ -69,6 +81,12 @@ let getExternalID = (req, res, next, isAPI = true) => {
     let defer;
     if (!isAPI) {
         defer = deferred();
+    }
+    if ( !(req.params.hasOwnProperty('movieID') && req.params.movieID)) {
+        next({
+            message: 'movieID missing',
+            details: 'Request params passed is' + JSON.stringify(req.params)
+        });
     }
     let url = config.app.theMovieDBURL + '/movie/' + req.params.movieID +
         '/external_ids?api_key=' + config.app.theMovieDBKey;

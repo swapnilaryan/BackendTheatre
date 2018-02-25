@@ -83,9 +83,19 @@ let insertToDB = (tableName, columns, values) => {
     return defer.promise;
 };
 
+let jsonResponse = (str) => {
+    let jsonStr;
+    try {
+        jsonStr = JSON.parse(str);
+    } catch (e) {
+        return str;
+    }
+    return jsonStr;
+};
 const utils = {
     checkMandatoryRequestBody: checkMandatoryRequestBody,
-    insertToDB: insertToDB
+    insertToDB: insertToDB,
+    jsonResponse: jsonResponse
 };
 
 module.exports = utils;

@@ -49,7 +49,7 @@ const addKIMRating = (req, res, next) => {
     let mandatoryFields = ['movieKIMURL', 'kimRating', 'movieName'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
     let url = req.body.movieKIMURL;
 
@@ -72,12 +72,12 @@ const addKIMRating = (req, res, next) => {
                         data: success.data
                     });
                 }, (errResponse) => {
-                    next({message: errResponse.error});
+                    next({message: utils.jsonResponse(errResponse.error)});
                 });
         })
         .catch(function (err) {
             console.log(err);
-            next({message: err});
+            next({message: utils.jsonResponse(err)});
         });
 };
 

@@ -13,7 +13,7 @@ let searchMovie = (req, res, next) => {
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     console.log(checkReqBody);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     let options = {
@@ -22,6 +22,7 @@ let searchMovie = (req, res, next) => {
         qs: {
             page: req.body.page || 1,
             query: req.body.query,
+            region: 'US',
             language: 'en-US',
             api_key: config.app.theMovieDBKey,
             year: req.body.year || (moment().format('YYYY'))
@@ -35,13 +36,20 @@ let searchMovie = (req, res, next) => {
 
     reqPro(options)
         .then((response) => {
+            response = JSON.parse(response);
+            let temp = response.results.filter( (item) => {
+                if (item.original_language === 'en') {
+                    return item;
+                }
+            });
+            response.results = temp;
             res.json({
                 message: 'Movie found',
-                data: JSON.parse(response)
+                data: response
             });
         })
         .catch((err) => {
-            next({message: '' + err});
+            next({message: utils.jsonResponse(err)});
         });
 };
 module.exports = {

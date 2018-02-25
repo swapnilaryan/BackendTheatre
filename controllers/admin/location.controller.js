@@ -10,14 +10,14 @@ let getAdminLocationDetails = (req, res, next) => {
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({
-                message: err
+                message: utils.jsonResponse(err)
             });
         } else {
             connection.query('SELECT * FROM ??', ['admin_setting_location'],
                 (err, rows) => {
                     if (err) {
                         next({
-                            message: err
+                            message: utils.jsonResponse(err)
                         });
                     } else {
                         res.json({
@@ -37,7 +37,7 @@ let updateAdminLocationDetails = (req, res, next) => {
         'locationMailingAddress', 'locationID'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection(function (err, connection) {
@@ -53,14 +53,14 @@ let updateAdminLocationDetails = (req, res, next) => {
             connection.query(query, values, function (err, rows) {
                 if (err) {
                     next({
-                        message: err
+                        message: utils.jsonResponse(err)
                     });
                 } else {
                     connection.query('SELECT * FROM ??', ['admin_setting_location'],
                         (err, rows) => {
                             if (err) {
                                 next({
-                                    message: err
+                                    message: utils.jsonResponse(err)
                                 });
                             } else {
                                 res.json({

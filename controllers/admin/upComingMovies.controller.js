@@ -19,13 +19,13 @@ let recommendedUpComingMovies = (req, res, next) => {
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({
-                message: err
+                message: utils.jsonResponse(err)
             });
         } else {
             connection.query(query, function (err, rows) {
                 if (err) {
                     next({
-                        message: err
+                        message: utils.jsonResponse(err)
                     });
                 } else {
                     res.json({
@@ -77,7 +77,7 @@ let addUpComingMovie = (req, res, next) => {
     let mandatoryFields = ['movieID'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.params, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     let query = 'UPDATE ?? SET ?? = ? WHERE ??=?';
@@ -167,7 +167,7 @@ let removeUpComingMovies = (req, res, next) => {
     let mandatoryFields = ['movieID'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.params, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     let query = 'UPDATE ?? SET ?? = ? WHERE ??=?';
@@ -200,6 +200,8 @@ let moveToCurrent = (req, res, next) => {
                 theMovieDB.getExternalID(req, res, next, false).then((response) => {
                     currentMovie = response;
                     callback(null, currentMovie);
+                }, (error) => {
+                    callback(error);
                 });
             },
             (result, callback) => {
@@ -208,6 +210,8 @@ let moveToCurrent = (req, res, next) => {
                     .then((response) => {
                         Object.assign(currentMovie, currentMovie, response);
                         callback(null, currentMovie);
+                    }, (error) => {
+                        callback(error);
                     });
             },
             (result, callback) => {
@@ -215,6 +219,8 @@ let moveToCurrent = (req, res, next) => {
                     // currentMovie = response;
                     Object.assign(currentMovie, currentMovie, response);
                     callback(null, currentMovie);
+                }, (error) => {
+                    callback(error);
                 });
             },
             (result, callback) => {
@@ -223,10 +229,15 @@ let moveToCurrent = (req, res, next) => {
                 response.Runtime = currentMovie.runtime;
                 Object.assign(currentMovie, currentMovie, response);
                 callback(null, currentMovie);
+            }, (error) => {
+                callback(error);
             });
         },
         ],
         (err, result) => {
+            if (err) {
+                next({message: utils.jsonResponse(err)});
+            }
             //final result or err
             for (let key in result) {
                 if (result.hasOwnProperty(key)) {

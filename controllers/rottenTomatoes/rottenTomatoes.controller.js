@@ -156,7 +156,7 @@ const insertData = (req, res, next, isAPI) => {
                 }
             }
         }, (errResponse) => {
-            next({message: errResponse.error});
+            next({message: utils.jsonResponse(errResponse.error)});
         });
 };
 
@@ -165,7 +165,7 @@ const crawlData = (req, res, next, isAPI = false) => {
     let mandatoryFields = ['movieURL', 'imdbID'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        next({message: checkReqBody.message});
+        next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     if (!req.body.hasOwnProperty('isAPI')) {
@@ -223,7 +223,7 @@ const crawlData = (req, res, next, isAPI = false) => {
         })
         .catch((err) => {
             console.log(err);
-            next({message: '' + err});
+            next({message: utils.jsonResponse(err)});
         });
 };
 

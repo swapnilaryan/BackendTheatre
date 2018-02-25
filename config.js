@@ -46,27 +46,7 @@ const imageSizes = {
 const development = {
     app: {
         port: parseInt(process.env.DEV_APP_PORT) || 9000,
-        cookieMaxAge: 10,
-        cookieSecret: 'qwerty',
-        bcryptSalt: 10,
-        theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',
-        omdbAPIKey: 'c3ec1184',
-        theMovieDBURL: 'http://api.themoviedb.org/3'
-    },
-    db: {
-        host: process.env.DEV_DB_HOST || 'localhost',
-        port: parseInt(process.env.DEV_DB_PORT) || 3306,
-        dbName: process.env.DEV_DB_NAME || 'movie_theatre',
-        user: process.env.DEV_DB_USER || 'root',
-        password: process.env.DEV_DB_PASSWORD || '',
-        debug: process.env.DEV_DB_DEBUG || false,
-        socketPath: process.env.DEV_DB_SOCKETPATH || ''
-    }
-};
-const production = {
-    app: {
-        port: parseInt(process.env.DEV_APP_PORT) || 9000,
-        cookieMaxAge: 10,
+        cookieMaxAge: 2628000000,
         cookieSecret: 'qwerty',
         bcryptSalt: 10,
         theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',
@@ -81,6 +61,36 @@ const production = {
         password: process.env.DEV_DB_PASSWORD || 'root',
         debug: process.env.DEV_DB_DEBUG || false,
         socketPath: process.env.DEV_DB_SOCKETPATH || ''
+    },
+    redis: {
+        host: process.env.DEV_REDIS_HOST || 'localhost',
+        port: parseInt(process.env.DEV_REDIS_PORT) || 6379,
+        ttl: process.env.DEV_REDIS_TTL || 86400,
+    }
+};
+const production = {
+    app: {
+        port: parseInt(process.env.PROD_APP_PORT) || 9000,
+        cookieMaxAge: 2628000000,
+        cookieSecret: 'qwerty',
+        bcryptSalt: 10,
+        theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',
+        omdbAPIKey: 'c3ec1184',
+        theMovieDBURL: 'http://api.themoviedb.org/3'
+    },
+    db: {
+        host: process.env.PROD_DB_HOST || 'localhost',
+        port: parseInt(process.env.PROD_DB_PORT) || 3306,
+        dbName: process.env.PROD_DB_NAME || 'movie_theatre',
+        user: process.env.PROD_DB_USER || 'root',
+        password: process.env.PROD_DB_PASSWORD || 'root',
+        debug: process.env.PROD_DB_DEBUG || false,
+        socketPath: process.env.PROD_DB_SOCKETPATH || ''
+    },
+    redis: {
+        host: process.env.PROD_REDIS_HOST || 'localhost',
+        port: parseInt(process.env.PROD_REDIS_PORT) || 6379,
+        ttl: process.env.PROD_REDIS_TTL || 86400,
     }
 };
 

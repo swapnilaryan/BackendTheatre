@@ -11,7 +11,7 @@ let getAdminTicketDetails = (req, res, next) => {
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({
-                message: err
+                message: utils.jsonResponse(err)
             });
         } else {
             let query = 'SELECT  a.*  FROM ?? a JOIN ?? b ' +
@@ -23,7 +23,7 @@ let getAdminTicketDetails = (req, res, next) => {
             connection.query(query, (err, rows) => {
                 if (err) {
                     next({
-                        message: err
+                        message: utils.jsonResponse(err)
                     });
                 } else {
                     let structAppend = [];
@@ -70,7 +70,7 @@ let updateAdminTicketDetails = (req, res, next) => {
         'ticketDay'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection(function (err, connection) {
@@ -88,7 +88,7 @@ let updateAdminTicketDetails = (req, res, next) => {
             connection.query(query, values, function (err, rows) {
                 if (err) {
                     next({
-                        message: err
+                        message: utils.jsonResponse(err)
                     });
                 } else {
                     getAdminTicketDetails(req, res, next);

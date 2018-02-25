@@ -62,7 +62,7 @@ let updateUser = (req, res, next) => {
         'password', 'confirmPassword'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     let passwordsMatch;
@@ -84,13 +84,13 @@ let updateUser = (req, res, next) => {
         mysqlDetails.pool.getConnection(function (err, connection) {
             if (err) {
                 next({
-                    message: err
+                    message: utils.jsonResponse(err)
                 });
             } else {
                 connection.query(query, (err, rows) => {
                     if (err) {
                         next({
-                            message: err
+                            message: utils.jsonResponse(err)
                         });
                     } else {
                         res.json({

@@ -5,6 +5,7 @@
 const mysql = require('mysql');
 const config = require('../config');
 
+/** @namespace config.db */
 /**
  * Create connection for mysql
  */

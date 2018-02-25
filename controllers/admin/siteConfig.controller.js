@@ -9,7 +9,7 @@ let getSiteConfig = (req, res, next) => {
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({
-                message: err
+                message: utils.jsonResponse(err)
             });
         } else {
             connection.query('SELECT * from ?? where ?? = \'userID_1\'',
@@ -17,7 +17,7 @@ let getSiteConfig = (req, res, next) => {
                 (err, rows) => {
                     if (err) {
                         next({
-                            message: err
+                            message: utils.jsonResponse(err)
                         });
                     } else {
                         res.json({
@@ -38,13 +38,13 @@ let updateSiteConfig = (req, res, next) => {
         'theatreName', 'theatreURL', 'siteTimeZone', 'day', 'openTime', 'closeTime'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({
-                message: err
+                message: utils.jsonResponse(err)
             });
         } else {
             req.body.siteAdminID = 'userID_1'; // Needs to change
@@ -63,7 +63,7 @@ let updateSiteConfig = (req, res, next) => {
             connection.query(query, (err, rows) => {
                 if (err) {
                     next({
-                        message: err
+                        message: utils.jsonResponse(err)
                     });
                 } else {
                     res.json({

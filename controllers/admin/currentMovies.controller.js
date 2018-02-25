@@ -65,7 +65,7 @@ let getScreens = (req, res, next) => {
     let mandatoryFields = ['screenType'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.params, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     let query = 'SELECT * FROM ?? WHERE ?? LIKE ?';
@@ -97,7 +97,7 @@ let deleteMovieSchedule = (req, res, next) => {
         'movieEndTime'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection(function (err, connection) {
@@ -134,7 +134,7 @@ let updateMovieSchedule = (req, res, next) => {
         'movieStartTime', 'movieEndTime'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection( (err, connection) => {
@@ -168,7 +168,7 @@ let addMovieSchedule = (req, res, next) => {
         'movieStartTime', 'movieEndTime'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection( (err, connection) => {
@@ -216,7 +216,7 @@ let addCurrentMovies = (req, res, next) => {
         'website', 'plot', 'poster_path', 'cast', 'boxOffice'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     mysqlDetails.pool.getConnection( (err, connection) => {

@@ -5,6 +5,7 @@
 
 import * as mysqlDetails from '../../database/connectMySQL';
 import * as utils from '../../services/utils.service';
+import * as redis from '../../redis/redis.connect';
 const moment = require('moment');
 const bcrypt = require('bcrypt');
 const shortid = require('shortid');
@@ -33,7 +34,7 @@ let register = (req, res, next) => {
         'adminConfirmPassword'];
     let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
     if (checkReqBody.message !== 'success') {
-        return next({message: checkReqBody.message});
+        return next({message: utils.jsonResponse(checkReqBody.message)});
     }
 
     let userExists = 0;
@@ -42,11 +43,11 @@ let register = (req, res, next) => {
     query = mysqlDetails.mysqlFormat(query, table);
     mysqlDetails.pool.getConnection((err, connection) => {
         if (err) {
-            return next({message: err});
+            return next({message: utils.jsonResponse(err)});
         } else {
             connection.query(query, (err, rows) => {
                 if (err) {
-                    return next({message: err});
+                    return next({message: utils.jsonResponse(err)});
                 } else {
                     userExists = rows[0].UserExists;
                     if (!userExists) {
@@ -79,7 +80,7 @@ let register = (req, res, next) => {
                                         data: success.data
                                     });
                                 }, (errResponse) => {
-                                    return next({message: errResponse.error});
+                                    return next({message: utils.jsonResponse(errResponse.error)});
                                 });
 
                             // if (result.hasOwnProperty('error')) {
@@ -124,11 +125,11 @@ let login = (req, res, next) => {
     query = mysqlDetails.mysqlFormat(query, table);
     mysqlDetails.pool.getConnection((err, connection) => {
         if (err) {
-            return next({message: err});
+            return next({message: utils.jsonResponse(err)});
         } else {
             connection.query(query, (err, rows) => {
                 if (err) {
-                    return next({message: err});
+                    return next({message: utils.jsonResponse(err)});
                 } else {
                     // User found! check for password authentication.
                     if (rows.length > 0) {
@@ -142,6 +143,17 @@ let login = (req, res, next) => {
                             req.session.cookie.user = rows[0];
                             req.cookies.user = rows[0];
                             req.session.save();
+                            // TODO experiment later
+                            redis.redisClient.set('sess:' + req.sessionID, JSON.stringify(req.session),
+                                (err, reply) => {
+                                    if (err || !reply) {
+                                        next({
+                                            message: utils.jsonResponse(err)
+                                        });
+                                    } else {
+                                        console.log(reply)
+                                    }
+                                });
                             res.json({
                                 message: 'Logged in Successfully',
                                 data: rows[0]
@@ -150,6 +162,7 @@ let login = (req, res, next) => {
                             return next({message: 'Wrong Password! Please try again'});
                         }
                     } else {
+                        /** @namespace req.body.adminUserEmail */
                         return next({
                             message: 'Email ID ' + req.body.adminUserEmail +
                             ' doesn\'t exist'
@@ -163,43 +176,83 @@ let login = (req, res, next) => {
 };
 
 let logout = (req, res, next) => {
-    if (req.session.user && req.cookies.userSID) {
-        req.session.destroy((err) => {
-            if (err) {
-                return next({
-                    message: err
-                });
-            } else {
-                res.clearCookie('userSID');
-                res.json({
-                    message: 'Successfully logged out'
-                });
-            }
-        });
-    } else {
-        res.clearCookie('userSID');
-        res.json({
-            message: 'Already logged out'
-        });
-    }
+    // if (req.session.user && req.cookies.userSID) {
+    //     req.session.destroy((err) => {
+    //         if (err) {
+    //             return next({
+    //                 message: utils.jsonResponse(err)
+    //             });
+    //         } else {
+    //             res.clearCookie('userSID');
+    //             res.json({
+    //                 message: 'Successfully logged out'
+    //             });
+    //         }
+    //     });
+    // } else {
+    //     res.clearCookie('userSID');
+    //     res.json({
+    //         message: 'Already logged out'
+    //     });
+    // }
+
+    // TODO redis experiment later
+    redis.redisClient.get('sess:' + req.sessionID, (err, reply) => {
+        if (err || !reply) {
+            next({
+                message: 'Logged out. Please log in to continue.',
+                status: 401
+            });
+        } else {
+            redis.redisClient.del('sess:' + req.sessionID, (err, reply) => {
+                if (err) {
+                    next({message: utils.jsonResponse(err)});
+                } else {
+                    res.json({
+                        message: 'Successfully logged out.'
+                    });
+                }
+            });
+        }
+    });
+
+
+
 };
 
-let loginTest = (req, res) => {
-    res.json({user: req.session});
+let loginTest = (req, res, next) => {
+    res.json({
+        messgae: 'Logged in ',
+        user: req.session
+    });
 };
 
 let loginStatus = (req, res, next) => {
-    if (req.session.user && req.cookies.userSID) {
-        // Logged in
-        next();
-    } else {
-        next({
-            message: 'Logged out. Please log in to continue.',
-            status: 401
-        });
 
-    }
+    // if (req.session.user && req.cookies.userSID) {
+    //     // Logged in
+    //     next();
+    // } else {
+    //     next({
+    //         message: 'Logged out. Please log in to continue.',
+    //         status: 401
+    //     });
+    //
+    // }
+
+    // TODO experiment later
+    redis.redisClient.get('sess:' + req.sessionID, (err, reply) => {
+        if (err || !reply) {
+            next({
+                message: 'Logged out. Please log in to continue.',
+                status: 401
+            });
+        } else {
+            next();
+        }
+    });
 };
+
 
 module.exports = {
     register: register,

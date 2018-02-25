@@ -2,3 +2,5 @@
 /.idea/
 images/
 /node_modules/
+/build
+dist
