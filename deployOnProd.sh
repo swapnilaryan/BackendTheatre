@@ -4,7 +4,7 @@ sudo rm -rf build
 sudo rm -rf node_modules
 git checkout .
 npm install
-sudo -R 777 chmod *
+sudo chmod -R 777 *
 export NODE_ENV=production
 "./node_modules/.bin/babel" -d ./build ./ -s
 pm2 stop BackendTheatre
