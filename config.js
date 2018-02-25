@@ -85,7 +85,7 @@ const production = {
         user: process.env.PROD_DB_USER || 'root',
         password: process.env.PROD_DB_PASSWORD || 'root',
         debug: process.env.PROD_DB_DEBUG || false,
-        socketPath: process.env.PROD_DB_SOCKETPATH || ''
+        socketPath: process.env.PROD_DB_SOCKETPATH || '/var/run/mysqld/mysqld.sock'
     },
     redis: {
         host: process.env.PROD_REDIS_HOST || 'localhost',
