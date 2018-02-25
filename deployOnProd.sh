@@ -2,8 +2,9 @@
 cd /var/www/html/BackendTheatre
 sudo rm -rf build
 sudo rm -rf node_modules
-git checkout .
-npm install
+sudo git checkout .
+sudo git pull
+sudo npm install
 sudo chmod -R 777 *
 export NODE_ENV=production
 "./node_modules/.bin/babel" -d ./build ./ -s
