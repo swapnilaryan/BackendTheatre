@@ -24,7 +24,7 @@ app.use((req, res, next) => {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.header('Pragma', 'no-cache');
     let allowedOrigins = ['http://localhost:9003', 'http://localhost:9012',
-        'http://www.mytheatresite.com'];
+        'http://www.mytheatresite.com', 'http://www.mytheatresite.com:8001'];
     /** @namespace req.headers.origin */
     let origin = req.headers.origin;
     if (allowedOrigins.includes(origin)) {
