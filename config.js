@@ -51,7 +51,8 @@ const development = {
         bcryptSalt: 10,
         theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',
         omdbAPIKey: 'c3ec1184',
-        theMovieDBURL: 'http://api.themoviedb.org/3'
+        theMovieDBURL: 'http://api.themoviedb.org/3',
+        responseTimeout: 10000
     },
     db: {
         host: process.env.DEV_DB_HOST || 'localhost',
@@ -76,7 +77,8 @@ const production = {
         bcryptSalt: 10,
         theMovieDBKey: '2c9306d42037dfb0de0fc3f153819054',
         omdbAPIKey: 'c3ec1184',
-        theMovieDBURL: 'http://api.themoviedb.org/3'
+        theMovieDBURL: 'http://api.themoviedb.org/3',
+        responseTimeout: 10000
     },
     db: {
         host: process.env.PROD_DB_HOST || 'localhost',

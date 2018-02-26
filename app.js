@@ -4,15 +4,18 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const redis = require('redis');
 const session = require('express-session');
-const REDISSTORE = require('connect-redis')(session);
-const redisClient = redis.createClient();
 const config = require('./config');
 const moment = require('moment');
 let index = require('./routes/index');
 const redisDetails = require('./redis/redis.connect');
+const timeout = require('connect-timeout')
 
+let haltOnTimedout = (req, res, next) => {
+    if (!req.timedout) {
+        next();
+    }
+};
 
 let app = express();
 app.use(logger('dev'));
@@ -20,6 +23,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(timeout(config.app.responseTimeout));
+app.use(haltOnTimedout);
+
 app.use((req, res, next) => {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.header('Pragma', 'no-cache');

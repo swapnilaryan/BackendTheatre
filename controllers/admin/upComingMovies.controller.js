@@ -6,6 +6,7 @@ const config = require('../../config');
 const theMovieDB = require('../theMovieDB/theMovieDB.controller');
 const omdb = require('../omdb/omdb.controller');
 const currentMovies = require('./currentMovies.controller');
+const kimController = require('../kidsInMind/kidsInMind.controller');
 const rottenTomatoes = require('../rottenTomatoes/rottenTomatoes.controller');
 
 let recommendedUpComingMovies = (req, res, next) => {
@@ -225,15 +226,15 @@ let moveToCurrent = (req, res, next) => {
                 });
             },
             (result, callback) => {
-            omdb.getMovieByImdbID(req, res, next, false).then((response) => {
-                // Special case. We won't store runtime from OMDB
-                response.Runtime = currentMovie.runtime;
-                Object.assign(currentMovie, currentMovie, response);
-                callback(null, currentMovie);
-            }, (error) => {
-                callback(error);
-            });
-        },
+                omdb.getMovieByImdbID(req, res, next, false).then((response) => {
+                    // Special case. We won't store runtime from OMDB
+                    response.Runtime = currentMovie.runtime;
+                    Object.assign(currentMovie, currentMovie, response);
+                    callback(null, currentMovie);
+                }, (error) => {
+                    callback(error);
+                });
+            },
         ],
         (err, result) => {
             if (err) {
@@ -261,8 +262,10 @@ let moveToCurrent = (req, res, next) => {
                 // call rotten tomatoes
                 req.body.movieURL = result.tomatoURL;
                 req.body.imdbID = result.imdbID;
-                rottenTomatoes.crawlData(req, res, next, false);
                 currentMovies.addCurrentMovies(req, res, next);
+                rottenTomatoes.crawlData(req, res, next, false);
+                req.params.movieName = result.original_title + ' ' + parseInt(result.year);
+                kimController.searchAndAdd(req, res, next);
             }
         });
 };
