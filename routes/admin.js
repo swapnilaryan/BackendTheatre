@@ -78,6 +78,7 @@ router.put('/screen', adminRegisterLoginLogout.loginStatus,
 
 
 // Upcoming Movies
+// TODO add remove recommendations
 router.get('/recommendedUpComingMovies', adminRegisterLoginLogout.loginStatus,
     adminUpcomingMovies.recommendedUpComingMovies);
 

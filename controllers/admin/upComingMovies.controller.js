@@ -174,6 +174,7 @@ let removeUpComingMovies = (req, res, next) => {
     let table = ['admin_upcomingmovies', 'upAddByAdmin', 0, 'upMovieId',
         req.params.movieID];
     query = mysqlDetails.mysqlFormat(query, table);
+    console.log(query);
     mysqlDetails.pool.getConnection((err, connection) => {
         if (err) {
             next({error: err});
