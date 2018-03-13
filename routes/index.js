@@ -7,6 +7,7 @@ const kidsInMind = require('./kidsInMind');
 const omdb = require('./omdb');
 const theMovieDB = require('./theMovieDB');
 const rottenTomatoes = require('./rottenTomatoes');
+const userClient = require('./userClient');
 
 /* GET home page. */
 router.get('/healthCheck', (req, res, next) => res.send(req.session));
@@ -19,4 +20,5 @@ router.use('/kidsInMind', kidsInMind);
 router.use('/omdb', omdb);
 router.use('/theMovieDB', theMovieDB);
 router.use('/rottenTomatoes', rottenTomatoes);
+router.use('/userClient', userClient);
 module.exports = router;

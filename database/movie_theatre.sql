@@ -45,7 +45,7 @@ CREATE TABLE `admin_movieinfo` (
   `infoMoviePosterPath` varchar(100) DEFAULT NULL,
   `infoMovieCasts` LONGTEXT CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `infoMovieBoxOffice` varchar(15) DEFAULT 'N/A',
-  `infoMovieBuyTicketsButton` tinyint(1) NOT NULL DEFAULT '0',
+  `infoMovieBuyTicketsButton` tinyint(1) NOT NULL DEFAULT '0'
   PRIMARY KEY (`infoMovieID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

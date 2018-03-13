@@ -9,7 +9,7 @@ const config = require('./config');
 const moment = require('moment');
 let index = require('./routes/index');
 const redisDetails = require('./redis/redis.connect');
-const timeout = require('connect-timeout')
+const timeout = require('connect-timeout');
 
 let haltOnTimedout = (req, res, next) => {
     if (!req.timedout) {
@@ -29,7 +29,7 @@ app.use(haltOnTimedout);
 app.use((req, res, next) => {
     res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
     res.header('Pragma', 'no-cache');
-    let allowedOrigins = ['http://localhost:9003', 'http://localhost:9012',
+    let allowedOrigins = ['http://localhost:9003', 'http://localhost:9002',
         'http://www.mytheatresite.com', 'http://www.mytheatresite.com:8001'];
     /** @namespace req.headers.origin */
     let origin = req.headers.origin;
