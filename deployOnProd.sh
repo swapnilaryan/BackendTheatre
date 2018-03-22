@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 cd /var/www/html/BackendTheatre
 sudo rm -rf build
+sudo mv node_modules node_modules_old
 sudo rm -rf node_modules
 sudo git checkout .
 sudo git pull
-sudo npm install
+yarn install
 sudo chmod -R 777 *
 export NODE_ENV=production
 "./node_modules/.bin/babel" -d ./build ./ -s

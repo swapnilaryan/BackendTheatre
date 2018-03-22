@@ -8,7 +8,11 @@
         sudo npm install n -g
         sudo n stable
         ```
-   
+   *    Install `yarn`
+        ```
+        curl -o- -L https://yarnpkg.com/install.sh | bash
+        export PATH="$HOME/.yarn/bin:$PATH"
+        ```
    *   Install redis  `sudo apt-get install redis-server`
        * Starting Redis server  `redis-server &`
        * Open Redis CLI too. `redis-cli`
