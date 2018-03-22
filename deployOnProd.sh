@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 cd /var/www/html/BackendTheatre
 sudo rm -rf build
-sudo mv node_modules node_modules_old
 sudo rm -rf node_modules
 sudo git checkout .
 sudo git pull
