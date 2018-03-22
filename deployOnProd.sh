@@ -4,7 +4,7 @@ sudo rm -rf build
 sudo rm -rf node_modules
 sudo git checkout .
 sudo git pull
-yarn install
+sudo yarn install
 sudo chmod -R 777 *
 export NODE_ENV=production
 "./node_modules/.bin/babel" -d ./build ./ -s
