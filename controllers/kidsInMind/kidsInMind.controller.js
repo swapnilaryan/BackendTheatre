@@ -82,6 +82,12 @@ const addKIMRating = (req, res, next) => {
             const searchResults = $('p[class="t11normal"]').find('a');
             let imdbID = searchResults.get(5).attribs.href;
             imdbID = imdbID.replace('http://www.imdb.com/title/', '').replace('/', '');
+            imdbID = imdbID.split('/');
+            if (imdbID.length > 1 && imdbID[imdbID.length - 1] === '') {
+				imdbID = imdbID[imdbID.length - 2];
+			} else {
+            	imdbID = imdbID[0];
+			}
             let tableName = 'moviekidsinmind';
 
             let columns = ['movieKIM_IMDB', 'movieKIM_MovieName', 'movieKIM_Rating'];

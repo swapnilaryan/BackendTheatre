@@ -126,8 +126,6 @@ let addUpComingMovie = (req, res, next) => {
                         }
                         connection.release();
                     });
-                    // res.json(rows);
-                    // console.log("Success");
                 }
             });
         }

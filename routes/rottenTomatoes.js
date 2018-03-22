@@ -9,4 +9,6 @@ const adminRegisterLoginLogout =
 const rottenCrawler = require('../controllers/rottenTomatoes/rottenTomatoes.controller');
 
 router.post('/rating', rottenCrawler.crawlData);
+router.get('/:imdbID', rottenCrawler.getRottenTomatoInfo);
+
 module.exports = router;

@@ -1,6 +1,14 @@
 # BackendTheatre
 ## For Development 
 ### Prerequisites
+   *   Install Node:-
+   
+        ```
+        sudo apt-get install npm
+        sudo npm install n -g
+        sudo n stable
+        ```
+   
    *   Install redis  `sudo apt-get install redis-server`
        * Starting Redis server  `redis-server &`
        * Open Redis CLI too. `redis-cli`
@@ -11,7 +19,7 @@
       redis-cli ping
       ```
       You will see `PONG`
-   *  Shutdown Redis`redis-cli shutdown`
+   *  Shutdown Redis `redis-cli shutdown`
 
 ### Steps to install:-
 1. Assuming that you have node>=v8.9.0 installed, run ``npm install``

@@ -7,6 +7,7 @@ const reqPro = require('request-promise');
 const cheerio = require('cheerio');
 const config = require('../../config');
 import * as utils from '../../services/utils.service';
+import * as mysqlDetails from "../../database/connectMySQL";
 import * as async from 'async';
 
 let ratingRegex = /(\d+)?(.)?\d+\/\d+$/;
@@ -227,6 +228,39 @@ const crawlData = (req, res, next, isAPI = false) => {
         });
 };
 
+const getRottenTomatoInfo = (req, res, next) => {
+	console.log(132435465)
+	// Check for mandatory fields
+	let mandatoryFields = ['imdbID'];
+	let checkReqBody = utils.checkMandatoryRequestBody(req.params, mandatoryFields);
+	if (checkReqBody.message !== 'success') {
+		return next({message: utils.jsonResponse(checkReqBody.message)});
+	}
+	
+	let query = 'SELECT * FROM ?? WHERE mtImdbID = ?';
+	let table = ['admin_movietomatoes', req.params.imdbID];
+	query = mysqlDetails.mysqlFormat(query, table);
+	console.log(query);
+	mysqlDetails.pool.getConnection(function (err, connection) {
+		if (err) {
+			next({error: err});
+		} else {
+			connection.query(query, function (err, rows) {
+				if (err) {
+					next({error: err});
+				} else {
+					res.json({
+						message: 'success',
+						data: rows[0]
+					});
+				}
+			});
+		}
+		connection.release();
+	});
+};
+
 module.exports = {
-    crawlData: crawlData
+    crawlData: crawlData,
+	getRottenTomatoInfo: getRottenTomatoInfo
 };
