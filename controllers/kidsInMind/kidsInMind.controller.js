@@ -76,6 +76,7 @@ const addKIMRating = (req, res, next) => {
     }
 
     let url = req.body.movieKIMURL;
+    console.log('Fetching KIM rating for ',url);
     reqPro(url)
         .then((htmlString) => {
             const $ = cheerio.load(htmlString);
@@ -102,8 +103,7 @@ const addKIMRating = (req, res, next) => {
                             data: success.data
                         });
                     } else {
-                        console.log('Added rating of Kids in mind for' +
-                            ' req.body.movieName in DB');
+                        console.log('Added rating of Kids in mind for ' + req.body.movieName + ' in DB' );
                     }
                 }, (errResponse) => {
                     if (req.body.isAPI) {
@@ -155,3 +155,4 @@ module.exports = {
     addKIMRating: addKIMRating,
     searchAndAdd: searchAndAdd
 };
+

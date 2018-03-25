@@ -4,6 +4,10 @@
 'use strict';
 import * as mysqlDetails from '../../database/connectMySQL';
 import * as utils from '../../services/utils.service';
+const kimController = require('../kidsInMind/kidsInMind.controller');
+
+const rottenTomatoes = require('../rottenTomatoes/rottenTomatoes.controller');
+
 
 let getCurrentMovies = (req, res, next) => {
 	/*Searching from Database*/
@@ -49,6 +53,9 @@ let getMovieSchedule = (req, res, next) => {
 				if (err) {
 					next({error: err});
 				} else {
+					// rottenTomatoes.crawlData(req, res, next, false);
+					// req.params.movieName = result.original_title + ' ' + parseInt(result.year);
+					// kimController.searchAndAdd(req, res, next);
 					res.json({
 						message: 'Successfully fetched movie schedule',
 						data: rows
