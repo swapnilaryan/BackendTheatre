@@ -54,8 +54,11 @@ const audienceScore = ($, obj) => {
 
 const allCritics = ($, obj) => {
 	let allCriticsID = '#all-critics-numbers';
-	obj.freshness = !$(allCriticsID).find('.meter-tomato').hasClass('fresh') ?
-		'rotten' : 'fresh';
+	obj.freshness = $(allCriticsID).find('.meter-tomato').hasClass('certified_fresh') ?
+		'certified': (
+			$(allCriticsID).find('.meter-tomato')
+				.hasClass('fresh') ? 'fresh': 'rotten'
+		);
 	
 	let temp = parseInt($(allCriticsID).find('.meter-value span').text());
 	obj.tomatoMeter = (isNaN(temp)) ? 'N/A' : temp;
@@ -93,8 +96,12 @@ const allCritics = ($, obj) => {
 
 const topCritics = ($, obj) => {
 	const topCriticsID = '#top-critics-numbers';
-	obj.freshness = $(topCriticsID).find('.meter-tomato').hasClass('fresh') ?
-		'fresh' : 'rotten';
+	obj.freshness = $(topCriticsID).find('.meter-tomato').hasClass('certified_fresh') ?
+		'certified': (
+			$(topCriticsID).find('.meter-tomato')
+				.hasClass('fresh') ? 'fresh': 'rotten'
+		);
+	
 	let temp, temp2;
 	temp = parseInt($(topCriticsID).find('.meter-value span').text());
 	temp2 = parseInt(($(topCriticsID).find('.meter-value').text()).replace('%', ''));
