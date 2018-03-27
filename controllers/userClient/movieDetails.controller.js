@@ -38,13 +38,13 @@ class MovieDetails {
 							message: utils.jsonResponse(err)
 						});
 					} else {
-						if (!rows[0].movieKIM_Rating) {// jscs:ignore
+						if (!rows[0].movieKIM_Rating || !rows[0].movieKIM_URL) {// jscs:ignore
 							// requireCamelCaseOrUpperCaseIdentifiers
 							req.params.movieName = rows[0].infoMovieName + ' ' +
 								rows[0].infoMovieInTheatres.substr(
 									rows[0].infoMovieInTheatres.length - 5
 								).trim();
-							console.log(req.params);
+							console.log('Fetching the KIM URL',req.params);
 							kimController.searchAndAdd(req, res, next);
 						}
 						res.json({

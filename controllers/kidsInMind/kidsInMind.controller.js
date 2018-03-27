@@ -91,9 +91,9 @@ const addKIMRating = (req, res, next) => {
 			}
             let tableName = 'moviekidsinmind';
 
-            let columns = ['movieKIM_IMDB', 'movieKIM_MovieName', 'movieKIM_Rating'];
+            let columns = ['movieKIM_IMDB', 'movieKIM_MovieName', 'movieKIM_Rating', 'movieKIM_URL'];
 
-            let values = [imdbID, req.body.movieName, req.body.kimRating];
+            let values = [imdbID, req.body.movieName, req.body.kimRating, req.body.movieKIMURL];
             utils.insertToDB(tableName, columns, values)
                 .then((success) => {
                     if (req.body.isAPI) {
