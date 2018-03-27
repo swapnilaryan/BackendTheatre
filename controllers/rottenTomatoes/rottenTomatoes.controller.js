@@ -205,16 +205,15 @@ const crawlData = (req, res, next, isAPI = false) => {
 					.next('div').text().trim() || 'N/A';
 			
 			async.parallel([
-					(callback) => {
-						callback(null, audienceScore($, rc.audienceScore));
-					},
-					(callback) => {
-						callback(null, allCritics($, rc.allCritics));
-					},
-					(callback) => {
-						callback(null, topCritics($, rc.topCritics));
-					}
-				],
+				(callback) => {
+					callback(null, audienceScore($, rc.audienceScore));
+				},
+				(callback) => {
+					callback(null, allCritics($, rc.allCritics));
+				},
+				(callback) => {
+					callback(null, topCritics($, rc.topCritics));
+				}],
 				(err, results) => {
 					rc.allCritics = results[1];
 					rc.topCritics = results[2];

@@ -17,6 +17,7 @@ let recommendedUpComingMovies = (req, res, next) => {
     //var query = "SELECT * FROM ?? WHERE ?? LIKE ? AND ";
     let table = ['admin_upcomingmovies', 'upAddByAdmin'];
     query = mysqlDetails.mysqlFormat(query, table);
+    console.log(query);
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({
@@ -44,14 +45,16 @@ let recommendedUpComingMovies = (req, res, next) => {
 let getAddedUpComingMovies = (req, res, next) => {
     /*Searching from Database*/
     // for time being using this..
-    // let query = 'SELECT * FROM ?? WHERE ?? BETWEEN ' +
-    //     '((DATE_SUB( CURDATE() ,INTERVAL -1 DAY))) AND ' +
-    //     '(DATE_SUB( CURDATE() ,INTERVAL -30 DAY)) AND ??=1';
+    let query = 'SELECT * FROM ?? WHERE ?? BETWEEN ' +
+        '((DATE_SUB( CURDATE() ,INTERVAL -1 DAY))) AND ' +
+        '(DATE_SUB( CURDATE() ,INTERVAL -30 DAY)) AND ??=1 ORDER BY ?? ASC';
 
-    let query = 'SELECT * FROM ?? WHERE ??=1';
+    // let query = 'SELECT * FROM ?? WHERE ??=1';
     //var query = "SELECT * FROM ?? WHERE ?? LIKE ? AND ";
-    let table = ['admin_upcomingmovies', 'upAddByAdmin'];
+    // let table = ['admin_upcomingmovies', 'upAddByAdmin'];
+    let table = ['admin_upcomingmovies', 'upReleaseDate', 'upAddByAdmin', 'upReleaseDate'];
     query = mysqlDetails.mysqlFormat(query, table);
+    console.log(query);
     mysqlDetails.pool.getConnection(function (err, connection) {
         if (err) {
             next({error: err});
