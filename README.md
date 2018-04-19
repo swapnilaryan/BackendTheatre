@@ -41,6 +41,8 @@
     * List all Keys. `KEYS *`
     * Retrieve information regarding particular key. `GET <key name>`
 
+* Install `pm2` as `npm install pm2 -g`
+
 * The first thing to do in order to check if Redis is working properly is sending a PING command using redis-cli:
   ```
   redis-cli ping
@@ -56,4 +58,5 @@
 ````
 export NODE_ENV=production 
 "./node_modules/.bin/babel" -d ./build ./ -s 
+pm2 start build/bin/www.js --name "BackendTheatre" --watch
 ````
