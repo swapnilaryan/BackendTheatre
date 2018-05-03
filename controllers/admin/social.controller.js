@@ -44,9 +44,16 @@ let updateAdminSocialDetails = (req, res, next) => {
         if (err) {
             res.json(err);
         } else {
-            let query = 'UPDATE ?? SET socialFacebook=?, socialTwitter=? WHERE ??=?';
-            let values = ['admin_setting_social', req.body.socialFacebook,
-                req.body.socialTwitter, 'socialID', req.body.socialID];
+            let query = null;
+            let values = null;
+            if (req.body.hasOwnProperty('socialTwitter')) {
+                query = 'UPDATE ?? SET socialTwitter=? WHERE ??=?';
+                values = ['admin_setting_social', req.body.socialTwitter, 'socialID', req.body.socialID];
+            } else if (req.body.hasOwnProperty('socialFacebook')) {
+                query = 'UPDATE ?? SET socialFacebook=? WHERE ??=?';
+                values = ['admin_setting_social', req.body.socialFacebook, 'socialID', req.body.socialID];
+            }
+
             query = mysqlDetails.mysqlFormat(query, values);
             connection.query(query, values, function (err, rows) {
                 if (err) {

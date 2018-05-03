@@ -271,10 +271,42 @@ let moveToCurrent = (req, res, next) => {
         });
 };
 
+function addUpComingMovieV2(req, res, next) {
+    // Check for mandatory fields.
+    console.log(req.params);
+    let mandatoryFields = ['movieID', 'movieName', 'movieReleaseDate'];
+    let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
+    if (checkReqBody.message !== 'success') {
+        return next({message: utils.jsonResponse(checkReqBody.message)});
+    }
+
+    mysqlDetails.pool.getConnection((err, connection) => {
+        if (err) {
+            next({error: err});
+        } else {
+            let tableName = 'admin_upcomingmovies';
+
+            let columns = ['upMovieId', 'upMovieName', 'upReleaseDate', 'upPosterPath', 'upDuration', 'upAddByAdmin'];
+
+            let values = [req.body.movieID,req.body.movieName,req.body.movieReleaseDate, req.body.moviePoster, null, 1];
+
+            utils.insertToDB(tableName, columns, values)
+                .then((success) => {
+                    res.json({
+                        message: 'Successfully added movie to upcoming list',
+                        data: success.data
+                    });
+                }, (errResponse) => {
+                    next({error: errResponse.error});
+                });
+        }
+        connection.release();
+    });
+}
 module.exports = {
     recommendedUpComingMovies: recommendedUpComingMovies,
     getAddedUpComingMovies: getAddedUpComingMovies,
-    addUpComingMovie: addUpComingMovie,
+    addUpComingMovie: addUpComingMovieV2,
     searchUpComingMovies: searchUpComingMovies,
     removeUpComingMovies: removeUpComingMovies,
     moveToCurrent: moveToCurrent

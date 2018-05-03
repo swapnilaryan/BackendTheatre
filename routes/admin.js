@@ -88,6 +88,9 @@ router.get('/addedUpComingMovies', adminRegisterLoginLogout.loginStatus,
 router.put('/addUpComingMovie/:movieID', adminRegisterLoginLogout.loginStatus,
     adminUpcomingMovies.addUpComingMovie);
 
+router.post('/addUpComingMovie/:movieID', adminRegisterLoginLogout.loginStatus,
+    adminUpcomingMovies.addUpComingMovie);
+
 router.get('/searchUpComingMovies/:movieName', adminRegisterLoginLogout.loginStatus,
     adminUpcomingMovies.searchUpComingMovies);
 

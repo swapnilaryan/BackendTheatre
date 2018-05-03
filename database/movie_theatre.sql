@@ -177,8 +177,8 @@ DROP TABLE IF EXISTS `admin_setting_social`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admin_setting_social` (
   `socialID` int(11) NOT NULL AUTO_INCREMENT,
-  `socialFacebook` varchar(50) NOT NULL,
-  `socialTwitter` varchar(50) NOT NULL,
+  `socialFacebook` varchar(50)  NULL,
+  `socialTwitter` varchar(50)  NULL,
   PRIMARY KEY (`socialID`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

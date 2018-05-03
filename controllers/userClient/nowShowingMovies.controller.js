@@ -9,12 +9,12 @@ const config = require('../../config');
 
 class NowShowingMovies {
 	getNowShowingMovies(req, res, next) {
-		let query = 'SELECT DISTINCT a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
-			'JOIN ?? AS b WHERE a.??=b.??';
-		
-		let table = ['infoMovieID', 'infoImdbID', 'infoMovieName',
+		let query = 'SELECT DISTINCT a.??, a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
+			'JOIN ?? AS b WHERE a.??=b.?? ORDER BY ??';
+
+		let table = ['infoMovieInTheatres', 'infoMovieID', 'infoImdbID', 'infoMovieName',
 			'infoMoviePosterPath', 'infoMovieBuyTicketsButton',
-			'admin_movieinfo', 'movie_schedule', 'infoImdbID', 'movieImdbID'];
+			'admin_movieinfo', 'movie_schedule', 'infoImdbID', 'movieImdbID', 'infoMovieInTheatres'];
 		query = mysqlDetails.mysqlFormat(query, table);
 		console.log(query);
 		mysqlDetails.pool.getConnection(function (err, connection) {
