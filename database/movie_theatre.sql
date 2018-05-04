@@ -432,7 +432,7 @@ CREATE TABLE `movieinfo` (
   `infoMovieRuntime` varchar(10) DEFAULT NULL,
   `infoMovieRated` varchar(15) DEFAULT NULL,
   `infoMovieDirectedBy` varchar(200) DEFAULT NULL,
-  `infoMovieWrittenBy` varchar(500) DEFAULT NULL,
+  `infoMovieWrittenBy` varchar(1000) DEFAULT NULL,
   `infoMovieGenre` varchar(200) DEFAULT NULL,
   `infoMovieImdbRating` varchar(10) DEFAULT NULL,
   `infoMovieProduction` varchar(50) DEFAULT NULL,

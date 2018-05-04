@@ -47,7 +47,7 @@ let getAddedUpComingMovies = (req, res, next) => {
     // for time being using this..
     let query = 'SELECT * FROM ?? WHERE ?? BETWEEN ' +
         '((DATE_SUB( CURDATE() ,INTERVAL -1 DAY))) AND ' +
-        '(DATE_SUB( CURDATE() ,INTERVAL -30 DAY)) AND ??=1 ORDER BY ?? ASC';
+        '(DATE_SUB( CURDATE() ,INTERVAL -90 DAY)) AND ??=1 ORDER BY ?? ASC';
 
     // let query = 'SELECT * FROM ?? WHERE ??=1';
     //var query = "SELECT * FROM ?? WHERE ?? LIKE ? AND ";
