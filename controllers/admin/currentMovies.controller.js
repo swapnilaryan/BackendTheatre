@@ -4,6 +4,7 @@
 'use strict';
 import * as mysqlDetails from '../../database/connectMySQL';
 import * as utils from '../../services/utils.service';
+import moment from 'moment';
 const kimController = require('../kidsInMind/kidsInMind.controller');
 
 const rottenTomatoes = require('../rottenTomatoes/rottenTomatoes.controller');
@@ -56,6 +57,18 @@ let getMovieSchedule = (req, res, next) => {
 					// rottenTomatoes.crawlData(req, res, next, false);
 					// req.params.movieName = result.original_title + ' ' + parseInt(result.year);
 					// kimController.searchAndAdd(req, res, next);
+
+					// Sorting time
+					for (let i =0 ;i<rows.length;i++) {
+						if (rows[i].movieShowDate && rows[i].movieStartTime) {
+                            rows[i].epochTime = moment(new Date(rows[i].movieShowDate +' '+rows[i].movieStartTime)).valueOf();
+						}
+                        rows[i].movieStartTime = moment(rows[i].movieStartTime, ['HH:mm']).format('hh:mm A');
+                        rows[i].movieEndTime = moment(rows[i].movieEndTime, ['HH:mm']).format('hh:mm A');
+					}
+                    rows.sort(function (a, b) {
+                        return b.epochTime - a.epochTime;
+                    });
 					res.json({
 						message: 'Successfully fetched movie schedule',
 						data: rows
@@ -74,7 +87,7 @@ let getScreens = (req, res, next) => {
 	if (checkReqBody.message !== 'success') {
 		return next({message: utils.jsonResponse(checkReqBody.message)});
 	}
-	
+
 	let query = 'SELECT * FROM ?? WHERE ?? LIKE ?';
 	/** @namespace req.params.screenType */
 	let table = ['admin_setting_screen', 'screenType', '%' + req.params.screenType + '%'];
@@ -106,14 +119,14 @@ let deleteMovieSchedule = (req, res, next) => {
 	if (checkReqBody.message !== 'success') {
 		return next({message: utils.jsonResponse(checkReqBody.message)});
 	}
-	
+
 	mysqlDetails.pool.getConnection(function (err, connection) {
 		if (err) {
 			next({error: err});
 		} else {
 			let query = 'DELETE FROM ?? WHERE (??=?) ' +
 				'AND (??=?)  AND (??=?)  AND (??=?)  AND (??=?) ';
-			
+
 			let values = ['movie_schedule', 'movieType', req.body.movieType, 'movieScreen',
 				req.body.movieScreen, 'movieShowDate', req.body.movieShowDate,
 				'movieStartTime', req.body.movieStartTime, 'movieEndTime',
@@ -143,7 +156,7 @@ let updateMovieSchedule = (req, res, next) => {
 	if (checkReqBody.message !== 'success') {
 		return next({message: utils.jsonResponse(checkReqBody.message)});
 	}
-	
+
 	mysqlDetails.pool.getConnection((err, connection) => {
 		if (err) {
 			next({error: err});
@@ -177,21 +190,21 @@ let addMovieSchedule = (req, res, next) => {
 	if (checkReqBody.message !== 'success') {
 		return next({message: utils.jsonResponse(checkReqBody.message)});
 	}
-	
+
 	mysqlDetails.pool.getConnection((err, connection) => {
 		if (err) {
 			next({error: err});
 		} else {
 			let tableName = 'movie_schedule';
-			
+
 			let columns = ['movieImdbID', 'movieType',
 				'movieScreen', 'movieShowDate', 'movieStartTime',
 				'movieEndTime'];
-			
+
 			let values = [req.body.movieImdbID, req.body.movieType,
 				req.body.movieScreen, req.body.movieShowDate,
 				req.body.movieStartTime, req.body.movieEndTime];
-			
+
 			let result = utils.insertToDB(tableName, columns, values)
 				.then((success) => {
 					res.json({
@@ -201,7 +214,7 @@ let addMovieSchedule = (req, res, next) => {
 				}, (errResponse) => {
 					next({error: errResponse.error});
 				});
-			
+
 			if (result.hasOwnProperty('error')) {
 				next({error: err});
 			} else if (result.hasOwnProperty('data')) {
@@ -225,27 +238,27 @@ let addCurrentMovies = (req, res, next) => {
 	if (checkReqBody.message !== 'success') {
 		return next({message: utils.jsonResponse(checkReqBody.message)});
 	}
-	
+
 	mysqlDetails.pool.getConnection((err, connection) => {
 		if (err) {
 			next({error: err});
 		} else {
 			let tableName = 'admin_movieinfo';
-			
+
 			let columns = ['infoMovieID', 'infoImdbID', 'infoMovieName',
 				'infoMovieInTheatres', 'infoMovieRuntime', 'infoMovieRated',
 				'infoMovieDirectedBy', 'infoMovieWrittenBy', 'infoMovieGenre',
 				'infoMovieImdbRating', 'infoMovieProduction', 'infoMovieWebsite',
 				'infoMovieDescription', 'infoMoviePosterPath', 'infoMovieCasts',
 				'infoMovieBoxOffice'];
-			
+
 			let values = [req.body.id, req.body.imdbID, req.body.title,
 				req.body.released, req.body.runtime, req.body.rated,
 				req.body.director, req.body.writer, req.body.genre,
 				req.body.imdbRating, req.body.production, req.body.website,
 				req.body.plot, '/images/nowShowing' + req.body.poster_path, req.body.cast,
 				req.body.boxOffice];
-			
+
 			utils.insertToDB(tableName, columns, values)
 				.then((success) => {
 					res.json({
