@@ -65,6 +65,7 @@ let getMovieSchedule = (req, res, next) => {
 						}
                         rows[i].movieStartTime = moment(rows[i].movieStartTime, ['HH:mm']).format('hh:mm A');
                         rows[i].movieEndTime = moment(rows[i].movieEndTime, ['HH:mm']).format('hh:mm A');
+                        rows[i].movieShowDate = moment(new Date(rows[i].movieShowDate)).format("MM-DD-YYYY");
 					}
                     rows.sort(function (a, b) {
                         return b.epochTime - a.epochTime;
