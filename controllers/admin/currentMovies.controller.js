@@ -68,7 +68,7 @@ let getMovieSchedule = (req, res, next) => {
                         rows[i].movieShowDate = moment(new Date(rows[i].movieShowDate)).format('MM/DD/YYYY');
 					}
                     rows.sort(function (a, b) {
-                        return b.epochTime - a.epochTime;
+                        return a.epochTime - b.epochTime;
                     });
 					res.json({
 						message: 'Successfully fetched movie schedule',
