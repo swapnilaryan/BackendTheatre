@@ -11,10 +11,10 @@ class UpComingMovies {
 	getUpComingMovies(req, res, next) {
 		let query = 'SELECT * FROM ?? WHERE ?? BETWEEN ' +
 			'((DATE_SUB( CURDATE() ,INTERVAL -1 DAY))) AND ' +
-			'(DATE_SUB( CURDATE() ,INTERVAL -30 DAY)) AND ??=1  ORDER BY ??' +
+			'(DATE_SUB( CURDATE() ,INTERVAL -300 DAY)) AND ??=1  ORDER BY ??' +
 			' ASC';
 		let table = ['admin_upcomingmovies', 'upReleaseDate', 'upAddByAdmin', 'upReleaseDate'];
-		
+
 		// let query = 'SELECT * FROM ?? WHERE ??=1';
 		// let table = ['admin_upcomingmovies', 'upAddByAdmin'];
 		query = mysqlDetails.mysqlFormat(query, table);
