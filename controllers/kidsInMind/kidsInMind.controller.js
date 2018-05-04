@@ -15,32 +15,33 @@ const searchMovies = (req, res, next) => {
     if (!req.body.isAPI) {
         defer = deferred();
     }
-    let url = 'http://www.kids-in-mind.com/cgi-bin/search/search.pl?q=' +
+    let url = 'https://kids-in-mind.com/?s=' +
         '' + req.params.movieName;
     console.log(url);
     reqPro(url)
         .then(function (htmlString) {
             let result = [];
             const $ = cheerio.load(htmlString);
-            const searchResults = $('p[start="1"]').find('a');
-            for (let i = 0; i < searchResults.length; i++) {
+            const searchResults = $('#facet-right-area').find('a');
+            searchResults.each(function(i, elem) {
+                let tempText = $(this).text();
                 let temp = {
                     movieName: null,
                     kimRating: null,
-                    movieKIMURL: searchResults[i].attribs.href
+                    movieKIMURL: elem.attribs.href
                 };
-                let children = searchResults[i].children;
-                let idx = children[0].data.indexOf('[');
+                let idx = tempText.indexOf('[');
                 if (idx > -1) {
-                    temp.movieName = children[0].data.substr(0, idx - 1);
+                    temp.movieName = tempText.substr(0, idx - 1);
                     temp.movieName = temp.movieName.trim();
-
-                    temp.kimRating = children[0].data.substr(idx - 1,
-                        children[0].data.length);
+                    if (temp.movieName && temp.movieName[0] === ':') {
+                        temp.movieName = temp.movieName.replace(':', '').trim();
+                    }
+                    temp.kimRating = tempText.substr(idx - 1, tempText.length);
                     temp.kimRating = temp.kimRating.trim();
                     result.push(temp);
                 }
-            }
+            });
             if (req.body.isAPI) {
                 res.json({
                     message: 'success',
@@ -80,8 +81,17 @@ const addKIMRating = (req, res, next) => {
     reqPro(url)
         .then((htmlString) => {
             const $ = cheerio.load(htmlString);
-            const searchResults = $('p[class="t11normal"]').find('a');
-            let imdbID = searchResults.get(5).attribs.href;
+            const searchResults = $('a[rel="noopener"]');//.find('a');
+            let imdbID = null;
+            searchResults.each(function(i, elem) {
+                if ($(this).text() ==='IMDb') {
+                    imdbID = elem.attribs.href;
+                }
+            });
+            if (!imdbID) {
+                return next({message: utils.jsonResponse('Can\'t find IMDB id in kids in mind. Kindly add manually')});
+            }
+            // let imdbID = searchResults.get(5).attribs.href;
             imdbID = imdbID.replace('http://www.imdb.com/title/', '').replace('/', '');
             imdbID = imdbID.split('/');
             if (imdbID.length > 1 && imdbID[imdbID.length - 1] === '') {
