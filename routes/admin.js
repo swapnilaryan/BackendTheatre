@@ -114,7 +114,7 @@ router.get('/screens/:screenType', adminRegisterLoginLogout.loginStatus,
 router.get('/movieSchedule/:movieImdbID?', adminRegisterLoginLogout.loginStatus,
     adminCurrentMovies.getMovieSchedule);
 
-router.delete('/movieSchedule', adminRegisterLoginLogout.loginStatus,
+router.delete('/movieSchedule/:scheduleID', adminRegisterLoginLogout.loginStatus,
     adminCurrentMovies.deleteMovieSchedule);
 
 router.put('/movieSchedule', adminRegisterLoginLogout.loginStatus,

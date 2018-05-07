@@ -114,9 +114,8 @@ let getScreens = (req, res, next) => {
 
 let deleteMovieSchedule = (req, res, next) => {
 	// Check for mandatory fields
-	let mandatoryFields = ['movieType', 'movieScreen', 'movieShowDate', 'movieStartTime',
-		'movieEndTime'];
-	let checkReqBody = utils.checkMandatoryRequestBody(req.body, mandatoryFields);
+	let mandatoryFields = ['scheduleID'];
+	let checkReqBody = utils.checkMandatoryRequestBody(req.params, mandatoryFields);
 	if (checkReqBody.message !== 'success') {
 		return next({message: utils.jsonResponse(checkReqBody.message)});
 	}
@@ -125,15 +124,11 @@ let deleteMovieSchedule = (req, res, next) => {
 		if (err) {
 			next({error: err});
 		} else {
-			let query = 'DELETE FROM ?? WHERE (??=?) ' +
-				'AND (??=?)  AND (??=?)  AND (??=?)  AND (??=?) ';
+			let query = 'DELETE FROM ?? WHERE ??=?';
 
-			let values = ['movie_schedule', 'movieType', req.body.movieType, 'movieScreen',
-				req.body.movieScreen, 'movieShowDate', req.body.movieShowDate,
-				'movieStartTime', req.body.movieStartTime, 'movieEndTime',
-				req.body.movieEndTime
-			];
+			let values = ['movie_schedule', 'scheduleID', req.params.scheduleID];
 			query = mysqlDetails.mysqlFormat(query, values);
+			console.log(query);
 			connection.query(query, values, (err, rows) => {
 				if (err) {
 					next({error: err});
