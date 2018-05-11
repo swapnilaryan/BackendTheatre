@@ -54,10 +54,6 @@ let getMovieSchedule = (req, res, next) => {
 				if (err) {
 					next({error: err});
 				} else {
-					// rottenTomatoes.crawlData(req, res, next, false);
-					// req.params.movieName = result.original_title + ' ' + parseInt(result.year);
-					// kimController.searchAndAdd(req, res, next);
-
 					// Sorting time
 					for (let i =0 ;i<rows.length;i++) {
 						if (rows[i].movieShowDate && rows[i].movieStartTime) {
@@ -70,6 +66,12 @@ let getMovieSchedule = (req, res, next) => {
                     rows.sort(function (a, b) {
                         return a.epochTime - b.epochTime;
                     });
+
+					let tempRows = rows.filter(function (item) {
+						return item.epochTime > moment().endOf('day').subtract(1, 'days').valueOf();
+                    });
+					rows = tempRows;
+
 					res.json({
 						message: 'Successfully fetched movie schedule',
 						data: rows
@@ -191,33 +193,63 @@ let addMovieSchedule = (req, res, next) => {
 		if (err) {
 			next({error: err});
 		} else {
-			let tableName = 'movie_schedule';
+            let tableName = 'movie_schedule';
 
-			let columns = ['movieImdbID', 'movieType',
-				'movieScreen', 'movieShowDate', 'movieStartTime',
-				'movieEndTime'];
+            let columns = ['movieImdbID', 'movieType',
+                'movieScreen', 'movieShowDate', 'movieStartTime',
+                'movieEndTime'];
 
-			let values = [req.body.movieImdbID, req.body.movieType,
-				req.body.movieScreen, req.body.movieShowDate,
-				req.body.movieStartTime, req.body.movieEndTime];
+			if (req.body.hasOwnProperty('movieShowDateRepeat')) {
+				let tempStart = moment(req.body.movieShowDate + ' ' + req.body.movieStartTime).valueOf();
+				let tempEndDate = moment(req.body.movieShowDateRepeat + ' ' + req.body.movieStartTime).valueOf();
+				let add1day = 24 * 3600 * 1000;
+				let valuesArr = [];
+				let tempTime = tempStart;
+				while (tempTime <= tempEndDate) {
+					let t = [req.body.movieImdbID, req.body.movieType,
+                        req.body.movieScreen, moment(tempTime).format('YYYY-MM-DD'),
+                        req.body.movieStartTime, req.body.movieEndTime];
+					valuesArr.push(t);
+                    tempTime = tempTime + add1day;
+				}
 
-			let result = utils.insertToDB(tableName, columns, values)
-				.then((success) => {
-					res.json({
-						message: 'Successfully added movie showtime',
-						data: success.data
-					});
-				}, (errResponse) => {
-					next({error: errResponse.error});
+				let query  = 'INSERT INTO ' + tableName + ' ' +
+					'(movieImdbID, movieType, movieScreen, movieShowDate, ' +
+					'movieStartTime, movieEndTime) VALUES ?';
+				connection.query(query, [valuesArr], (err, rows) => {
+					if (err) {
+                        next({error: err});
+                    } else {
+                        res.json({
+                            message: 'Successfully added movie showtime',
+                            data: rows
+                        });
+					}
 				});
+			} else {
 
-			if (result.hasOwnProperty('error')) {
-				next({error: err});
-			} else if (result.hasOwnProperty('data')) {
-				res.json({
-					message: 'Successfully added movie showtime',
-					data: result.data
-				});
+                let values = [req.body.movieImdbID, req.body.movieType,
+                    req.body.movieScreen, req.body.movieShowDate,
+                    req.body.movieStartTime, req.body.movieEndTime];
+
+                let result = utils.insertToDB(tableName, columns, values)
+                    .then((success) => {
+                        res.json({
+                            message: 'Successfully added movie showtime',
+                            data: success.data
+                        });
+                    }, (errResponse) => {
+                        next({error: errResponse.error});
+                    });
+
+                if (result.hasOwnProperty('error')) {
+                    next({error: err});
+                } else if (result.hasOwnProperty('data')) {
+                    res.json({
+                        message: 'Successfully added movie showtime',
+                        data: result.data
+                    });
+                }
 			}
 		}
 		connection.release();
