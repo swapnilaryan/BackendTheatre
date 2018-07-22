@@ -11,7 +11,8 @@ class NowShowingMovies {
     getNowShowingMovies(req, res, next) {
         let query = 'SELECT DISTINCT a.??, a.??, a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
             'JOIN ?? AS b WHERE a.??=b.?? ' +
-            'AND TIMESTAMPDIFF(DAY, CURDATE(), b.`movieShowDate`) >= 7' +
+            'AND TIMESTAMPDIFF(DAY, CURDATE(), b.`movieShowDate`)>=0' +
+            'AND TIMESTAMPDIFF(DAY, CURDATE(), b.`movieShowDate`)<=7' +
             'ORDER BY ?? DESC';
 
         let table = ['infoMovieImdbRating', 'infoMovieInTheatres', 'infoMovieID', 'infoImdbID', 'infoMovieName',
