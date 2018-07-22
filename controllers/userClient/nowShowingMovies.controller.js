@@ -5,13 +5,14 @@
 
 import * as mysqlDetails from '../../database/connectMySQL';
 import moment from 'moment';
-const config = require('../../config');
 
 
 class NowShowingMovies {
     getNowShowingMovies(req, res, next) {
         let query = 'SELECT DISTINCT a.??, a.??, a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
-            'JOIN ?? AS b WHERE a.??=b.?? ORDER BY ?? DESC';
+            'JOIN ?? AS b WHERE a.??=b.?? ' +
+            'HAVING (select count(*) from admin_showtime where showtimeMovieID = a.infoMovieID) > 0 ' +
+            'ORDER BY ?? DESC';
 
         let table = ['infoMovieImdbRating', 'infoMovieInTheatres', 'infoMovieID', 'infoImdbID', 'infoMovieName',
             'infoMoviePosterPath', 'infoMovieBuyTicketsButton',
