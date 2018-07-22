@@ -4,16 +4,16 @@
 'use strict';
 
 import * as mysqlDetails from '../../database/connectMySQL';
-import moment from "moment";
+import moment from 'moment';
 const config = require('../../config');
 
 
 class NowShowingMovies {
     getNowShowingMovies(req, res, next) {
-        let query = 'SELECT DISTINCT a.??, a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
+        let query = 'SELECT DISTINCT a.??, a.??, a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
             'JOIN ?? AS b WHERE a.??=b.?? ORDER BY ?? DESC';
 
-        let table = ['infoMovieInTheatres', 'infoMovieID', 'infoImdbID', 'infoMovieName',
+        let table = ['infoMovieImdbRating', 'infoMovieInTheatres', 'infoMovieID', 'infoImdbID', 'infoMovieName',
             'infoMoviePosterPath', 'infoMovieBuyTicketsButton',
             'admin_movieinfo', 'movie_schedule', 'infoImdbID', 'movieImdbID', 'infoMovieInTheatres'];
         query = mysqlDetails.mysqlFormat(query, table);

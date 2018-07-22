@@ -278,14 +278,14 @@ let addCurrentMovies = (req, res, next) => {
 				'infoMovieDirectedBy', 'infoMovieWrittenBy', 'infoMovieGenre',
 				'infoMovieImdbRating', 'infoMovieProduction', 'infoMovieWebsite',
 				'infoMovieDescription', 'infoMoviePosterPath', 'infoMovieCasts',
-				'infoMovieBoxOffice'];
+				'infoMovieBoxOffice', 'infoMovieBackdropPath'];
 
 			let values = [req.body.id, req.body.imdbID, req.body.title,
 				req.body.released, req.body.runtime, req.body.rated,
 				req.body.director, req.body.writer, req.body.genre,
 				req.body.imdbRating, req.body.production, req.body.website,
 				req.body.plot, '/images/nowShowing' + req.body.poster_path, req.body.cast,
-				req.body.boxOffice];
+				req.body.boxOffice, req.body.backdrop_path];
 
 			utils.insertToDB(tableName, columns, values)
 				.then((success) => {
