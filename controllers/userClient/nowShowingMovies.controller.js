@@ -11,7 +11,7 @@ class NowShowingMovies {
     getNowShowingMovies(req, res, next) {
         let query = 'SELECT DISTINCT a.??, a.??, a.??, a.?? , a.??, a.??, a.?? FROM ?? AS a ' +
             'JOIN ?? AS b WHERE a.??=b.?? ' +
-            'HAVING (select count(*) from admin_showtime where showtimeMovieID = a.infoMovieID) > 0 ' +
+            'HAVING (SELECT COUNT(*) FROM movie_schedule WHERE movieImdbID = a.infoImdbID) > 0 ' +
             'ORDER BY ?? DESC';
 
         let table = ['infoMovieImdbRating', 'infoMovieInTheatres', 'infoMovieID', 'infoImdbID', 'infoMovieName',
