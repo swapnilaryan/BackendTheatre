@@ -182,6 +182,11 @@ const crawlData = (req, res, next, isAPI = false) => {
 	req.body.movieURL = req.body.movieURL.replace('https://www.rottentomatoes.com/m/', '');
 	req.body.movieURL = req.body.movieURL.replace('http://www.rottentomatoes.com/m/', '');
 	let url = 'http://www.rottentomatoes.com/m/' + req.body.movieURL;
+	
+	if (req.body.movieURL === 'N/A' || req.body.movieURL === '' || req.body.movieURL === null) {
+    next({message: utils.jsonResponse("Rotten tomatoes url not found. The" +
+				" URL fetched is " + req.body.movieURL)});
+	}
 	/** @namespace req.body.movieURL */
 	reqPro(url)
 		.then((htmlString) => {

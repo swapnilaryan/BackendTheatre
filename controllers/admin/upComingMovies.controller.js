@@ -261,7 +261,7 @@ let moveToCurrent = (req, res, next) => {
                 });
             } else {
                 // call rotten tomatoes
-                req.body.movieURL = result.tomatoURL;
+                req.body.movieURL = "https://www.rottentomatoes.com/m/christopher_robin";//result.tomatoURL;
                 req.body.imdbID = result.imdbID;
                 currentMovies.addCurrentMovies(req, res, next);
                 rottenTomatoes.crawlData(req, res, next, false);
